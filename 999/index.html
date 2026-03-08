@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テストサロン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+:root{
+  --black:#1a1a1a;
+  --gray1:#f5f5f5;
+  --gray2:#e8e8e8;
+  --gray3:#888;
+  --accent:#b5926a;
+  --white:#fff;
+  --sans:'Noto Sans JP',sans-serif;
+  --serif:'Noto Serif JP',serif;
+}
+body{font-family:var(--sans);color:var(--black);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ─ HEADER ─────────────────────────────────────── */
+#header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:#fff;
+  border-bottom:1px solid var(--gray2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:60px;
+  transition:box-shadow .3s;
+}
+#header.shadow{box-shadow:0 2px 20px rgba(0,0,0,.06);}
+.h-logo{font-size:.95rem;font-weight:700;letter-spacing:.12em;}
+.h-nav{display:flex;align-items:center;gap:32px;}
+.h-nav a{font-size:.75rem;font-weight:400;color:var(--gray3);letter-spacing:.1em;
+          transition:color .2s;}
+.h-nav a:hover{color:var(--black);}
+.h-reserve{
+  background:var(--black);color:#fff;
+  font-size:.75rem;font-weight:500;letter-spacing:.12em;
+  padding:10px 24px;
+  transition:background .2s;
+}
+.h-reserve:hover{background:#333;}
+
+/* ─ HERO ────────────────────────────────────────── */
+.hero{
+  margin-top:60px;
+  position:relative;height:calc(100svh - 60px);min-height:500px;
+  overflow:hidden;
+}
+.hero-img{
+  width:100%;height:100%;object-fit:cover;
+  transform:scale(1.06);
+  animation:heroZoom 8s ease forwards;
+}
+@keyframes heroZoom{to{transform:scale(1);}}
+.hero-text{
+  position:absolute;bottom:60px;left:60px;
+}
+.hero-sub{
+  font-size:.75rem;font-weight:400;letter-spacing:.3em;
+  color:#fff;opacity:.8;margin-bottom:12px;
+  text-transform:uppercase;
+  animation:fadeUp .8s .3s both;
+}
+.hero-title{
+  font-size:clamp(2.4rem,5vw,4.2rem);
+  font-weight:300;color:#fff;
+  line-height:1.15;letter-spacing:.06em;
+  font-family:var(--serif);
+  animation:fadeUp .9s .5s both;
+}
+.hero-catch{
+  margin-top:20px;font-size:.9rem;
+  color:rgba(255,255,255,.75);font-weight:300;
+  letter-spacing:.06em;line-height:1.8;
+  animation:fadeUp .9s .7s both;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.1) 60%,transparent 100%);
+}
+
+/* ─ NEWS STRIP ──────────────────────────────────── */
+.news-strip{
+  border-bottom:1px solid var(--gray2);
+  padding:0 40px;
+  display:flex;align-items:stretch;
+}
+.news-label{
+  font-size:.7rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--white);background:var(--black);
+  padding:0 20px;display:flex;align-items:center;
+  flex-shrink:0;
+}
+.news-items{
+  display:flex;gap:0;overflow:hidden;flex:1;
+}
+.news-item{
+  padding:18px 32px;border-right:1px solid var(--gray2);
+  display:flex;align-items:center;gap:16px;
+  font-size:.8rem;white-space:nowrap;
+  transition:background .2s;cursor:default;
+}
+.news-item:hover{background:var(--gray1);}
+.news-date{color:var(--gray3);font-size:.7rem;flex-shrink:0;}
+
+/* ─ SECTION COMMON ──────────────────────────────── */
+.sec{padding:80px 40px;}
+.sec-inner{max-width:1120px;margin:0 auto;}
+.sec-head{margin-bottom:56px;}
+.sec-en{
+  font-size:.7rem;font-weight:700;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--accent);
+  display:block;margin-bottom:12px;
+}
+.sec-ja{
+  font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;
+  font-family:var(--serif);letter-spacing:.06em;line-height:1.4;
+}
+
+/* ─ ABOUT ───────────────────────────────────────── */
+.about{background:var(--white);}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--gray2);
+}
+.about-img-wrap{overflow:hidden;}
+.about-img{
+  width:100%;height:100%;min-height:480px;
+  object-fit:cover;
+  transition:transform .8s ease;
+}
+.about-img-wrap:hover .about-img{transform:scale(1.03);}
+.about-body{
+  padding:64px 56px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.about-body .sec-head{margin-bottom:32px;}
+.about-text{
+  font-size:.9rem;line-height:2.2;font-weight:300;
+  color:#444;margin-bottom:32px;
+}
+.about-link{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.78rem;font-weight:500;letter-spacing:.15em;
+  border-bottom:1px solid var(--black);padding-bottom:4px;
+  transition:gap .2s;
+}
+.about-link:hover{gap:16px;}
+.about-link::after{content:'→';}
+
+/* ─ PHOTO STRIP ─────────────────────────────────── */
+.strip{
+  height:320px;overflow:hidden;
+  display:flex;gap:3px;
+  background:var(--gray1);
+}
+.strip-img{
+  flex:1;min-width:0;overflow:hidden;
+  position:relative;cursor:zoom-in;
+}
+.strip-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease,filter .4s;
+}
+.strip-img:hover img{transform:scale(1.07);filter:brightness(.9);}
+.strip-img::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(0,0,0,.3);
+  opacity:0;transition:opacity .3s;
+}
+.strip-img:hover::after{opacity:1;}
+
+/* ─ MENU ────────────────────────────────────────── */
+.menu-sec{background:var(--gray1);}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--gray2);}
+.menu-card{
+  background:var(--white);padding:36px 32px;
+  position:relative;overflow:hidden;
+  transition:box-shadow .3s;
+}
+.menu-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);}
+.menu-no{
+  position:absolute;top:20px;right:24px;
+  font-size:3rem;font-weight:700;color:rgba(0,0,0,.04);
+  line-height:1;font-family:var(--serif);
+}
+.menu-name{
+  font-size:1rem;font-weight:500;letter-spacing:.06em;
+  margin-bottom:8px;
+}
+.menu-price{
+  font-family:var(--serif);font-size:1.5rem;font-weight:300;
+  color:var(--accent);margin-bottom:12px;
+}
+.menu-price span{font-size:.8rem;font-family:var(--sans);}
+.menu-desc{font-size:.82rem;color:var(--gray3);line-height:1.8;font-weight:300;}
+.menu-note{
+  margin-top:32px;font-size:.75rem;color:var(--gray3);
+  text-align:center;line-height:1.8;
+}
+
+/* ─ GALLERY GRID ────────────────────────────────── */
+.gallery-sec{background:var(--white);}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:repeat(2,240px);
+  gap:3px;
+  margin-top:48px;
+}
+.g-item{overflow:hidden;position:relative;cursor:pointer;}
+.g-item:first-child{grid-column:span 2;grid-row:span 2;}
+.g-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease;
+}
+.g-item:hover img{transform:scale(1.05);}
+.g-caption{
+  position:absolute;inset:0;
+  background:rgba(20,20,20,.45);
+  display:flex;align-items:flex-end;padding:16px;
+  opacity:0;transition:opacity .3s;
+}
+.g-item:hover .g-caption{opacity:1;}
+.g-caption span{color:#fff;font-size:.75rem;letter-spacing:.15em;}
+
+/* ─ NUMBERS ─────────────────────────────────────── */
+.nums-sec{
+  background:var(--black);padding:72px 40px;
+}
+.nums-inner{max-width:1120px;margin:0 auto;}
+.nums-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#333;}
+.num-card{
+  background:var(--black);padding:48px 40px;text-align:center;
+}
+.num-val{
+  font-family:var(--serif);font-size:3.5rem;font-weight:300;
+  color:var(--white);line-height:1;margin-bottom:8px;
+}
+.num-val small{font-size:1.4rem;font-family:var(--sans);}
+.num-label{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.45);letter-spacing:.2em;text-transform:uppercase;}
+
+/* ─ ACCESS ──────────────────────────────────────── */
+.access-sec{background:var(--white);}
+.access-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:0;border:1px solid var(--gray2);}
+.access-info{padding:56px 48px;}
+.access-row{display:flex;gap:0;padding:16px 0;border-bottom:1px solid var(--gray2);}
+.access-row:last-child{border-bottom:none;}
+.a-key{
+  font-size:.7rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gray3);
+  width:88px;flex-shrink:0;padding-top:2px;
+}
+.a-val{font-size:.88rem;line-height:1.8;font-weight:300;}
+.access-map{
+  background:var(--gray1);
+  display:flex;align-items:center;justify-content:center;
+  min-height:320px;overflow:hidden;position:relative;
+}
+.access-map-img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1);
+  transition:filter .4s;
+}
+.access-map:hover .access-map-img{filter:grayscale(.3);}
+
+/* ─ RESERVATION CTA ─────────────────────────────── */
+.cta-sec{
+  padding:100px 40px;text-align:center;
+  background:var(--gray1);
+}
+.cta-title{
+  font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:300;margin-bottom:16px;
+  letter-spacing:.08em;line-height:1.4;
+}
+.cta-sub{
+  font-size:.88rem;font-weight:300;color:var(--gray3);
+  line-height:2;margin-bottom:48px;
+  max-width:460px;margin-left:auto;margin-right:auto;
+}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-black{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--black);color:#fff;
+  padding:16px 48px;font-size:.85rem;font-weight:500;
+  letter-spacing:.14em;
+  transition:background .2s;
+}
+.btn-black:hover{background:#333;}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--black);color:var(--black);
+  padding:15px 40px;font-size:.8rem;font-weight:400;
+  letter-spacing:.14em;
+  transition:background .2s,color .2s;
+}
+.btn-outline:hover{background:var(--black);color:#fff;}
+
+/* ─ FOOTER ──────────────────────────────────────── */
+footer{
+  background:var(--black);padding:48px 40px 32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;
+  align-items:start;
+}
+.ft-left{}
+.ft-logo{
+  font-size:1.1rem;font-weight:700;color:#fff;
+  letter-spacing:.14em;margin-bottom:12px;
+}
+.ft-addr{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.8;font-weight:300;}
+.ft-right{
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+}
+.ft-links{display:flex;gap:24px;margin-bottom:8px;}
+.ft-links a{font-size:.72rem;color:rgba(255,255,255,.35);letter-spacing:.1em;transition:color .2s;}
+.ft-links a:hover{color:#fff;}
+.ft-copy{font-size:.7rem;color:rgba(255,255,255,.2);letter-spacing:.06em;}
+.ft-credit{font-size:.68rem;color:rgba(255,255,255,.15);}
+.ft-credit a{color:rgba(255,255,255,.25);transition:color .2s;}
+.ft-credit a:hover{color:rgba(255,255,255,.5);}
+
+/* ─ ANIMATIONS ──────────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.up{opacity:1;transform:none;}
+.reveal.delay1{transition-delay:.1s;}
+.reveal.delay2{transition-delay:.2s;}
+.reveal.delay3{transition-delay:.3s;}
+.reveal.delay4{transition-delay:.4s;}
+
+/* ─ RESPONSIVE ──────────────────────────────────── */
+@media(max-width:768px){
+  #header{padding:0 20px;}
+  .h-nav{display:none;}
+  .hero-text{left:28px;bottom:40px;}
+  .news-strip{display:none;}
+  .sec{padding:56px 20px;}
+  .about-grid,.access-grid,.footer{grid-template-columns:1fr;}
+  .about-img{min-height:280px;}
+  .about-body{padding:40px 28px;}
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+  }
+  .g-item:first-child{grid-column:span 2;grid-row:span 1;}
+  .nums-grid{grid-template-columns:1fr;}
+  .strip{height:200px;}
+  .ft-right{align-items:flex-start;}
+  .cta-sec{padding:64px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="h-logo">テストサロン</div>
+  <nav class="h-nav">
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#access">Access</a>
+  </nav>
+  <a href="#reserve" class="h-reserve">WEB予約</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <img class="hero-img" src="https://images.unsplash.com/photo-1600948836587-02c1842c9140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="テストサロン">
+  <div class="hero-text">
+    <p class="hero-sub">Hair Salon — 渋谷区</p>
+    <h1 class="hero-title">テストサロン</h1>
+    <p class="hero-catch">あなたらしさを、もっと輝かせる場所へ</p>
+  </div>
+</section>
+
+<!-- NEWS STRIP -->
+<div class="news-strip">
+  <div class="news-label">NEWS</div>
+  <div class="news-items">
+    <div class="news-item">
+      <span class="news-date">2025.01</span>
+      <span>新メニュー「トリートメントコース」開始しました</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">2024.12</span>
+      <span>年末年始の営業時間についてのご案内</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">2024.11</span>
+      <span>スタッフ募集中！お気軽にお問い合わせください</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about sec" id="about">
+  <div class="sec-inner">
+    <div class="about-grid reveal">
+      <div class="about-img-wrap">
+        <img class="about-img"
+             src="https://images.unsplash.com/photo-1747832802200-7aaceb517e0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080"
+             alt="サロンイメージ">
+      </div>
+      <div class="about-body">
+        <div class="sec-head">
+          <span class="sec-en">About</span>
+          <h2 class="sec-ja">渋谷で見つける、理想のわたし</h2>
+        </div>
+        <p class="about-text">テストサロンは、渋谷の街に根ざした地域密着型のヘアサロンです。一人ひとりのライフスタイルや髪質に寄り添い、あなただけのスタイルをご提案します。リラックスできる空間で、日々の忙しさを忘れてひとときをお過ごしください。</p>
+        <a href="#menu" class="about-link">メニューを見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="strip">
+  
+  <div class="strip-img"><img src="https://images.unsplash.com/photo-1600948836587-02c1842c9140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-img"><img src="https://images.unsplash.com/photo-1747832802200-7aaceb517e0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-img"><img src="https://images.unsplash.com/photo-1759134155377-4207d89b39ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  
+  <div class="strip-img"><img src="https://images.unsplash.com/photo-1600948836587-02c1842c9140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="filter:brightness(.85)saturate(.9)"></div>
+  
+  <div class="strip-img"><img src="https://images.unsplash.com/photo-1747832802200-7aaceb517e0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="filter:brightness(.85)saturate(.9)"></div>
+  
+  <div class="strip-img"><img src="https://images.unsplash.com/photo-1759134155377-4207d89b39ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="" style="filter:brightness(.85)saturate(.9)"></div>
+  
+</div>
+
+<!-- MENU -->
+<section class="menu-sec sec" id="menu">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="sec-en">Menu</span>
+      <h2 class="sec-ja">メニュー・料金</h2>
+    </div>
+    <div class="menu-grid">
+      
+      <div class="menu-card reveal delay1">
+        <div class="menu-no">01</div>
+        <div class="menu-name">カット</div>
+        <div class="menu-price">¥4,400<span>〜（税込）</span></div>
+        <div class="menu-desc">骨格・髪質に合わせた丁寧なカット</div>
+      </div>
+      
+      <div class="menu-card reveal delay2">
+        <div class="menu-no">02</div>
+        <div class="menu-name">カラーリング</div>
+        <div class="menu-price">¥8,800<span>〜（税込）</span></div>
+        <div class="menu-desc">トレンドカラーからナチュラルまで対応</div>
+      </div>
+      
+      <div class="menu-card reveal delay3">
+        <div class="menu-no">03</div>
+        <div class="menu-name">パーマ</div>
+        <div class="menu-price">¥11,000<span>〜（税込）</span></div>
+        <div class="menu-desc">やわらかなウェーブで毎日のスタイルを楽に</div>
+      </div>
+      
+      <div class="menu-card reveal delay4">
+        <div class="menu-no">04</div>
+        <div class="menu-name">トリートメント</div>
+        <div class="menu-price">¥5,500<span>〜（税込）</span></div>
+        <div class="menu-desc">髪の内側からケアするサロン専売品使用</div>
+      </div>
+      
+      <div class="menu-card reveal delay5">
+        <div class="menu-no">05</div>
+        <div class="menu-name">ヘッドスパ</div>
+        <div class="menu-price">¥3,300<span>〜（税込）</span></div>
+        <div class="menu-desc">頭皮ケアとリラクゼーションを同時に</div>
+      </div>
+      
+    </div>
+    <p class="menu-note reveal">
+      ※ 料金はすべて税込表示です。カウンセリング後にお見積もりいたします。<br>
+      カード・電子マネー各種ご利用いただけます。
+    </p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-sec sec" id="gallery">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="sec-en">Gallery</span>
+      <h2 class="sec-ja">スタイルギャラリー</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      
+      
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1600948836587-02c1842c9140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル 1">
+        <div class="g-caption"><span>Style 01</span></div>
+      </div>
+      
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1747832802200-7aaceb517e0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル 2">
+        <div class="g-caption"><span>Style 02</span></div>
+      </div>
+      
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1759134155377-4207d89b39ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル 3">
+        <div class="g-caption"><span>Style 03</span></div>
+      </div>
+      
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1600948836587-02c1842c9140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル 4">
+        <div class="g-caption"><span>Style 04</span></div>
+      </div>
+      
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1747832802200-7aaceb517e0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル 5">
+        <div class="g-caption"><span>Style 05</span></div>
+      </div>
+      
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1759134155377-4207d89b39ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル 6">
+        <div class="g-caption"><span>Style 06</span></div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="nums-sec reveal">
+  <div class="nums-inner">
+    <div class="nums-grid">
+      <div class="num-card">
+        <div class="num-val"><small>#</small>1</div>
+        <div class="num-label">地域お客様満足度</div>
+      </div>
+      <div class="num-card">
+        <div class="num-val">10<small>年</small></div>
+        <div class="num-label">地域密着の実績</div>
+      </div>
+      <div class="num-card">
+        <div class="num-val">98<small>%</small></div>
+        <div class="num-label">リピート率</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access-sec sec" id="access">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="sec-en">Access</span>
+      <h2 class="sec-ja">アクセス</h2>
+    </div>
+    <div class="access-grid reveal">
+      <div class="access-info">
+        <div class="access-row">
+          <span class="a-key">Address</span>
+          <span class="a-val">東京都渋谷区</span>
+        </div>
+        <div class="access-row">
+          <span class="a-key">Tel</span>
+          <span class="a-val">03-1234-5678</span>
+        </div>
+        <div class="access-row">
+          <span class="a-key">Hours</span>
+          <span class="a-val">10:00〜20:00</span>
+        </div>
+        <div class="access-row">
+          <span class="a-key">Closed</span>
+          <span class="a-val">火曜定休</span>
+        </div>
+        <div class="access-row" style="border-bottom:none;padding-top:28px;">
+          <a href="tel:03-1234-5678" class="btn-black" style="padding:14px 32px;font-size:.8rem;">
+            今すぐ電話する
+          </a>
+        </div>
+      </div>
+      <div class="access-map">
+        <img class="access-map-img"
+             src="https://images.unsplash.com/photo-1759134155377-4207d89b39ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI1MjR8&ixlib=rb-4.1.0&q=80&w=1080"
+             alt="アクセスマップ">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / RESERVE -->
+<section class="cta-sec reveal" id="reserve">
+  <h2 class="cta-title">ご予約・お問い合わせ</h2>
+  <p class="cta-sub">まずはお気軽にお電話ください。スタッフ一同、心よりお待ちしております。</p>
+  <div class="cta-btns">
+    <a href="tel:03-1234-5678" class="btn-black">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07
+                 A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67
+                 A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81
+                 a2 2 0 01-.45 2.11L6.09 8.69a16 16 0 006.22 6.22l1.21-1.21
+                 a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      電話で予約
+    </a>
+    <a href="" target="_blank" class="btn-outline">
+      無料相談フォーム
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-left">
+    <div class="ft-logo">テストサロン</div>
+    <div class="ft-addr">
+      東京都渋谷区<br>
+      TEL: 03-1234-5678
+    </div>
+  </div>
+  <div class="ft-right">
+    <div class="ft-links">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#access">Access</a>
+    </div>
+    <div class="ft-copy">© テストサロン All Rights Reserved.</div>
+    <div class="ft-credit">
+      Demo by <a href="https://infinitydesign.co.jp">InfinityDesign</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Header shadow on scroll
+const hdr = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('shadow', window.scrollY > 10);
+}, {passive:true});
+
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('up');
+      ro.unobserve(e.target);
+    }
+  });
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
