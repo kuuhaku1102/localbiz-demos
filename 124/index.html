@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>白根歯科医院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --accent:   #4ab0c8;
+  --accent-d: #2a8aa8;
+  --black:  #1a1a1a;
+  --gray1:  #f5f5f5;
+  --gray2:  #e8e8e8;
+  --gray3:  #888;
+  --white:  #fff;
+  --sans:   'Noto Sans JP',sans-serif;
+  --serif:  'Noto Serif JP',serif;
+}
+body{font-family:var(--sans);color:var(--black);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ─ HEADER ──────────────────────────────────────── */
+#hdr{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--gray2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:60px;
+  transition:box-shadow .3s;
+}
+#hdr.sh{box-shadow:0 2px 20px rgba(0,0,0,.07);}
+.h-logo{font-size:.95rem;font-weight:700;letter-spacing:.1em;}
+.h-nav{display:flex;align-items:center;gap:28px;}
+.h-nav a{font-size:.75rem;color:var(--gray3);letter-spacing:.08em;transition:color .2s;}
+.h-nav a:hover{color:var(--black);}
+.h-cta{
+  background:var(--accent);color:#fff;
+  font-size:.75rem;font-weight:500;letter-spacing:.1em;
+  padding:10px 22px;transition:background .2s;white-space:nowrap;
+}
+.h-cta:hover{background:var(--accent-d);}
+
+/* ─ HERO ─────────────────────────────────────────── */
+.hero{
+  margin-top:60px;position:relative;
+  height:calc(100svh - 60px);min-height:500px;overflow:hidden;
+}
+.hero-img{
+  width:100%;height:100%;object-fit:cover;
+  transform:scale(1.06);
+  animation:zoomIn 8s ease forwards;
+}
+@keyframes zoomIn{to{transform:scale(1);}}
+.hero-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.15) 55%,transparent 100%);
+}
+.hero-txt{position:absolute;bottom:60px;left:60px;}
+.hero-en{
+  display:block;font-size:.72rem;font-weight:400;
+  color:rgba(255,255,255,.7);letter-spacing:.35em;text-transform:uppercase;
+  margin-bottom:14px;animation:fadeUp .7s .3s both;
+}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,5vw,4.2rem);font-weight:300;
+  color:#fff;line-height:1.15;letter-spacing:.06em;
+  animation:fadeUp .8s .5s both;
+}
+.hero-catch{
+  margin-top:18px;font-size:.9rem;font-weight:300;
+  color:rgba(255,255,255,.75);letter-spacing:.05em;line-height:1.9;
+  animation:fadeUp .8s .7s both;
+}
+.hero-scroll{
+  position:absolute;bottom:32px;right:48px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:fadeUp .8s 1.2s both;
+}
+.hero-scroll span{
+  font-size:.65rem;color:rgba(255,255,255,.5);
+  letter-spacing:.25em;text-transform:uppercase;writing-mode:vertical-rl;
+}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);}
+
+/* ─ NEWS ─────────────────────────────────────────── */
+.news{
+  border-bottom:1px solid var(--gray2);
+  display:flex;align-items:stretch;overflow:hidden;
+}
+.news-tag{
+  background:var(--black);color:#fff;
+  font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+  padding:0 20px;display:flex;align-items:center;flex-shrink:0;white-space:nowrap;
+}
+.news-list{display:flex;overflow:hidden;}
+.news-it{
+  padding:17px 28px;border-right:1px solid var(--gray2);
+  display:flex;align-items:center;gap:14px;font-size:.78rem;white-space:nowrap;
+}
+.news-dt{color:var(--gray3);font-size:.68rem;flex-shrink:0;}
+
+/* ─ SECTION ─────────────────────────────────────── */
+.sec{padding:80px 40px;}
+.inner{max-width:1120px;margin:0 auto;}
+.sec-lbl{
+  display:block;font-size:.7rem;font-weight:700;
+  letter-spacing:.35em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:12px;
+}
+.sec-ttl{
+  font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);
+  font-weight:300;letter-spacing:.06em;line-height:1.4;
+}
+.sec-head{margin-bottom:52px;}
+
+/* ─ ABOUT ────────────────────────────────────────── */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--gray2);overflow:hidden;
+}
+.about-img-w{overflow:hidden;}
+.about-img{
+  width:100%;height:100%;min-height:460px;object-fit:cover;
+  transition:transform .7s ease;
+}
+.about-img-w:hover .about-img{transform:scale(1.03);}
+.about-body{padding:60px 52px;display:flex;flex-direction:column;justify-content:center;}
+.about-txt{font-size:.88rem;line-height:2.3;font-weight:300;color:#444;margin-bottom:28px;}
+.about-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.76rem;font-weight:500;letter-spacing:.12em;
+  border-bottom:1px solid var(--black);padding-bottom:4px;
+  width:fit-content;transition:gap .2s;
+}
+.about-link:hover{gap:14px;}
+.about-link::after{content:'→';}
+
+/* ─ STRIP ────────────────────────────────────────── */
+.strip{height:300px;display:flex;gap:3px;background:var(--gray1);}
+.strip-it{flex:1;min-width:0;overflow:hidden;position:relative;}
+.strip-it img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.strip-it:hover img{transform:scale(1.07);}
+
+/* ─ MENU ─────────────────────────────────────────── */
+.menu-bg{background:var(--gray1);}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--gray2);}
+.menu-card{
+  background:var(--white);padding:36px 28px;
+  position:relative;overflow:hidden;transition:box-shadow .3s;cursor:default;
+}
+.menu-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.07);}
+.menu-card::before{
+  content:'';position:absolute;top:0;left:0;right:100%;height:2px;
+  background:var(--accent);transition:right .4s ease;
+}
+.menu-card:hover::before{right:0;}
+.menu-no{
+  position:absolute;top:18px;right:22px;
+  font-size:2.8rem;font-weight:700;
+  color:rgba(0,0,0,.04);line-height:1;font-family:var(--serif);
+}
+.menu-name{font-size:.98rem;font-weight:500;letter-spacing:.06em;margin-bottom:8px;}
+.menu-price{
+  font-family:var(--serif);font-size:1.45rem;font-weight:300;
+  color:var(--accent);margin-bottom:10px;
+}
+.menu-price span{font-size:.78rem;font-family:var(--sans);}
+.menu-desc{font-size:.8rem;color:var(--gray3);line-height:1.85;font-weight:300;}
+.menu-note{margin-top:28px;font-size:.73rem;color:var(--gray3);text-align:center;line-height:1.9;}
+
+/* ─ GALLERY ──────────────────────────────────────── */
+.gal-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:repeat(2,220px);
+  gap:3px;margin-top:48px;
+}
+.g-it{overflow:hidden;position:relative;cursor:pointer;}
+.g-it:first-child{grid-column:span 2;grid-row:span 2;}
+.g-it img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.g-it:hover img{transform:scale(1.06);}
+.g-ov{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.35);
+  display:flex;align-items:flex-end;padding:14px;
+  opacity:0;transition:opacity .3s;
+}
+.g-it:hover .g-ov{opacity:1;}
+.g-ov span{color:#fff;font-size:.7rem;letter-spacing:.2em;}
+
+/* ─ NUMBERS ──────────────────────────────────────── */
+.nums{background:var(--black);padding:64px 40px;}
+.nums-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a2a2a;}
+.n-card{background:var(--black);padding:48px 40px;text-align:center;}
+.n-val{
+  font-family:var(--serif);font-size:3.2rem;font-weight:300;
+  color:var(--white);line-height:1;margin-bottom:8px;
+}
+.n-val small{font-size:1.3rem;font-family:var(--sans);}
+.n-lbl{font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.22em;text-transform:uppercase;}
+
+/* ─ ACCESS ───────────────────────────────────────── */
+.access-grid{display:grid;grid-template-columns:1fr 1.2fr;border:1px solid var(--gray2);overflow:hidden;}
+.access-info{padding:52px 44px;}
+.a-row{display:flex;gap:0;padding:15px 0;border-bottom:1px solid var(--gray2);}
+.a-row:last-child{border-bottom:none;padding-top:24px;}
+.a-key{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray3);width:84px;flex-shrink:0;padding-top:2px;}
+.a-val{font-size:.87rem;line-height:1.8;font-weight:300;}
+.access-img{background:var(--gray1);min-height:320px;overflow:hidden;}
+.access-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6);transition:filter .4s;}
+.access-img:hover img{filter:grayscale(.1);}
+
+/* ─ CTA ──────────────────────────────────────────── */
+.cta-sec{
+  position:relative;padding:96px 40px;text-align:center;
+  background:url('https://images.unsplash.com/photo-1706984556394-1e5c3b5382d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080') center/cover no-repeat;
+  overflow:hidden;
+}
+.cta-sec::before{content:'';position:absolute;inset:0;background:rgba(12,12,12,.72);}
+.cta-in{position:relative;z-index:1;}
+.cta-ttl{
+  font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);
+  font-weight:300;color:#fff;margin-bottom:16px;letter-spacing:.06em;line-height:1.4;
+}
+.cta-sub{
+  font-size:.87rem;font-weight:300;color:rgba(255,255,255,.65);
+  line-height:2.1;margin-bottom:44px;max-width:440px;margin-left:auto;margin-right:auto;
+}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-acc{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--accent);color:#fff;
+  padding:16px 44px;font-size:.85rem;font-weight:500;letter-spacing:.12em;
+  transition:background .2s;
+}
+.btn-acc:hover{background:var(--accent-d);}
+.btn-out{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(255,255,255,.6);color:#fff;
+  padding:15px 36px;font-size:.8rem;letter-spacing:.12em;
+  transition:background .2s;
+}
+.btn-out:hover{background:rgba(255,255,255,.1);}
+
+/* ─ FOOTER ───────────────────────────────────────── */
+footer{
+  background:#0d0d0d;padding:44px 40px 28px;
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;
+}
+.ft-logo{font-size:1rem;font-weight:700;color:#fff;letter-spacing:.12em;margin-bottom:10px;}
+.ft-addr{font-size:.75rem;color:rgba(255,255,255,.3);line-height:1.9;font-weight:300;}
+.ft-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.ft-links{display:flex;gap:20px;}
+.ft-links a{font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:.08em;transition:color .2s;}
+.ft-links a:hover{color:#fff;}
+.ft-copy{font-size:.68rem;color:rgba(255,255,255,.18);}
+.ft-credit{font-size:.66rem;color:rgba(255,255,255,.13);}
+.ft-credit a{color:rgba(255,255,255,.22);transition:color .2s;}
+.ft-credit a:hover{color:rgba(255,255,255,.5);}
+
+/* ─ ANIMATIONS ───────────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.rv.lft{transform:translateX(-30px);}
+.rv.rgt{transform:translateX(30px);}
+.rv.in{opacity:1;transform:none;}
+.rv.d1{transition-delay:.1s;}.rv.d2{transition-delay:.2s;}
+.rv.d3{transition-delay:.3s;}.rv.d4{transition-delay:.4s;}
+
+/* ─ RESPONSIVE ───────────────────────────────────── */
+@media(max-width:768px){
+  #hdr{padding:0 18px;}
+  .h-nav{display:none;}
+  .hero-txt{left:24px;bottom:40px;}
+  .news{display:none;}
+  .sec{padding:56px 18px;}
+  .about-grid,.access-grid,footer{grid-template-columns:1fr;}
+  .about-img{min-height:260px;}
+  .about-body{padding:36px 24px;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .g-it:first-child{grid-column:span 2;grid-row:span 1;}
+  .nums-grid{grid-template-columns:1fr;}
+  .strip{height:180px;}
+  .ft-r{align-items:flex-start;}
+  .cta-sec{padding:64px 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="h-logo">白根歯科医院</div>
+  <nav class="h-nav">
+    <a href="#about">About</a>
+    <a href="#menu">診療メニュー</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#access">Access</a>
+  </nav>
+  <a href="#reserve" class="h-cta">診療予約</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ov"></div>
+  <img class="hero-img" src="https://images.unsplash.com/photo-1570959899428-8e09552ab3ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="白根歯科医院">
+  <div class="hero-txt">
+    <span class="hero-en">dental clinic — 渋谷区</span>
+    <h1 class="hero-title">白根歯科医院</h1>
+    <p class="hero-catch">あなたの笑顔に、丁寧な医療を。</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- NEWS STRIP -->
+<div class="news rv">
+  <div class="news-tag">NEWS</div>
+  <div class="news-list">
+    
+    <div class="news-it">
+      <span class="news-dt">2025.01</span>
+      <span>新メニューを追加しました</span>
+    </div>
+    
+    <div class="news-it">
+      <span class="news-dt">2024.12</span>
+      <span>年末年始の営業案内</span>
+    </div>
+    
+    <div class="news-it">
+      <span class="news-dt">2024.11</span>
+      <span>スタッフ募集中です</span>
+    </div>
+    
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="inner">
+    <div class="about-grid rv">
+      <div class="about-img-w">
+        <img class="about-img" src="https://images.unsplash.com/photo-1659316921994-2c323ef8765a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロンイメージ">
+      </div>
+      <div class="about-body">
+        <div class="sec-head">
+          <span class="sec-lbl">About</span>
+          <h2 class="sec-ttl">恵比寿で感じる、安心の歯科医療</h2>
+        </div>
+        <p class="about-txt">白根歯科医院は、患者さま一人ひとりのお口の健康に真剣に向き合う歯科クリニックです。渋谷区恵比寿西という便利な立地で、痛みへの配慮を大切にしながら、予防から治療まで幅広くサポートいたします。初めての方もお気軽にご相談ください。</p>
+        <a href="#menu" class="about-link">診療メニューを見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="strip">
+  
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1570959899428-8e09552ab3ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1659316921994-2c323ef8765a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1706984556394-1e5c3b5382d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1570959899428-8e09552ab3ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1659316921994-2c323ef8765a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1706984556394-1e5c3b5382d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+</div>
+
+<!-- MENU -->
+<section class="sec menu-bg" id="menu">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-lbl">診療メニュー</span>
+      <h2 class="sec-ttl">診療メニュー</h2>
+    </div>
+    <div class="menu-grid">
+      
+      <div class="menu-card rv d1">
+        <div class="menu-no">01</div>
+        <div class="menu-name">一般歯科（虫歯治療）</div>
+        <div class="menu-price">¥3,000<span>〜（税込）</span></div>
+        <div class="menu-desc">痛みに配慮した丁寧な虫歯治療</div>
+      </div>
+      
+      <div class="menu-card rv d2">
+        <div class="menu-no">02</div>
+        <div class="menu-name">歯科検診・クリーニング</div>
+        <div class="menu-price">¥3,500<span>〜（税込）</span></div>
+        <div class="menu-desc">定期的なケアで健康なお口を維持</div>
+      </div>
+      
+      <div class="menu-card rv d3">
+        <div class="menu-no">03</div>
+        <div class="menu-name">ホワイトニング</div>
+        <div class="menu-price">¥15,000<span>〜（税込）</span></div>
+        <div class="menu-desc">自然な白さで笑顔に自信を</div>
+      </div>
+      
+      <div class="menu-card rv d4">
+        <div class="menu-no">04</div>
+        <div class="menu-name">小児歯科</div>
+        <div class="menu-price">¥2,500<span>〜（税込）</span></div>
+        <div class="menu-desc">お子さまが安心して通えるやさしい治療</div>
+      </div>
+      
+      <div class="menu-card rv d5">
+        <div class="menu-no">05</div>
+        <div class="menu-name">インプラント相談</div>
+        <div class="menu-price">¥0<span>〜（税込）</span></div>
+        <div class="menu-desc">無料カウンセリングで不安を解消</div>
+      </div>
+      
+    </div>
+    <p class="menu-note rv">※ 料金はすべて税込です。詳細はカウンセリング時にご確認ください。</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec" id="gallery">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-lbl">Gallery</span>
+      <h2 class="sec-ttl">ギャラリー</h2>
+    </div>
+    <div class="gal-grid rv">
+      
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1570959899428-8e09552ab3ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.01</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1659316921994-2c323ef8765a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.02</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1706984556394-1e5c3b5382d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.03</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1570959899428-8e09552ab3ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.04</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1659316921994-2c323ef8765a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.05</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1706984556394-1e5c3b5382d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.06</span></div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="nums rv">
+  <div class="inner">
+    <div class="nums-grid">
+      
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="sec" id="access">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-lbl">Access</span>
+      <h2 class="sec-ttl">アクセス</h2>
+    </div>
+    <div class="access-grid rv">
+      <div class="access-info">
+        <div class="a-row"><span class="a-key">Address</span><span class="a-val">日本、〒150-0021 東京都渋谷区恵比寿西１丁目７−１ エビス Katoh Bldg.</span></div>
+        <div class="a-row"><span class="a-key">Tel</span><span class="a-val">03-3770-0505</span></div>
+        <div class="a-row"><span class="a-key">Hours</span><span class="a-val">10:00〜19:00</span></div>
+        <div class="a-row"><span class="a-key">Closed</span><span class="a-val">日曜・祝日定休</span></div>
+        <div class="a-row">
+          <a href="tel:03-3770-0505" class="btn-acc" style="padding:13px 28px;font-size:.78rem;">今すぐ電話</a>
+        </div>
+      </div>
+      <div class="access-img">
+        <img src="https://images.unsplash.com/photo-1706984556394-1e5c3b5382d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTQwNDl8&ixlib=rb-4.1.0&q=80&w=1080" alt="アクセス">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec rv" id="reserve">
+  <div class="cta-in">
+    <h2 class="cta-ttl">ご予約・お問い合わせ</h2>
+    <p class="cta-sub">まずはお電話で、お気軽にご予約・ご相談ください。</p>
+    <div class="cta-btns">
+      <a href="tel:03-3770-0505" class="btn-acc">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.69a16 16 0 006.22 6.22l1.21-1.21a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        電話で予約
+      </a>
+      <a href="" target="_blank" class="btn-out">無料相談フォーム</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="ft-logo">白根歯科医院</div>
+    <div class="ft-addr">日本、〒150-0021 東京都渋谷区恵比寿西１丁目７−１ エビス Katoh Bldg.<br>TEL: 03-3770-0505</div>
+  </div>
+  <div class="ft-r">
+    <div class="ft-links">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#access">Access</a>
+    </div>
+    <div class="ft-copy">© 白根歯科医院 All Rights Reserved.</div>
+    <div class="ft-credit">Demo by <a href="https://infinitydesign.co.jp">InfinityDesign</a></div>
+  </div>
+</footer>
+
+<script>
+const hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>hdr.classList.toggle('sh',scrollY>10),{passive:true});
+const ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}
+}),{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
