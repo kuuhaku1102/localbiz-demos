@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プライベートサロンチッチアフロディーテ | 美容室・ヘアサロン</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #c8a96e;
+    --dark:    #1a1a1a;
+    --gray:    #f8f7f5;
+    --text:    #333;
+  }
+  body { font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif; color: var(--text); }
+
+  /* HERO */
+  .hero {
+    height: 100svh; min-height: 500px;
+    background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+                url('https://images.unsplash.com/photo-1626379501846-0df4067b8bb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTE0NDF8&ixlib=rb-4.1.0&q=80&w=1080') center/cover no-repeat;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    color: #fff; padding: 24px;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: .12em; margin-bottom: 16px; }
+  .hero p  { font-size: clamp(.95rem, 2.5vw, 1.2rem); opacity: .9; margin-bottom: 32px; }
+  .btn {
+    display: inline-block; padding: 14px 36px;
+    background: var(--primary); color: #fff;
+    border-radius: 2px; text-decoration: none;
+    font-size: 1rem; letter-spacing: .08em;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: .85; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px; background: rgba(0,0,0,.6);
+    backdrop-filter: blur(8px); z-index: 100;
+  }
+  .logo { color: #fff; font-size: 1.2rem; letter-spacing: .15em; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,.85); text-decoration: none; font-size: .9rem; }
+
+  /* SECTIONS */
+  section { padding: 80px 24px; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem); text-align: center;
+    margin-bottom: 48px; letter-spacing: .1em;
+  }
+  h2 span { display: block; font-size: .85rem; color: var(--primary); letter-spacing: .2em; margin-bottom: 8px; }
+
+  /* CONCEPT */
+  .concept { background: var(--dark); color: #fff; }
+  .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .concept-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+  .concept-text p { line-height: 2; opacity: .85; font-size: 1.05rem; }
+
+  /* SERVICES */
+  .services { background: var(--gray); }
+  .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .service-card {
+    background: #fff; padding: 32px 24px; text-align: center;
+    border-bottom: 3px solid var(--primary);
+  }
+  .service-card h3 { font-size: 1.1rem; margin-bottom: 12px; }
+  .service-card .price { font-size: 1.4rem; color: var(--primary); font-weight: bold; }
+  .service-card p { font-size: .9rem; color: #666; margin-top: 8px; }
+
+  /* GALLERY */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 4px;
+  }
+  .gallery-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+  /* ACCESS */
+  .access { background: var(--gray); }
+  .access-info { max-width: 600px; margin: 0 auto; line-height: 2; }
+  .access-info p { margin-bottom: 8px; }
+  .access-info strong { display: inline-block; width: 6em; color: var(--primary); }
+
+  /* CTA */
+  .cta-section {
+    background: var(--dark); color: #fff;
+    text-align: center; padding: 80px 24px;
+  }
+  .cta-section h2 { color: #fff; }
+  .cta-section p { opacity: .8; margin-bottom: 32px; }
+  .tel { font-size: 2rem; letter-spacing: .05em; color: var(--primary); }
+
+  /* FOOTER */
+  footer {
+    background: #111; color: rgba(255,255,255,.5);
+    text-align: center; padding: 24px;
+    font-size: .85rem;
+  }
+
+  @media (max-width: 640px) {
+    .concept-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">プライベートサロンチッチアフロディーテ</div>
+  <ul class="nav-links">
+    <li><a href="#concept">コンセプト</a></li>
+    <li><a href="#services">メニュー</a></li>
+    <li><a href="#gallery">ギャラリー</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>プライベートサロンチッチアフロディーテ</h1>
+  <p>あなただけの美しさを、丁寧に引き出す場所</p>
+  <a href="#services" class="btn">メニューを見る</a>
+</section>
+
+<!-- CONCEPT -->
+<section class="concept" id="concept">
+  <div class="container">
+    <h2><span>CONCEPT</span>世田谷の隠れ家で、心も髪も輝く</h2>
+    <div class="concept-grid">
+      <img class="concept-img" src="https://images.unsplash.com/photo-1681965823525-b684fb97e9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTE0NDF8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロンコンセプト">
+      <div class="concept-text">
+        <p>プライベートサロンチッチアフロディーテは、世田谷区新町の静かな住宅街に佇む完全プライベートサロンです。一人ひとりのライフスタイルや髪のお悩みに向き合い、あなただけのスタイルを丁寧にご提案します。騒がしい日常を忘れ、心地よい時間をお過ごしください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <h2><span>MENU</span>メニュー・料金</h2>
+    <div class="service-grid">
+      
+      <div class="service-card">
+        <h3>カット</h3>
+        <div class="price">¥5,500〜</div>
+        <p>骨格や髪質に合わせた丁寧なカット</p>
+      </div>
+      
+      <div class="service-card">
+        <h3>カラーリング</h3>
+        <div class="price">¥8,800〜</div>
+        <p>ダメージを抑えたトレンドカラー</p>
+      </div>
+      
+      <div class="service-card">
+        <h3>パーマ</h3>
+        <div class="price">¥11,000〜</div>
+        <p>自然なウェーブで扱いやすいスタイルに</p>
+      </div>
+      
+      <div class="service-card">
+        <h3>トリートメント</h3>
+        <div class="price">¥4,400〜</div>
+        <p>髪の内側からしっかり補修・保湿</p>
+      </div>
+      
+      <div class="service-card">
+        <h3>ヘッドスパ</h3>
+        <div class="price">¥3,300〜</div>
+        <p>頭皮ケアでリフレッシュ＆血行促進</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <h2><span>GALLERY</span>ギャラリー</h2>
+  </div>
+  <div class="gallery-grid">
+    
+    <img src="https://images.unsplash.com/photo-1626379501846-0df4067b8bb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTE0NDF8&ixlib=rb-4.1.0&q=80&w=1080" alt="ギャラリー">
+    
+    <img src="https://images.unsplash.com/photo-1681965823525-b684fb97e9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTE0NDF8&ixlib=rb-4.1.0&q=80&w=1080" alt="ギャラリー">
+    
+    <img src="https://images.unsplash.com/photo-1771865600306-d4ef4c06ae16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTE0NDF8&ixlib=rb-4.1.0&q=80&w=1080" alt="ギャラリー">
+    
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="container">
+    <h2><span>ACCESS</span>アクセス</h2>
+    <div class="access-info">
+      <p><strong>住所</strong>日本、〒154-0014 東京都世田谷区新町３丁目２６−８ エヌクオーレ 101</p>
+      <p><strong>電話</strong>070-3141-6796</p>
+      <p><strong>営業時間</strong>10:00〜19:00</p>
+      <p><strong>定休日</strong>火曜・水曜定休</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>ご予約・お問い合わせ</h2>
+    <p>ご予約・お問い合わせはお気軽にどうぞ。あなたのご来店をお待ちしております！</p>
+    <div class="tel">070-3141-6796</div>
+    <br><br>
+    <a href="tel:070-3141-6796" class="btn">今すぐ電話する</a>
+  </div>
+</section>
+
+<footer>
+  <p>© プライベートサロンチッチアフロディーテ All Rights Reserved.</p>
+  <p style="margin-top:8px;font-size:.75rem;opacity:.6;">
+    このサイトは <a href="https://infinitydesign.co.jp" style="color:inherit;">InfinityDesign</a> が作成したデモサイトです
+  </p>
+</footer>
+
+</body>
+</html>
