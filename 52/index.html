@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レストランバーボンズ | 飲食店・レストラン</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --primary: #c0392b; --dark: #1c1c1c; --warm: #fdf6ec; --text: #2c2c2c; }
+  body { font-family: 'Hiragino Mincho Pro', 'Yu Mincho', serif; color: var(--text); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 40px; background: rgba(28,28,28,.85);
+    backdrop-filter: blur(10px); z-index: 100;
+  }
+  .logo { color: #fff; font-size: 1.3rem; letter-spacing: .2em; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,.8); text-decoration: none; font-size: .9rem; letter-spacing: .08em; }
+
+  .hero {
+    height: 100svh; min-height: 560px;
+    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+                url('https://images.unsplash.com/photo-1628652338396-6bc0b0140e58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI5NTJ8&ixlib=rb-4.1.0&q=80&w=1080') center/cover;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; text-align: center; color: #fff; padding: 32px;
+  }
+  .hero-sub  { font-size: .9rem; letter-spacing: .3em; margin-bottom: 16px; opacity: .8; }
+  .hero h1   { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: .15em; margin-bottom: 24px; }
+  .hero p    { font-size: 1.1rem; opacity: .85; margin-bottom: 40px; }
+  .btn       { display: inline-block; padding: 16px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; letter-spacing: .12em; font-size: .95rem; transition: background .2s, color .2s; }
+  .btn:hover { background: #fff; color: var(--dark); }
+
+  section { padding: 90px 24px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); text-align: center; margin-bottom: 56px; letter-spacing: .12em; }
+  h2 span { display: block; font-size: .75rem; font-family: sans-serif; letter-spacing: .3em; color: var(--primary); margin-bottom: 10px; }
+
+  /* STORY */
+  .story { background: var(--warm); }
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .story-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+  .story-text p { line-height: 2.2; font-size: 1.05rem; }
+
+  /* MENU */
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+  .menu-card { border: 1px solid #e8e0d5; }
+  .menu-img  { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+  .menu-body { padding: 20px; }
+  .menu-body h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .menu-body .price { color: var(--primary); font-size: 1.2rem; margin-bottom: 8px; }
+  .menu-body p { font-size: .9rem; color: #666; line-height: 1.7; }
+
+  /* ACCESS */
+  .access { background: var(--warm); }
+  .access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .access-info p { margin-bottom: 12px; line-height: 1.8; font-size: 1rem; }
+  .access-info strong { display: inline-block; width: 7em; color: var(--primary); }
+
+  /* CTA */
+  .cta { background: var(--dark); color: #fff; text-align: center; padding: 80px 24px; }
+  .cta h2 { color: #fff; }
+  .cta p { opacity: .75; margin-bottom: 32px; font-family: sans-serif; }
+  .tel { font-size: 2.4rem; letter-spacing: .05em; color: var(--primary); margin-bottom: 24px; }
+
+  footer { background: #111; color: rgba(255,255,255,.4); text-align: center; padding: 28px; font-size: .8rem; font-family: sans-serif; }
+
+  @media (max-width: 680px) {
+    .story-grid, .access-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">レストランバーボンズ</div>
+  <ul class="nav-links">
+    <li><a href="#story">こだわり</a></li>
+    <li><a href="#menu">メニュー</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-sub">飲食店・レストラン / 周南市</p>
+  <h1>レストランバーボンズ</h1>
+  <p>周南で出会う、特別なひとときを。</p>
+  <a href="#menu" class="btn">メニューを見る</a>
+</section>
+
+<section class="story" id="story">
+  <div class="container">
+    <h2><span>STORY</span>本物の味と温もりが集う場所</h2>
+    <div class="story-grid">
+      <img class="story-img" src="https://images.unsplash.com/photo-1730386772603-56d735db3584?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI5NTJ8&ixlib=rb-4.1.0&q=80&w=1080" alt="こだわり">
+      <div class="story-text"><p>山口県周南市の昭和通に佇むレストランバーボンズは、地域の皆さまに愛され続ける特別な空間です。厳選された食材と丁寧に仕上げた料理、そして心地よいバーの雰囲気が融合し、日常の疲れを忘れさせてくれるひとときをお届けします。大切な方との食事や仲間との乾杯に、ぜひお越しください。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <h2><span>MENU</span>おすすめメニュー</h2>
+    <div class="menu-grid">
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1628652338396-6bc0b0140e58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI5NTJ8&ixlib=rb-4.1.0&q=80&w=1080" alt="シェフのおまかせコース">
+        <div class="menu-body">
+          <h3>シェフのおまかせコース</h3>
+          <div class="price">¥4,500〜</div>
+          <p>旬の食材を活かした本日のおすすめフルコース</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1730386772603-56d735db3584?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI5NTJ8&ixlib=rb-4.1.0&q=80&w=1080" alt="バーボンカクテルセット">
+        <div class="menu-body">
+          <h3>バーボンカクテルセット</h3>
+          <div class="price">¥1,800〜</div>
+          <p>厳選バーボンを使ったオリジナルカクテル2杯</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1735889103738-90ed3c3e2255?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI5NTJ8&ixlib=rb-4.1.0&q=80&w=1080" alt="厳選肉のグリル料理">
+        <div class="menu-body">
+          <h3>厳選肉のグリル料理</h3>
+          <div class="price">¥2,800〜</div>
+          <p>こだわり素材を豪快に焼き上げた看板メニュー</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1628652338396-6bc0b0140e58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI5NTJ8&ixlib=rb-4.1.0&q=80&w=1080" alt="おつまみ盛り合わせプレート">
+        <div class="menu-body">
+          <h3>おつまみ盛り合わせプレート</h3>
+          <div class="price">¥1,200〜</div>
+          <p>お酒に合う自家製おつまみを一皿で楽しめる</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1730386772603-56d735db3584?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzI5OTI5NTJ8&ixlib=rb-4.1.0&q=80&w=1080" alt="記念日・貸切プラン">
+        <div class="menu-body">
+          <h3>記念日・貸切プラン</h3>
+          <div class="price">¥8,000〜</div>
+          <p>特別な日を彩る完全貸切の特別コースプラン</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="access" id="access">
+  <div class="container">
+    <h2><span>ACCESS</span>アクセス</h2>
+    <div class="access-grid">
+      <div class="access-info">
+        <p><strong>住所</strong>日本、〒745-0013 山口県周南市昭和通１丁目３２</p>
+        <p><strong>電話</strong>0834-32-7322</p>
+        <p><strong>営業時間</strong>18:00〜24:00</p>
+        <p><strong>定休日</strong>日曜定休</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>ご予約・お問い合わせ</h2>
+    <p>ご予約・お問い合わせはお気軽にお電話ください。心よりお待ちしております。</p>
+    <div class="tel">0834-32-7322</div>
+    <a href="tel:0834-32-7322" class="btn">今すぐ電話する</a>
+  </div>
+</section>
+
+<footer>
+  <p>© レストランバーボンズ All Rights Reserved.</p>
+  <p style="margin-top:6px;font-size:.7rem;opacity:.5;">
+    このサイトは <a href="https://infinitydesign.co.jp" style="color:inherit">InfinityDesign</a> が作成したデモサイトです
+  </p>
+</footer>
+
+</body>
+</html>
