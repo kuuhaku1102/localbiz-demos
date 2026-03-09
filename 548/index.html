@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ますだ歯科 | 宮崎市吉村町の歯科医院</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--mint:#3BBFAD;--mint-d:#2A9D8F;--mint-l:#E8F8F6;--navy:#1A3A4A;--cream:#FAF9F6;--gray:#6B7C8A;--light:#F0F4F6;--white:#fff;--accent:#F4A261}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--navy);background:var(--cream);overflow-x:hidden}
+h1,h2,h3{font-family:'Shippori Mincho',serif}
+img{display:block;width:100%}
+a{text-decoration:none;color:inherit}
+
+/* ─── SCROLL REVEAL ─── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.lft{transform:translateX(-36px)}.rv.rgt{transform:translateX(36px)}.rv.sc{transform:scale(.95)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+/* ─── HEADER ─── */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.06);padding:0 2rem}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:.8rem}
+.logo-icon{width:44px;height:44px;background:var(--mint);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-icon svg{width:24px;height:24px;fill:var(--white)}
+.logo-text{display:flex;flex-direction:column;line-height:1.2}
+.logo-ja{font-family:'Shippori Mincho',serif;font-size:1.3rem;font-weight:700;color:var(--navy)}
+.logo-en{font-size:.65rem;color:var(--mint);letter-spacing:.12em;font-weight:500}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{font-size:.85rem;font-weight:500;color:var(--gray);transition:color .3s;position:relative}
+nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--mint);transition:width .3s}
+nav a:hover{color:var(--mint)}
+nav a:hover::after{width:100%}
+.header-tel{display:flex;align-items:center;gap:.5rem;background:var(--mint);color:var(--white);padding:.55rem 1.2rem;border-radius:50px;font-size:.85rem;font-weight:700;transition:background .3s;position:relative;overflow:hidden}
+.header-tel::before{content:'';position:absolute;inset:0;background:var(--mint-d);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:0}
+.header-tel:hover::before{transform:scaleX(1)}
+.header-tel span{position:relative;z-index:1}
+
+/* ─── HERO ─── */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s}
+.hero-slide.active{opacity:1}
+.hero-slide-bg{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,58,74,.72) 0%,rgba(59,191,173,.25) 100%)}
+.hero-dashed-circle{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:420px;height:420px;pointer-events:none}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 6%;max-width:1200px;margin:0 auto;left:0;right:0}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(59,191,173,.25);border:1px solid rgba(59,191,173,.5);color:#b2f0eb;padding:.4rem 1rem;border-radius:50px;font-size:.75rem;letter-spacing:.12em;margin-bottom:1.5rem;width:fit-content}
+.hero-badge svg{width:14px;height:14px;fill:#b2f0eb}
+.hero h1{font-size:clamp(2rem,5vw,3.8rem);color:var(--white);line-height:1.3;margin-bottom:1.2rem;text-shadow:0 2px 20px rgba(0,0,0,.2)}
+.hero h1 em{color:#6FDFD2;font-style:normal}
+.hero-sub{font-size:clamp(.9rem,1.5vw,1.1rem);color:rgba(255,255,255,.85);max-width:480px;line-height:1.9;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.6rem;background:var(--mint);color:var(--white);padding:.85rem 2rem;border-radius:50px;font-weight:700;font-size:.95rem;transition:.3s;position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--mint-d);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:0}
+.btn-primary:hover::before{transform:scaleX(1)}
+.btn-primary span{position:relative;z-index:1;display:flex;align-items:center;gap:.5rem}
+.btn-outline{display:inline-flex;align-items:center;gap:.6rem;border:2px solid rgba(255,255,255,.7);color:var(--white);padding:.85rem 2rem;border-radius:50px;font-weight:500;font-size:.95rem;transition:.35s;backdrop-filter:blur(4px)}
+.btn-outline:hover{background:rgba(255,255,255,.15);border-color:var(--white)}
+.hero-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;transition:.3s}
+.hero-dot.active{background:var(--mint);transform:scale(1.3)}
+.hero-scroll{position:absolute;bottom:3rem;right:3rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.6);font-size:.7rem;letter-spacing:.15em}
+.hero-scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,rgba(255,255,255,.6),transparent);animation:scrollLine 2s infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ─── WAVE DIVIDER ─── */
+.wave-top,.wave-bottom{display:block;width:100%;overflow:hidden;line-height:0}
+.wave-top svg,.wave-bottom svg{display:block;width:100%}
+
+/* ─── SECTION COMMON ─── */
+.section{padding:6rem 2rem}
+.section-label{font-size:.72rem;letter-spacing:.2em;color:var(--mint);font-weight:700;text-transform:uppercase;margin-bottom:.8rem}
+.section-title{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.3;margin-bottom:1.5rem}
+.section-title span{color:var(--mint)}
+.section-desc{color:var(--gray);line-height:1.9;max-width:560px}
+.section-inner{max-width:1200px;margin:0 auto}
+
+/* ─── CONCEPT ─── */
+.concept{background:var(--white)}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto}
+.concept-img-wrap{position:relative}
+.concept-img-main{border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.concept-img-main img{height:480px;object-fit:cover;transition:transform .6s}
+.concept-img-main:hover img{transform:scale(1.04)}
+.concept-deco{position:absolute;bottom:-24px;right:-24px;width:160px;height:160px;background:var(--mint-l);border-radius:50%;z-index:-1}
+.concept-deco2{position:absolute;top:-16px;left:-16px;width:80px;height:80px;background:var(--accent);opacity:.15;border-radius:50%;z-index:-1}
+.concept-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--mint-l);color:var(--mint-d);padding:.4rem 1rem;border-radius:50px;font-size:.8rem;font-weight:700;margin-bottom:1.5rem}
+.concept-features{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.concept-feat{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;background:var(--cream);border-radius:12px;border-left:3px solid var(--mint)}
+.concept-feat-icon{width:36px;height:36px;background:var(--mint);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.concept-feat-icon svg{width:18px;height:18px;fill:var(--white)}
+.concept-feat-text h4{font-size:.9rem;font-weight:700;margin-bottom:.2rem}
+.concept-feat-text p{font-size:.82rem;color:var(--gray);line-height:1.6}
+
+/* ─── MENU ─── */
+.menu-section{background:var(--cream)}
+.menu-section .wave-top{margin-top:-2px}
+.menu-header{text-align:center;margin-bottom:3.5rem}
+.menu-header .section-desc{margin:0 auto}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto}
+.menu-card{background:var(--white);border-radius:16px;padding:2rem 1.5rem;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06);transition:transform .35s,box-shadow .35s;cursor:default}
+.menu-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--mint);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.menu-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(59,191,173,.15)}
+.menu-card:hover::before{transform:scaleX(1)}
+.menu-card-icon{width:52px;height:52px;background:var(--mint-l);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+.menu-card-icon svg{width:26px;height:26px;fill:var(--mint)}
+.menu-card h3{font-size:1rem;font-weight:700;margin-bottom:.6rem;font-family:'Noto Sans JP',sans-serif}
+.menu-card p{font-size:.8rem;color:var(--gray);line-height:1.7;margin-bottom:1.2rem}
+.menu-card-price{font-size:1.3rem;font-weight:700;color:var(--mint-d);font-family:'Shippori Mincho',serif}
+.menu-card-price span{font-size:.75rem;color:var(--gray);font-family:'Noto Sans JP',sans-serif;font-weight:400;margin-left:.2rem}
+.menu-note{text-align:center;margin-top:2rem;font-size:.8rem;color:var(--gray)}
+
+/* ─── GALLERY ─── */
+.gallery-section{background:var(--navy);padding:6rem 2rem}
+.gallery-header{text-align:center;margin-bottom:3rem}
+.gallery-header .section-label{color:#6FDFD2}
+.gallery-header .section-title{color:var(--white)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:1200px;margin:0 auto}
+.gallery-item{border-radius:14px;overflow:hidden;position:relative;cursor:pointer}
+.gallery-item img{height:260px;object-fit:cover;transition:transform .5s}
+.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,58,74,.85),transparent);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.5rem}
+.gallery-item-overlay p{color:var(--white);font-size:.85rem;transform:translateY(10px);transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item:hover .gallery-item-overlay{opacity:1}
+.gallery-item:hover .gallery-item-overlay p{transform:translateY(0)}
+.gallery-item.wide{grid-column:span 2}
+
+/* ─── NUMBERS ─── */
+.numbers-section{background:var(--mint);padding:5rem 2rem;position:relative;overflow:hidden}
+.numbers-bg{position:absolute;inset:0;opacity:.06;background-image:radial-gradient(circle,var(--white) 1px,transparent 1px);background-size:32px 32px}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.number-item{text-align:center;color:var(--white)}
+.number-value{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;font-family:'Shippori Mincho',serif;line-height:1;margin-bottom:.4rem}
+.number-value span{font-size:clamp(1rem,2vw,1.5rem);font-weight:400}
+.number-label{font-size:.85rem;opacity:.85;letter-spacing:.05em}
+.number-divider{width:1px;background:rgba(255,255,255,.25);margin:1rem auto;height:40px}
+
+/* ─── ACCESS ─── */
+.access-section{background:var(--white);padding:6rem 2rem}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1200px;margin:0 auto}
+.access-info{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.access-item{display:flex;gap:1rem;align-items:flex-start}
+.access-item-icon{width:40px;height:40px;background:var(--mint-l);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.access-item-icon svg{width:20px;height:20px;fill:var(--mint)}
+.access-item-body h4{font-size:.85rem;color:var(--mint);font-weight:700;margin-bottom:.3rem}
+.access-item-body p{font-size:.9rem;line-height:1.7;color:var(--navy)}
+.access-hours{background:var(--cream);border-radius:16px;padding:1.5rem;margin-top:1rem}
+.access-hours h4{font-size:.85rem;font-weight:700;color:var(--mint);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.hours-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.hours-table td{padding:.45rem .6rem;border-bottom:1px solid rgba(0,0,0,.06);color:var(--navy)}
+.hours-table td:first-child{color:var(--gray);width:45%}
+.map-wrap{border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.1);height:400px}
+.map-wrap iframe{width:100%;height:100%;border:none}
+
+/* ─── CTA ─── */
+.cta-section{background:var(--navy);padding:7rem 2rem;position:relative;overflow:hidden;text-align:center}
+.cta-circles{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;width:700px;height:700px}
+.cta-circles circle{fill:none;stroke:rgba(59,191,173,.15)}
+.cta-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-label{font-size:.72rem;letter-spacing:.2em;color:#6FDFD2;font-weight:700;text-transform:uppercase;margin-bottom:1rem}
+.cta-content h2{font-size:clamp(1.8rem,4vw,3rem);color:var(--white);line-height:1.3;margin-bottom:1.2rem}
+.cta-content p{color:rgba(255,255,255,.75);line-height:1.9;margin-bottom:2.5rem;font-size:.95rem}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-cta-tel{display:inline-flex;align-items:center;gap:.8rem;background:var(--mint);color:var(--white);padding:1rem 2.5rem;border-radius:50px;font-weight:700;font-size:1.1rem;transition:.35s;position:relative;overflow:hidden}
+.btn-cta-tel::before{content:'';position:absolute;inset:0;background:var(--mint-d);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:0}
+.btn-cta-tel:hover::before{transform:scaleX(1)}
+.btn-cta-tel span{position:relative;z-index:1;display:flex;align-items:center;gap:.6rem}
+.btn-cta-form{display:inline-flex;align-items:center;gap:.6rem;border:2px solid rgba(255,255,255,.4);color:var(--white);padding:1rem 2rem;border-radius:50px;font-weight:500;font-size:.95rem;transition:.35s;backdrop-filter:blur(4px)}
+.btn-cta-form:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+.cta-tel-num{font-size:1.4rem;font-weight:700;letter-spacing:.05em}
+
+/* ─── FOOTER ─── */
+footer{background:#0F2430;padding:3rem 2rem 1.5rem}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.footer-brand .logo-ja{color:var(--white);font-size:1.2rem}
+.footer-brand .logo-en{color:var(--mint)}
+.footer-brand p{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:.8rem;line-height:1.8}
+.footer-col h4{font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col ul li a{font-size:.8rem;color:rgba(255,255,255,.5);transition:color .3s}
+.footer-col ul li a:hover{color:var(--mint)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.35)}
+.footer-bottom a{color:var(--mint);font-size:.75rem}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .concept-grid{grid-template-columns:1fr;gap:3rem}
+  .concept-img-main img{height:340px}
+  .access-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gallery-item.wide{grid-column:span 1}
+  .numbers-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  nav{display:none}
+  .hero-scroll{display:none}
+  .hero-dashed-circle{width:260px;height:260px;right:-5%}
+  .menu-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-item.wide{grid-column:span 1}
+  .cta-btns{flex-direction:column;align-items:center}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .header-inner{padding:0}
+  .section{padding:4rem 1.2rem}
+}
+@media(max-width:480px){
+  .menu-grid{grid-template-columns:1fr}
+  .numbers-grid{grid-template-columns:1fr 1fr}
+  .hero-btns{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 4.5 6 8c0 2.5 1 4.5 2.5 6L12 22l3.5-8C17 12.5 18 10.5 18 8c0-3.5-2.5-6-6-6zm0 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-ja">ますだ歯科</span>
+        <span class="logo-en">MASUDA DENTAL CLINIC</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#concept">クリニックについて</a>
+      <a href="#menu">診療内容</a>
+      <a href="#gallery">ギャラリー</a>
+      <a href="#access">アクセス</a>
+    </nav>
+    <a href="tel:0985-23-2831" class="header-tel">
+      <span>
+        <svg style="width:15px;height:15px;fill:white" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        <span>0985-23-2831</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1484995978482-cf913162930c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzIwMDR8&ixlib=rb-4.1.0&q=80&w=1080" alt="ますだ歯科 診療室">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1540396491210-c4ddfd76a537?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzIwMDR8&ixlib=rb-4.1.0&q=80&w=1080" alt="ますだ歯科 スタッフ">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1706984556394-1e5c3b5382d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzIwMDR8&ixlib=rb-4.1.0&q=80&w=1080" alt="ますだ歯科 院内">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <!-- Dashed Circle SVG -->
+  <svg class="hero-dashed-circle" viewBox="0 0 420 420" fill="none">
+    <circle cx="210" cy="210" r="200" stroke="rgba(59,191,173,0.4)" stroke-width="1.5" stroke-dasharray="12 10"/>
+    <circle cx="210" cy="210" r="160" stroke="rgba(59,191,173,0.25)" stroke-width="1" stroke-dasharray="6 8"/>
+    <circle cx="210" cy="210" r="110" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 6"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-badge rv lft">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      宮崎市吉村町の地域かかりつけ歯科
+    </div>
+    <h1 class="rv d1">地域に根ざした、<br><em>やさしい歯科医療</em>を<br>宮崎から</h1>
+    <p class="hero-sub rv d2">笑顔をつくる、かかりつけ歯科。<br>患者さまお一人おひとりに寄り添い、<br>丁寧でわかりやすい診療をご提供します。</p>
+    <div class="hero-btns rv d3">
+      <a href="tel:0985-23-2831" class="btn-primary">
+        <span>
+          <svg style="width:18px;height:18px;fill:white" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          お電話でご予約
+        </span>
+      </a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-outline">
+        <svg style="width:18px;height:18px;fill:white;opacity:.8" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        ネット予約はこちら
+      </a>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active" data-idx="0"></button>
+    <button class="hero-dot" data-idx="1"></button>
+    <button class="hero-dot" data-idx="2"></button>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── CONCEPT ─── -->
+<section class="concept section" id="concept">
+  <div class="concept-grid">
+    <div class="concept-img-wrap rv lft">
+      <div class="concept-img-main">
+        <img src="https://images.unsplash.com/photo-1540396491210-c4ddfd76a537?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzIwMDR8&ixlib=rb-4.1.0&q=80&w=1080" alt="診療の様子">
+      </div>
+      <div class="concept-deco"></div>
+      <div class="concept-deco2"></div>
+    </div>
+    <div class="rv rgt">
+      <div class="concept-tag">
+        <svg style="width:14px;height:14px;fill:var(--mint-d)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        私たちの想い
+      </div>
+      <p class="section-label">ABOUT US</p>
+      <h2 class="section-title">笑顔をつくる、<br><span>かかりつけ歯科</span></h2>
+      <p class="section-desc">ますだ歯科は、宮崎市吉村町で地域の皆さまのお口の健康を守り続けています。虫歯治療から予防ケアまで、患者さまお一人おひとりに寄り添いながら、丁寧でわかりやすい診療をご提供します。初めての方もお気軽にご相談ください。</p>
+      <div class="concept-features">
+        <div class="concept-feat">
+          <div class="concept-feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 4.5 6 8c0 2.5 1 4.5 2.5 6L12 22l3.5-8C17 12.5 18 10.5 18 8c0-3.5-2.5-6-6-6z"/></svg>
+          </div>
+          <div class="concept-feat-text">
+            <h4>痛みに配慮した治療</h4>
+            <p>麻酔の工夫など、できる限り痛みを抑えた治療を心がけています</p>
+          </div>
+        </div>
+        <div class="concept-feat">
+          <div class="concept-feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <div class="concept-feat-text">
+            <h4>地域密着・家族で通える</h4>
+            <p>お子さまからご年配の方まで、家族全員が安心して通えるクリニック</p>
+          </div>
+        </div>
+        <div class="concept-feat">
+          <div class="concept-feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          </div>
+          <div class="concept-feat-text">
+            <h4>丁寧なカウンセリング</h4>
+            <p>治療前に十分な説明を行い、患者さまが納得した上で治療を進めます</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WAVE ─── -->
+<div class="wave-top" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--cream)"/>
+  </svg>
+</div>
+
+<!-- ─── MENU ─── -->
+<section class="menu-section section" id="menu" style="background:var(--cream)">
+  <div class="section-inner">
+    <div class="menu-header">
+      <p class="section-label rv">SERVICES</p>
+      <h2 class="section-title rv d1">診療メニュー</h2>
+      <p class="section-desc rv d2" style="margin:0 auto">一般歯科から予防ケア、審美治療まで幅広く対応しています。<br>保険診療・自費診療ともにご相談ください。</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card rv d1">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h3>一般歯科（虫歯治療）</h3>
+        <p>痛みに配慮した丁寧な虫歯治療を行います</p>
+        <div class="menu-card-price">¥3,000<span>〜（保険適用）</span></div>
+      </div>
+      <div class="menu-card rv d2">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <h3>定期検診・クリーニング</h3>
+        <p>歯石除去と予防ケアで健康な歯を維持</p>
+        <div class="menu-card-price">¥3,500<span>〜（保険適用）</span></div>
+      </div>
+      <div class="menu-card rv d3">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <h3>歯周病治療</h3>
+        <p>歯ぐきの状態を改善し再発を予防します</p>
+        <div class="menu-card-price">¥4,000<span>〜（保険適用）</span></div>
+      </div>
+      <div class="menu-card rv d4">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <h3>小児歯科</h3>
+        <p>お子さまが安心して通える優しい診療</p>
+        <div class="menu-card-price">¥2,500<span>〜（保険適用）</span></div>
+      </div>
+      <div class="menu-card rv d1" style="grid-column:span 1">
+        <div class="menu-card-icon" style="background:rgba(244,162,97,.12)">
+          <svg viewBox="0 0 24 24" style="fill:var(--accent)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>ホワイトニング</h3>
+        <p>白くきれいな歯で自信ある笑顔を実現</p>
+        <div class="menu-card-price" style="color:var(--accent)">¥15,000<span>〜（自費）</span></div>
+      </div>
+    </div>
+    <p class="menu-note rv">※表示価格は税込み目安です。診察後に詳しいお見積りをご案内します。</p>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <p class="section-label rv">GALLERY</p>
+    <h2 class="section-title rv d1">クリニックのご紹介</h2>
+  </div>
+  <div class="gallery-grid section-inner">
+    <div class="gallery-item wide rv lft">
+      <img src="https://images.unsplash.com/photo-1484995978482-cf913162930c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzIwMDR8&ixlib=rb-4.1.0&q=80&w=1080" alt="クリニック外観">
+      <div class="gallery-item-overlay"><p>清潔感あふれる診療室</p></div>
+    </div>
+    <div class="gallery-item rv rgt">
+      <img src="https://images.unsplash.com/photo-1706984556394-1e5c3b5382d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzIwMDR8&ixlib=rb-4.1.0&q=80&w=1080" alt="院内の雰囲気">
+      <div class="gallery-item-overlay"><p>落ち着いた院内空間</p></div>
+    </div>
+    <div class="gallery-item rv d1">
+      <img src="images/img_1.png" alt="スタッフの様子">
+      <div class="gallery-item-overlay"><p>経験豊富なスタッフ</p></div>
+    </div>
+    <div class="gallery-item rv d2">
+      <img src="https://images.unsplash.com/photo-1540396491210-c4ddfd76a537?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzIwMDR8&ixlib=rb-4.1.0&q=80&w=1080" alt="診療の様子">
+      <div class="gallery-item-overlay"><p>丁寧な診療</p></div>
+    </div>
+    <div class="gallery-item rv d3">
+      <img src="images/img_2.png" alt="待合室">
+      <div class="gallery-item-overlay"><p>ゆったりとした待合室</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NUMBERS ─── -->
+<section class="numbers-section">
+  <div class="numbers-bg"></div>
+  <div class="numbers-grid">
+    <div class="number-item rv">
+      <div class="number-value"><span data-count="5000" data-suffix="名">0</span></div>
+      <div class="number-divider"></div>
+      <div class="number-label">累計患者数</div>
+    </div>
+    <div class="number-item rv d1">
+      <div class="number-value"><span data-count="20" data-suffix="年">0</span></div>
+      <div class="number-divider"></div>
+      <div class="number-label">地域での実績</div>
+    </div>
+    <div class="number-item rv d2">
+      <div class="number-value"><span data-count="98" data-suffix="%">0</span></div>
+      <div class="number-divider"></div>
+      <div class="number-label">患者満足度</div>
+    </div>
+    <div class="number-item rv d3">
+      <div class="number-value"><span data-count="500" data-suffix="名">0</span></div>
+      <div class="number-divider"></div>
+      <div class="number-label">定期検診登録者</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ACCESS ─── -->
+<section class="access-section" id="access">
+  <div class="access-grid">
+    <div class="rv lft">
+      <p class="section-label">ACCESS</p>
+      <h2 class="section-title">アクセス・<span>診療時間</span></h2>
+      <div class="access-info">
+        <div class="access-item">
+          <div class="access-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div class="access-item-body">
+            <h4>住所</h4>
+            <p>〒880-0841<br>宮崎県宮崎市吉村町曽師中甲甲３１００</p>
+          </div>
+        </div>
+        <div class="access-item">
+          <div class="access-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          </div>
+          <div class="access-item-body">
+            <h4>電話番号</h4>
+            <p><a href="tel:0985-23-2831" style="color:var(--mint);font-weight:700;font-size:1.1rem">0985-23-2831</a></p>
+          </div>
+        </div>
+        <div class="access-hours">
+          <h4>
+            <svg style="width:16px;height:16px;fill:var(--mint)" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            診療時間
+          </h4>
+          <table class="hours-table">
+            <tr><td>平日（月〜土）</td><td>09:00 〜 18:00</td></tr>
+            <tr><td>日曜・祝日</td><td style="color:#e74c3c;font-weight:600">休診</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="rv rgt">
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.7!2d131.4167!3d31.9167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354038b6b78b9b71%3A0x0!2z5a6H5bSO5YyX!5e0!3m2!1sja!2sjp!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ますだ歯科 地図"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section" id="contact">
+  <!-- Concentric Circles SVG -->
+  <svg class="cta-circles" viewBox="0 0 700 700">
+    <circle cx="350" cy="350" r="320" stroke-width="1"/>
+    <circle cx="350" cy="350" r="260" stroke-width="1"/>
+    <circle cx="350" cy="350" r="200" stroke-width="1.5"/>
+    <circle cx="350" cy="350" r="140" stroke-width="1"/>
+    <circle cx="350" cy="350" r="80" stroke-width="1.5"/>
+  </svg>
+  <div class="cta-content">
+    <p class="cta-label rv">CONTACT</p>
+    <h2 class="rv d1">まずはお気軽に！<br>お電話一本でご予約いただけます</h2>
+    <p class="rv d2">初めての方も大歓迎です。不安なことや気になることがあれば、<br>お気軽にスタッフまでお声がけください。</p>
+    <div class="cta-btns">
+      <a href="tel:0985-23-2831" class="btn-cta-tel rv d3">
+        <span>
+          <svg style="width:22px;height:22px;fill:white" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          <span class="cta-tel-num">0985-23-2831</span>
+        </span>
+      </a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-cta-form rv d4">
+        <svg style="width:20px;height:20px;fill:white;opacity:.8" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        ネット予約フォーム
+      </a>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,.45)" class="rv d4">診療時間：月〜土 09:00〜18:00　日曜・祝日定休</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 4.5 6 8c0 2.5 1 4.5 2.5 6L12 22l3.5-8C17 12.5 18 10.5 18 8c0-3.5-2.5-6-6-6zm0 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-ja">ますだ歯科</span>
+            <span class="logo-en">MASUDA DENTAL CLINIC</span>
+          </div>
+        </div>
+        <p>宮崎市吉村町で地域の皆さまのお口の健康を守り続ける、やさしい歯科医院です。</p>
+      </div>
+      <div class="footer-col">
+        <h4>診療メニュー</h4>
+        <ul>
+          <li><a href="#menu">一般歯科（虫歯治療）</a></li>
+          <li><a href="#menu">定期検診・クリーニング</a></li>
+          <li><a href="#menu">歯周病治療</a></li>
+          <li><a href="#menu">小児歯科</a></li>
+          <li><a href="#menu">ホワイトニング</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>クリニック情報</h4>
+        <ul>
+          <li><a href="#concept">クリニックについて</a></li>
+          <li><a href="#gallery">ギャラリー</a></li>
+          <li><a href="#access">アクセス・診療時間</a></li>
+          <li><a href="tel:0985-23-2831">お電話でのご予約</a></li>
+          <li><a href="https://forms.gle/uSfk2teksDMiE6bQ7">ネット予約フォーム</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>〒880-0841 宮崎県宮崎市吉村町曽師中甲甲３１００　TEL: <a href="tel:0985-23-2831">0985-23-2831</a></p>
+      <p>© 2024 ますだ歯科. Designed by <a href="https://infinitydesign.co.jp">InfinityDesign</a></p>
+    </div>
+  </div>
+</footer>
+<script>
+/* ── PARALLAX ── */
+const _paraBgs=document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  _paraBgs.forEach(b=>{b.style.transform=`translateY(${y*.38}px)`;});
+  const hdr=document.querySelector('header');
+  if(hdr)hdr.classList.toggle('scrolled',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const _slides=document.querySelectorAll('.hero-slide');
+const _dots=document.querySelectorAll('.hero-dot');
+let _cur=0;
+if(_slides.length>1){
+  function _goSlide(n){
+    _slides[_cur].classList.remove('active');
+    if(_dots[_cur])_dots[_cur].classList.remove('active');
+    _cur=(n+_slides.length)%_slides.length;
+    _slides[_cur].classList.add('active');
+    if(_dots[_cur])_dots[_cur].classList.add('active');
+  }
+  _dots.forEach(d=>d.addEventListener('click',()=>_goSlide(+d.dataset.idx)));
+  setInterval(()=>_goSlide(_cur+1),5000);
+}
+
+/* ── SCROLL REVEAL ── */
+const _ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');_ro.unobserve(e.target);}
+}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>_ro.observe(el));
+
+/* ── COUNT-UP ── */
+function _countUp(el){
+  const target=+el.dataset.count;
+  if(!target)return;
+  const suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  (function frame(ts){
+    const p=Math.min((ts-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e2*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(frame);
+  })(performance.now());
+}
+const _co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){_countUp(e.target);_co.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>_co.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
