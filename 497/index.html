@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Volonte de Ryukyu・琉球の氣力 | 宮崎・高鍋のヘアサロン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Shippori+Mincho:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--teal:#2a7c6f;--teal-d:#1d5c52;--teal-l:#4aab99;--gold:#c9a84c;--gold-l:#e2c97a;--cream:#f9f5ef;--dark:#1a1a1a;--gray:#6b6b6b;--light:#f0ebe2}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Serif JP',serif;background:#fff;color:var(--dark);overflow-x:hidden}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.lft{transform:translateX(-36px)}.rv.rgt{transform:translateX(36px)}.rv.sc{transform:scale(.95)}
+.rv.in{opacity:1;transform:none}.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;z-index:999;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.2);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.1)}
+.logo{display:flex;flex-direction:column;gap:2px}
+.logo-en{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--teal);letter-spacing:.08em;line-height:1}
+.logo-ja{font-size:.62rem;color:var(--gold);letter-spacing:.15em;font-weight:600}
+nav{display:flex;gap:2rem;align-items:center}
+nav a{font-size:.78rem;color:var(--dark);text-decoration:none;letter-spacing:.12em;position:relative;padding-bottom:2px}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+nav a:hover::after{width:100%}
+.nav-tel{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--teal);font-weight:400;letter-spacing:.05em}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.ham span{width:26px;height:2px;background:var(--dark);display:block;transition:.3s}
+
+/* HERO */
+.hero{position:relative;width:100%;height:100vh;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
+.hero-slide.active{opacity:1}
+.hero-slide-bg{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 8s ease}
+.hero-slide.active .hero-slide-bg{transform:scale(1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,26,.65) 0%,rgba(42,124,111,.3) 60%,rgba(201,168,76,.15) 100%)}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;z-index:2;padding:2rem}
+.hero-badge{display:inline-block;font-size:.7rem;letter-spacing:.25em;border:1px solid var(--gold-l);color:var(--gold-l);padding:.4rem 1.2rem;margin-bottom:1.8rem;font-family:'Cormorant Garamond',serif}
+.hero-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,4vw,2.4rem);letter-spacing:.1em;color:rgba(255,255,255,.85);margin-bottom:.8rem;font-weight:300}
+.hero-catch{font-size:clamp(1.4rem,4.5vw,2.8rem);font-weight:600;letter-spacing:.08em;line-height:1.6;margin-bottom:1.2rem;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.hero-sub{font-size:.85rem;letter-spacing:.15em;color:rgba(255,255,255,.8);margin-bottom:2.4rem}
+.btn{display:inline-block;position:relative;padding:.85rem 2.4rem;font-size:.82rem;letter-spacing:.18em;text-decoration:none;overflow:hidden;font-family:'Noto Serif JP',serif;transition:color .4s}
+.btn-primary{color:#fff;border:1px solid var(--gold);background:transparent}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;z-index:-1}
+.btn-primary:hover{color:var(--dark)}.btn-primary:hover::before{transform:scaleX(1)}
+.btn-dark{color:var(--dark);border:1px solid var(--teal);background:transparent}
+.btn-dark::before{content:'';position:absolute;inset:0;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;z-index:-1}
+.btn-dark:hover{color:#fff}.btn-dark:hover::before{transform:scaleX(1)}
+.hero-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.7rem;z-index:10}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.6);cursor:pointer;transition:.3s}
+.hero-dot.active{background:var(--gold);border-color:var(--gold);width:24px;border-radius:4px}
+.hero-circle{position:absolute;width:340px;height:340px;border-radius:50%;border:1px dashed rgba(201,168,76,.5);top:50%;left:50%;transform:translate(-50%,-50%);animation:spin 30s linear infinite;z-index:1}
+.hero-circle::after{content:'';position:absolute;inset:20px;border-radius:50%;border:1px dashed rgba(255,255,255,.2)}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.wave-divider{width:100%;overflow:hidden;line-height:0}
+.wave-divider svg{display:block;width:100%}
+
+/* CONCEPT */
+.section{padding:6rem 2rem}
+.section-alt{background:var(--cream)}
+.sec-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--teal-l);letter-spacing:.2em;display:block;margin-bottom:.5rem}
+.sec-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;letter-spacing:.1em;line-height:1.5;margin-bottom:1rem}
+.sec-title span{color:var(--teal)}
+.sec-line{width:40px;height:2px;background:var(--gold);margin-bottom:2rem}
+.concept-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.concept-img-wrap{position:relative}
+.concept-img-wrap img{width:100%;height:500px;object-fit:cover;display:block}
+.concept-img-deco{position:absolute;bottom:-20px;right:-20px;width:80%;height:80%;border:2px solid var(--gold);z-index:-1}
+.concept-text p{font-size:.92rem;line-height:2.2;color:var(--gray);margin-bottom:1.2rem;font-weight:300}
+
+/* MENU */
+.menu-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.menu-card{background:#fff;padding:2rem 1.6rem;border:1px solid rgba(201,168,76,.2);position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.menu-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.menu-card:hover{box-shadow:0 12px 40px rgba(42,124,111,.12);transform:translateY(-4px)}
+.menu-card:hover::before{transform:scaleX(1)}
+.menu-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--teal),var(--teal-l));border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+.menu-icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.5}
+.menu-name{font-size:1rem;font-weight:600;letter-spacing:.1em;margin-bottom:.4rem;color:var(--dark)}
+.menu-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--teal);font-weight:400;margin-bottom:.6rem}
+.menu-desc{font-size:.78rem;color:var(--gray);line-height:1.9;font-weight:300}
+.sec-center{text-align:center;margin-bottom:3rem}
+
+/* GALLERY */
+.gallery-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.gallery-item{position:relative;overflow:hidden;aspect-ratio:4/3}
+.gallery-item.tall{grid-row:span 2;aspect-ratio:auto}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(42,124,111,.7),rgba(201,168,76,.4));opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-overlay-text{color:#fff;font-size:.75rem;letter-spacing:.2em;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem}
+
+/* NUMBERS */
+.numbers-section{background:linear-gradient(135deg,var(--teal-d) 0%,var(--teal) 60%,#3a9080 100%);padding:5rem 2rem;position:relative;overflow:hidden}
+.numbers-bg-deco{position:absolute;inset:0;opacity:.07}
+.numbers-bg-deco circle{fill:none;stroke:#fff}
+.numbers-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;z-index:1}
+.num-item{text-align:center;color:#fff}
+.num-val{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:300;color:var(--gold-l);display:flex;align-items:baseline;justify-content:center;gap:.1em}
+.num-suffix{font-family:'Noto Serif JP',serif;font-size:1rem;color:var(--gold-l)}
+.num-label{font-size:.75rem;letter-spacing:.18em;margin-top:.5rem;color:rgba(255,255,255,.8)}
+
+/* ACCESS */
+.access-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.access-info{padding-top:1rem}
+.access-item{display:flex;gap:1.2rem;margin-bottom:1.5rem;align-items:flex-start}
+.access-icon{width:36px;height:36px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.access-icon svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.8}
+.access-label{font-size:.72rem;color:var(--teal-l);letter-spacing:.15em;margin-bottom:.2rem}
+.access-val{font-size:.9rem;color:var(--dark);line-height:1.7}
+.map-wrap{border-radius:4px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.map-wrap iframe{width:100%;height:380px;border:none;display:block}
+
+/* CTA */
+.cta-section{position:relative;background:var(--dark);padding:7rem 2rem;text-align:center;overflow:hidden}
+.cta-concentric{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.06}
+.cta-concentric circle{fill:none;stroke:var(--gold);stroke-width:.8}
+.cta-content{position:relative;z-index:1;color:#fff}
+.cta-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--gold-l);letter-spacing:.2em;margin-bottom:1rem}
+.cta-title{font-size:clamp(1.4rem,3vw,2rem);letter-spacing:.1em;margin-bottom:1rem;font-weight:300}
+.cta-text{font-size:.85rem;color:rgba(255,255,255,.7);line-height:2;max-width:480px;margin:0 auto 2.5rem;font-weight:300}
+.cta-tel{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);color:var(--gold-l);letter-spacing:.08em;text-decoration:none;display:block;margin-bottom:.5rem;transition:color .3s}
+.cta-tel:hover{color:#fff}
+.cta-hours{font-size:.75rem;color:rgba(255,255,255,.5);letter-spacing:.15em;margin-bottom:2.5rem}
+.cta-btns{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+.btn-gold{color:var(--dark);border:1px solid var(--gold);background:transparent;position:relative;overflow:hidden;transition:color .4s}
+.btn-gold::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s;z-index:-1}
+.btn-gold:hover{color:var(--dark)}.btn-gold:hover::before{transform:scaleX(1)}
+
+/* FOOTER */
+footer{background:#111;padding:3rem 2rem 2rem;color:rgba(255,255,255,.5)}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-logo .logo-en{font-size:1.1rem}.footer-logo .logo-ja{font-size:.65rem}
+.footer-tagline{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.8rem;line-height:1.8;font-weight:300}
+.footer-heading{font-size:.72rem;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;font-family:'Cormorant Garamond',serif}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-links a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.78rem;transition:color .3s;letter-spacing:.08em}
+.footer-links a:hover{color:var(--gold-l)}
+.footer-contact p{font-size:.78rem;color:rgba(255,255,255,.45);line-height:2;font-weight:300}
+.footer-bottom{max-width:1100px;margin:.t 0 auto;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
+.footer-bottom{max-width:1100px;margin:0 auto;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.25);letter-spacing:.1em}
+.footer-credit{font-size:.7rem;color:rgba(255,255,255,.25)}
+.footer-credit a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .3s}
+.footer-credit a:hover{color:var(--gold-l)}
+
+/* MOBILE NAV */
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(26,26,26,.97);z-index:998;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:#fff;font-size:1.1rem;text-decoration:none;letter-spacing:.2em;position:relative}
+.mobile-nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.mobile-nav a:hover::after{width:100%}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+nav{display:none}.ham{display:flex}
+.concept-grid,.access-grid,.footer-inner{grid-template-columns:1fr}
+.menu-grid{grid-template-columns:1fr 1fr}
+.numbers-grid{grid-template-columns:repeat(2,1fr)}
+.gallery-grid{grid-template-columns:repeat(2,1fr)}
+.gallery-item.tall{grid-row:span 1}
+.concept-img-deco{display:none}
+.section{padding:4rem 1.2rem}
+.hero-circle{width:220px;height:220px}
+.footer-inner{gap:2rem}
+.cta-btns{flex-direction:column;align-items:center}
+}
+@media(max-width:480px){.menu-grid{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr}.numbers-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="logo">
+    <span class="logo-en">Volonte de Ryukyu</span>
+    <span class="logo-ja">琉球の氣力</span>
+  </div>
+  <nav>
+    <a href="#concept">コンセプト</a>
+    <a href="#menu">メニュー</a>
+    <a href="#gallery">ギャラリー</a>
+    <a href="#access">アクセス</a>
+    <a href="tel:0983-35-3360" class="nav-tel">☎ 0983-35-3360</a>
+  </nav>
+  <button class="ham" id="ham-btn" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#concept" class="mob-link">コンセプト</a>
+  <a href="#menu" class="mob-link">メニュー</a>
+  <a href="#gallery" class="mob-link">ギャラリー</a>
+  <a href="#access" class="mob-link">アクセス</a>
+  <a href="tel:0983-35-3360">☎ 0983-35-3360</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1626379501846-0df4067b8bb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjkyODB8&ixlib=rb-4.1.0&q=80&w=1080" alt="ヘアサロン">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1681965823525-b684fb97e9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjkyODB8&ixlib=rb-4.1.0&q=80&w=1080" alt="ヘアスタイル">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1758812818698-6ecd792a87da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjkyODB8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロン内装">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-content">
+    <div class="hero-badge rv">Hair Salon — Miyazaki, Takanabe</div>
+    <div class="hero-en rv d1">Volonte de Ryukyu</div>
+    <h1 class="hero-catch rv d2">琉球の風が、<br>あなたの美しさを目覚めさせる</h1>
+    <p class="hero-sub rv d3">宮崎・高鍋 ／ 琉球の氣力を宿したヘアサロン</p>
+    <a href="#concept" class="btn btn-primary rv d4">サロンについて</a>
+  </div>
+  <div class="hero-dots">
+    <div class="hero-dot active" data-idx="0"></div>
+    <div class="hero-dot" data-idx="1"></div>
+    <div class="hero-dot" data-idx="2"></div>
+  </div>
+</section>
+
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f9f5ef"/>
+  </svg>
+</div>
+
+<!-- CONCEPT -->
+<section class="section section-alt" id="concept">
+  <div class="concept-grid">
+    <div class="concept-img-wrap rv lft">
+      <img src="images/img_1.png" alt="コンセプト">
+      <div class="concept-img-deco"></div>
+    </div>
+    <div class="concept-text rv rgt">
+      <span class="sec-label">Our Concept</span>
+      <h2 class="sec-title">沖縄の氣力で、<br><span>本来の美しさへ</span></h2>
+      <div class="sec-line"></div>
+      <p>宮崎・高鍋の地に、琉球の自然から生まれた「氣力」を宿したヘアサロンがあります。一人ひとりの髪と向き合い、丁寧な施術と温かなおもてなしで、あなたの内側から輝く美しさを引き出します。</p>
+      <p>日常の疲れを忘れ、心も髪も生まれ変わるひとときをご体験ください。琉球の風に包まれるような、特別な時間がここにあります。</p>
+      <a href="tel:0983-35-3360" class="btn btn-dark" style="margin-top:1rem;font-size:.8rem;padding:.75rem 2rem">ご予約・お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider" style="transform:rotate(180deg)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f9f5ef"/>
+  </svg>
+</div>
+
+<!-- MENU -->
+<section class="section" id="menu">
+  <div class="sec-center rv">
+    <span class="sec-label">Menu</span>
+    <h2 class="sec-title" style="margin-bottom:1rem">施術メニュー</h2>
+    <div class="sec-line" style="margin:0 auto 0"></div>
+  </div>
+  <div class="menu-grid" style="margin-top:3rem">
+    <div class="menu-card rv d1">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M6 3l12 9-12 9V3z" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="menu-name">カット</div>
+      <div class="menu-price">¥4,400</div>
+      <div class="menu-desc">丁寧なカウンセリングで理想のスタイルに。あなたの骨格・髪質を見極め、最適なデザインをご提案します。</div>
+    </div>
+    <div class="menu-card rv d2">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </div>
+      <div class="menu-name">カラーリング</div>
+      <div class="menu-price">¥7,700</div>
+      <div class="menu-desc">髪に優しい薬剤で艶やかな発色を実現。ダメージを抑えながら、透明感あふれる色合いを表現します。</div>
+    </div>
+    <div class="menu-card rv d3">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4c0 0 4 2 8 0s8 0 8 0M4 10c0 0 4 2 8 0s8 0 8 0M4 16c0 0 4 2 8 0s8 0 8 0"/></svg>
+      </div>
+      <div class="menu-name">パーマ</div>
+      <div class="menu-price">¥8,800</div>
+      <div class="menu-desc">自然なウェーブで毎日のスタイリングが楽に。あなたのライフスタイルに合わせたパーマをご提案します。</div>
+    </div>
+    <div class="menu-card rv d1">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12c0-2.21 1.79-4 4-4"/></svg>
+      </div>
+      <div class="menu-name">トリートメント</div>
+      <div class="menu-price">¥3,300</div>
+      <div class="menu-desc">琉球由来の成分配合で潤いと艶を補給。傷んだ髪を内側から集中修復します。</div>
+    </div>
+    <div class="menu-card rv d2">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </div>
+      <div class="menu-name">ヘッドスパ</div>
+      <div class="menu-price">¥5,500</div>
+      <div class="menu-desc">頭皮から全身をほぐす至福の癒しコース。日頃の疲れと緊張を解きほぐし、心身をリフレッシュします。</div>
+    </div>
+    <div class="menu-card rv d3" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,var(--teal-d),var(--teal));border-color:transparent">
+      <div style="color:var(--gold-l);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;margin-bottom:.8rem">Special Menu</div>
+      <div style="color:#fff;font-size:.82rem;line-height:2;font-weight:300;margin-bottom:1.4rem">その他のメニューや<br>組み合わせコースも<br>ご相談ください</div>
+      <a href="tel:0983-35-3360" class="btn btn-primary" style="font-size:.75rem;padding:.6rem 1.6rem;border-color:var(--gold-l);color:var(--gold-l)">電話で相談</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section section-alt" id="gallery">
+  <div class="sec-center rv">
+    <span class="sec-label">Gallery</span>
+    <h2 class="sec-title" style="margin-bottom:1rem">ギャラリー</h2>
+    <div class="sec-line" style="margin:0 auto"></div>
+  </div>
+  <div class="gallery-grid" style="margin-top:3rem">
+    <div class="gallery-item tall rv lft">
+      <img src="https://images.unsplash.com/photo-1626379501846-0df4067b8bb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjkyODB8&ixlib=rb-4.1.0&q=80&w=1080" alt="ヘアスタイル1">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Hair Style</span></div>
+    </div>
+    <div class="gallery-item rv d1">
+      <img src="https://images.unsplash.com/photo-1681965823525-b684fb97e9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjkyODB8&ixlib=rb-4.1.0&q=80&w=1080" alt="ヘアスタイル2">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Color</span></div>
+    </div>
+    <div class="gallery-item rv d2">
+      <img src="https://images.unsplash.com/photo-1758812818698-6ecd792a87da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjkyODB8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロン内装">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Salon</span></div>
+    </div>
+    <div class="gallery-item rv d1">
+      <img src="images/img_1.png" alt="施術1">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Treatment</span></div>
+    </div>
+    <div class="gallery-item rv d2">
+      <img src="images/img_2.png" alt="施術2">
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Styling</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section">
+  <svg class="numbers-bg-deco" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%">
+    <circle cx="400" cy="150" r="200"/><circle cx="400" cy="150" r="280"/><circle cx="400" cy="150" r="350"/>
+    <circle cx="100" cy="80" r="80"/><circle cx="700" cy="220" r="100"/>
+  </svg>
+  <div class="numbers-grid">
+    <div class="num-item rv">
+      <div class="num-val"><span data-count="500" data-suffix="名">0</span><span class="num-suffix">以上</span></div>
+      <div class="num-label">累計お客様数</div>
+    </div>
+    <div class="num-item rv d1">
+      <div class="num-val"><span data-count="10" data-suffix="年">0</span></div>
+      <div class="num-label">サロン経験年数</div>
+    </div>
+    <div class="num-item rv d2">
+      <div class="num-val"><span data-count="98" data-suffix="%">0</span></div>
+      <div class="num-label">リピート率</div>
+    </div>
+    <div class="num-item rv d3">
+      <div class="num-val"><span data-count="5" data-suffix="種">0</span></div>
+      <div class="num-label">厳選メニュー</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="section" id="access">
+  <div class="access-grid">
+    <div class="access-info rv lft">
+      <span class="sec-label">Access</span>
+      <h2 class="sec-title" style="margin-bottom:1rem">アクセス</h2>
+      <div class="sec-line"></div>
+      <div class="access-item">
+        <div class="access-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <div>
+          <div class="access-label">住所</div>
+          <div class="access-val">〒884-0004<br>宮崎県児湯郡高鍋町蚊口浦５１３１−１０</div>
+        </div>
+      </div>
+      <div class="access-item">
+        <div class="access-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="access-label">電話番号</div>
+          <div class="access-val"><a href="tel:0983-35-3360" style="color:var(--teal);text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.3rem">0983-35-3360</a></div>
+        </div>
+      </div>
+      <div class="access-item">
+        <div class="access-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <div class="access-label">営業時間</div>
+          <div class="access-val">10:00 〜 19:00<br><span style="font-size:.78rem;color:var(--gray)">定休日：火曜日</span></div>
+        </div>
+      </div>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn btn-dark" style="font-size:.8rem;padding:.75rem 2rem;margin-top:1rem;display:inline-block">WEBフォームで予約</a>
+    </div>
+    <div class="map-wrap rv rgt">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3340.0!2d131.4934!3d32.1312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354052f55f4e0001%3A0x0!2z5a6J55Sw55S677yV77yR77yT77yR4oiS77yR77yQ!5e0!3m2!1sja!2sjp!4v1680000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="地図"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <svg class="cta-concentric" width="700" height="700" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="350" cy="350" r="80"/><circle cx="350" cy="350" r="140"/><circle cx="350" cy="350" r="200"/>
+    <circle cx="350" cy="350" r="260"/><circle cx="350" cy="350" r="320"/><circle cx="350" cy="350" r="340"/>
+  </svg>
+  <div class="cta-content">
+    <div class="cta-en rv">Contact &amp; Reservation</div>
+    <h2 class="cta-title rv d1">まずはお気軽にお電話ください</h2>
+    <p class="cta-text rv d2">スタッフ一同、心よりお待ちしております。<br>ご予約・ご相談は、お電話またはWEBフォームから承っております。</p>
+    <a href="tel:0983-35-3360" class="cta-tel rv d2">0983-35-3360</a>
+    <p class="cta-hours rv d3">営業時間 10:00〜19:00 ／ 火曜定休</p>
+    <div class="cta-btns rv d3">
+      <a href="tel:0983-35-3360" class="btn btn-gold" style="padding:.85rem 2.4rem;font-size:.82rem;letter-spacing:.18em">電話で予約する</a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn btn-primary" style="padding:.85rem 2.4rem;font-size:.82rem;letter-spacing:.18em">WEBフォームで予約</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo logo">
+        <span class="logo-en">Volonte de Ryukyu</span>
+        <span class="logo-ja">琉球の氣力</span>
+      </div>
+      <p class="footer-tagline">琉球の風が、あなたの美しさを目覚めさせる。<br>宮崎・高鍋の地で、心と髪に寄り添うヘアサロン。</p>
+    </div>
+    <div>
+      <div class="footer-heading">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#concept">コンセプト</a></li>
+        <li><a href="#menu">メニュー</a></li>
+        <li><a href="#gallery">ギャラリー</a></li>
+        <li><a href="#access">アクセス</a></li>
+        <li><a href="https://forms.gle/uSfk2teksDMiE6bQ7">WEB予約</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <div class="footer-heading">Contact</div>
+      <p>〒884-0004<br>宮崎県児湯郡高鍋町<br>蚊口浦５１３１−１０</p>
+      <p style="margin-top:.8rem"><a href="tel:0983-35-3360" style="color:rgba(255,255,255,.6);text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.1rem">0983-35-3360</a></p>
+      <p style="font-size:.72rem;margin-top:.4rem">10:00〜19:00 ／ 火曜定休</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Volonte de Ryukyu・琉球の氣力 All Rights Reserved.</p>
+    <p class="footer-credit">Designed by <a href="https://infinitydesign.co.jp">InfinityDesign</a></p>
+  </div>
+</footer>
+<script>
+/* ── PARALLAX ── */
+const _paraBgs=document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  _paraBgs.forEach(b=>{b.style.transform=`translateY(${y*.38}px)`;});
+  const hdr=document.querySelector('header');
+  if(hdr)hdr.classList.toggle('scrolled',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const _slides=document.querySelectorAll('.hero-slide');
+const _dots=document.querySelectorAll('.hero-dot');
+let _cur=0;
+if(_slides.length>1){
+  function _goSlide(n){
+    _slides[_cur].classList.remove('active');
+    if(_dots[_cur])_dots[_cur].classList.remove('active');
+    _cur=(n+_slides.length)%_slides.length;
+    _slides[_cur].classList.add('active');
+    if(_dots[_cur])_dots[_cur].classList.add('active');
+  }
+  _dots.forEach(d=>d.addEventListener('click',()=>_goSlide(+d.dataset.idx)));
+  setInterval(()=>_goSlide(_cur+1),5000);
+}
+
+/* ── SCROLL REVEAL ── */
+const _ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');_ro.unobserve(e.target);}
+}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>_ro.observe(el));
+
+/* ── COUNT-UP ── */
+function _countUp(el){
+  const target=+el.dataset.count;
+  if(!target)return;
+  const suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  (function frame(ts){
+    const p=Math.min((ts-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e2*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(frame);
+  })(performance.now());
+}
+const _co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){_countUp(e.target);_co.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>_co.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
