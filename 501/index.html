@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ソルシエール | 自律神経・美腸・美肌サロン｜宮崎県高鍋町</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400;500&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--sage:#8aaa8a;--deep:#2d3a2e;--cream:#f8f4ee;--gold:#c9a96e;--blush:#e8d5c4;--text:#3a3a3a;--light:#fafaf7}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Serif JP',serif;color:var(--text);background:var(--light);overflow-x:hidden}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.lft{transform:translateX(-36px)}
+.rv.rgt{transform:translateX(36px)}
+.rv.sc{transform:scale(.95)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}
+.rv.d2{transition-delay:.2s}
+.rv.d3{transition-delay:.3s}
+.rv.d4{transition-delay:.4s}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(248,244,238,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(138,170,138,.2)}
+.logo-wrap .logo-en{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:.15em;color:var(--deep);line-height:1}
+.logo-wrap .logo-ja{font-size:.62rem;letter-spacing:.2em;color:var(--sage);margin-top:.2rem;display:block}
+nav{display:flex;gap:2rem;align-items:center}
+nav a{font-size:.75rem;letter-spacing:.15em;color:var(--deep);text-decoration:none;transition:color .3s}
+nav a:hover{color:var(--sage)}
+.nav-cta{background:var(--deep);color:#fff!important;padding:.5rem 1.2rem;border-radius:50px;font-size:.7rem;letter-spacing:.1em;transition:background .3s!important}
+.nav-cta:hover{background:var(--sage)!important}
+
+/* HERO */
+.hero{position:relative;height:100vh;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s}
+.hero-slide.active{opacity:1}
+.hero-slide-bg{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(45,58,46,.65) 0%,rgba(45,58,46,.3) 60%,rgba(201,169,110,.15) 100%)}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 8% 4rem}
+.hero-label{font-size:.7rem;letter-spacing:.3em;color:var(--gold);margin-bottom:1.2rem;font-family:'Cormorant Garamond',serif;font-style:italic}
+.hero-title{font-family:'Zen Old Mincho',serif;font-size:clamp(2rem,5vw,3.8rem);color:#fff;line-height:1.5;font-weight:700;margin-bottom:1.5rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero-sub{font-size:clamp(.8rem,2vw,1rem);color:rgba(255,255,255,.85);letter-spacing:.1em;margin-bottom:2.5rem;line-height:1.8}
+.hero-btn{display:inline-flex;align-items:center;gap:.8rem;background:transparent;border:1px solid rgba(255,255,255,.7);color:#fff;padding:.9rem 2.2rem;border-radius:50px;font-size:.8rem;letter-spacing:.2em;text-decoration:none;position:relative;overflow:hidden;transition:border-color .3s,color .3s}
+.hero-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s;border-radius:50px;z-index:-1}
+.hero-btn:hover::before{transform:scaleX(1)}
+.hero-btn:hover{border-color:var(--gold)}
+.hero-deco{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:300px;height:300px;pointer-events:none}
+.hero-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .3s,transform .3s;border:none}
+.hero-dot.active{background:#fff;transform:scale(1.3)}
+.hero-scroll{position:absolute;bottom:2rem;right:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.hero-scroll span{font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.7);writing-mode:vertical-rl}
+.hero-scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,rgba(255,255,255,.7),transparent);animation:scrollLine 2s infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* WAVE */
+.wave-top{display:block;width:100%;line-height:0;margin-bottom:-2px}
+.wave-btm{display:block;width:100%;line-height:0;margin-top:-2px}
+
+/* CONCEPT */
+.concept{background:var(--cream);padding:6rem 0 5rem;position:relative}
+.section-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;letter-spacing:.3em;color:var(--gold);display:block;text-align:center;margin-bottom:.8rem}
+.section-title{font-family:'Zen Old Mincho',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--deep);text-align:center;margin-bottom:1rem;letter-spacing:.08em}
+.section-line{width:50px;height:2px;background:linear-gradient(to right,var(--sage),var(--gold));margin:0 auto 3rem;border-radius:2px}
+.concept-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.concept-img-wrap{position:relative}
+.concept-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px}
+.concept-img-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;width:110px;height:110px;background:var(--deep);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+.concept-img-badge span:first-child{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;line-height:1}
+.concept-img-badge span:last-child{font-size:.55rem;letter-spacing:.1em;margin-top:.3rem}
+.concept-text-wrap{}
+.concept-lead{font-family:'Zen Old Mincho',serif;font-size:1.2rem;color:var(--deep);line-height:1.8;margin-bottom:1.5rem}
+.concept-body{font-size:.9rem;line-height:2.2;color:#5a5a5a;margin-bottom:2rem}
+.concept-tags{display:flex;flex-wrap:wrap;gap:.6rem}
+.concept-tag{padding:.4rem 1rem;border:1px solid var(--sage);border-radius:50px;font-size:.72rem;letter-spacing:.1em;color:var(--sage)}
+
+/* MENU */
+.menu{background:var(--light);padding:6rem 0}
+.menu-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem}
+.menu-card{background:#fff;border-radius:12px;padding:2rem 1.5rem;position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s;box-shadow:0 2px 15px rgba(45,58,46,.06)}
+.menu-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(to right,var(--sage),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.menu-card:hover::before{transform:scaleX(1)}
+.menu-card:hover{box-shadow:0 8px 35px rgba(45,58,46,.12);transform:translateY(-4px)}
+.menu-card.featured{background:var(--deep);color:#fff}
+.menu-card.featured .menu-name,.menu-card.featured .menu-price,.menu-card.featured .menu-desc{color:#fff}
+.menu-card.featured::before{background:linear-gradient(to right,var(--gold),var(--sage))}
+.menu-icon{width:40px;height:40px;border-radius:50%;background:rgba(138,170,138,.12);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+.menu-card.featured .menu-icon{background:rgba(255,255,255,.15)}
+.menu-name{font-family:'Zen Old Mincho',serif;font-size:1rem;color:var(--deep);margin-bottom:.8rem;line-height:1.6}
+.menu-price{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold);letter-spacing:.05em;margin-bottom:.8rem}
+.menu-desc{font-size:.78rem;color:#777;line-height:1.8}
+.menu-card5{grid-column:1/-1}
+
+/* GALLERY */
+.gallery{background:var(--cream);padding:6rem 0}
+.gallery-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:1rem;margin-top:2rem}
+.gallery-item{overflow:hidden;border-radius:10px;position:relative;cursor:pointer}
+.gallery-item:first-child{grid-column:span 2;aspect-ratio:16/9}
+.gallery-item:not(:first-child){aspect-ratio:1}
+.gallery-img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(45,58,46,.7),transparent);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.5rem}
+.gallery-overlay span{color:#fff;font-size:.8rem;letter-spacing:.1em}
+.gallery-item:hover .gallery-img{transform:scale(1.08)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+
+/* NUMBERS */
+.numbers{background:var(--deep);padding:5rem 0;position:relative;overflow:hidden}
+.numbers-bg-deco{position:absolute;inset:0;pointer-events:none}
+.numbers-inner{max-width:1000px;margin:0 auto;padding:0 2rem;text-align:center}
+.numbers-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;letter-spacing:.3em;color:var(--gold);margin-bottom:.5rem}
+.numbers-sub{font-family:'Zen Old Mincho',serif;font-size:1.8rem;color:#fff;margin-bottom:3rem}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.number-item{text-align:center}
+.number-val{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--gold);line-height:1;display:flex;align-items:flex-start;justify-content:center;gap:.1rem}
+.number-val span{font-size:1.2rem;margin-top:.8rem}
+.number-label{font-size:.78rem;color:rgba(255,255,255,.7);letter-spacing:.1em;margin-top:.8rem}
+.number-line{width:30px;height:1px;background:var(--sage);margin:.8rem auto 0}
+
+/* ACCESS */
+.access{background:var(--light);padding:6rem 0}
+.access-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.access-info h3{font-family:'Zen Old Mincho',serif;font-size:1.6rem;color:var(--deep);margin-bottom:2rem}
+.access-list{list-style:none;display:flex;flex-direction:column;gap:1.2rem}
+.access-list li{display:flex;gap:1rem;align-items:flex-start;font-size:.88rem;line-height:1.8;color:#5a5a5a}
+.access-list li .ai-label{font-size:.7rem;letter-spacing:.1em;color:var(--sage);background:rgba(138,170,138,.1);padding:.2rem .6rem;border-radius:4px;white-space:nowrap;margin-top:.15rem}
+.access-tel{margin-top:2rem;display:inline-flex;align-items:center;gap:.6rem;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--deep);text-decoration:none;letter-spacing:.05em;transition:color .3s}
+.access-tel:hover{color:var(--sage)}
+.access-tel svg{width:22px;height:22px;stroke:var(--sage)}
+.access-map{border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.1);height:380px}
+.access-map iframe{width:100%;height:100%;border:none}
+
+/* CTA */
+.cta{background:var(--cream);padding:6rem 0;position:relative;overflow:hidden;text-align:center}
+.cta-circles{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:0 2rem}
+.cta-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;letter-spacing:.3em;color:var(--gold);margin-bottom:.8rem}
+.cta-title{font-family:'Zen Old Mincho',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--deep);margin-bottom:1.5rem}
+.cta-text{font-size:.88rem;color:#6a6a6a;line-height:2;margin-bottom:2.5rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.6rem;background:var(--deep);color:#fff;padding:.9rem 2.2rem;border-radius:50px;font-size:.82rem;letter-spacing:.15em;text-decoration:none;position:relative;overflow:hidden;transition:color .3s}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--sage);transform:scaleX(0);transform-origin:left;transition:transform .4s;border-radius:50px;z-index:0}
+.btn-primary span{position:relative;z-index:1}
+.btn-primary:hover::before{transform:scaleX(1)}
+.btn-secondary{display:inline-flex;align-items:center;gap:.6rem;background:transparent;color:var(--deep);border:1px solid var(--deep);padding:.9rem 2.2rem;border-radius:50px;font-size:.82rem;letter-spacing:.15em;text-decoration:none;position:relative;overflow:hidden;transition:color .3s}
+.btn-secondary::before{content:'';position:absolute;inset:0;background:var(--deep);transform:scaleX(0);transform-origin:left;transition:transform .4s;border-radius:50px;z-index:0}
+.btn-secondary span{position:relative;z-index:1;transition:color .3s}
+.btn-secondary:hover::before{transform:scaleX(1)}
+.btn-secondary:hover span{color:#fff}
+
+/* FOOTER */
+footer{background:var(--deep);padding:3rem 0 1.5rem}
+.footer-inner{max-width:1100px;margin:0 auto;padding:0 2rem}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo .logo-en{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:#fff;letter-spacing:.15em}
+.footer-logo .logo-ja{font-size:.62rem;letter-spacing:.2em;color:var(--sage);display:block;margin-top:.3rem}
+.footer-logo p{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:1rem;line-height:1.8}
+.footer-col h4{font-size:.75rem;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col ul li a{font-size:.78rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .3s}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-col address{font-style:normal;font-size:.78rem;color:rgba(255,255,255,.6);line-height:2}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.7rem;color:rgba(255,255,255,.4)}
+.footer-bottom a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .3s}
+.footer-bottom a:hover{color:var(--gold)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+nav{display:none}
+.hero-deco{display:none}
+.concept-inner{grid-template-columns:1fr;gap:2.5rem}
+.concept-img-badge{right:1rem}
+.menu-grid{grid-template-columns:1fr}
+.menu-card5{grid-column:auto}
+.gallery-grid{grid-template-columns:1fr 1fr}
+.gallery-item:first-child{grid-column:1/-1}
+.numbers-grid{grid-template-columns:repeat(2,1fr)}
+.access-inner{grid-template-columns:1fr}
+.footer-top{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;text-align:center}
+.cta-btns{flex-direction:column;align-items:center}
+header{padding:.8rem 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap">
+    <div class="logo-en">Sorcière</div>
+    <span class="logo-ja">自律神経・美腸・美肌サロン</span>
+  </div>
+  <nav>
+    <a href="#concept">コンセプト</a>
+    <a href="#menu">メニュー</a>
+    <a href="#gallery">ギャラリー</a>
+    <a href="#access">アクセス</a>
+    <a href="tel:080-9063-5387" class="nav-cta">予約・お問合せ</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1637777277337-f114350fb088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjk0ODZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="ソルシエール">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1681965823525-b684fb97e9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjk0ODZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロン内観">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1759142016096-a9d1a5ebcc09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjk0ODZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="ヘアケア">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <!-- 破線円SVG -->
+  <svg class="hero-deco" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="150" cy="150" r="140" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="8 6"/>
+    <circle cx="150" cy="150" r="110" stroke="rgba(201,169,110,0.25)" stroke-width="1" stroke-dasharray="4 8"/>
+    <circle cx="150" cy="150" r="78" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="150" y="140" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="Cormorant Garamond,serif" font-size="13" font-style="italic" letter-spacing="2">Sorcière</text>
+    <text x="150" y="162" text-anchor="middle" fill="rgba(201,169,110,0.8)" font-family="sans-serif" font-size="9" letter-spacing="3">BEAUTY SALON</text>
+  </svg>
+
+  <div class="hero-content">
+    <span class="hero-label">— Sorcière Hair & Beauty Salon</span>
+    <h1 class="hero-title">心と腸から、<br>あなたの美しさを整える</h1>
+    <p class="hero-sub">自律神経・美腸・美肌への総合アプローチで<br>内側から輝く、本来の美しさへ</p>
+    <a href="#menu" class="hero-btn">メニューを見る →</a>
+  </div>
+
+  <div class="hero-dots">
+    <button class="hero-dot active" data-idx="0"></button>
+    <button class="hero-dot" data-idx="1"></button>
+    <button class="hero-dot" data-idx="2"></button>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- 波形 -->
+<svg class="wave-top" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--light)">
+  <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="var(--cream)"/>
+</svg>
+
+<!-- CONCEPT -->
+<section class="concept" id="concept">
+  <span class="section-tag rv d1">— Our Concept</span>
+  <h2 class="section-title rv d2">内側から輝く、本来の美しさへ</h2>
+  <div class="section-line rv d3"></div>
+  <div class="concept-inner">
+    <div class="concept-img-wrap rv lft">
+      <img class="concept-img" src="images/img_1.png" alt="コンセプト" loading="lazy">
+      <div class="concept-img-badge">
+        <span>Since</span>
+        <span>2020</span>
+      </div>
+    </div>
+    <div class="concept-text-wrap">
+      <p class="concept-lead rv d1">髪だけじゃない。<br>あなた全体の美しさを<br>ケアするサロンです。</p>
+      <p class="concept-body rv d2">ソルシエールは、髪を美しく整えるだけでなく、自律神経・美腸・美肌まで総合的にアプローチするこだわりのサロンです。<br><br>宮崎県高鍋町の自然豊かな環境の中で、心身のバランスを取り戻し、内側から輝く本来の美しさを引き出すお手伝いをいたします。<br><br>忙しい日常の中で忘れがちな「自分自身の声」に耳を傾け、丁寧な施術とカウンセリングで、あなただけの美の処方箋をご提案します。</p>
+      <div class="concept-tags rv d3">
+        <span class="concept-tag">自律神経ケア</span>
+        <span class="concept-tag">美腸プログラム</span>
+        <span class="concept-tag">美肌フェイシャル</span>
+        <span class="concept-tag">ヘッドスパ</span>
+        <span class="concept-tag">カラーリング</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave-btm" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--cream)">
+  <path d="M0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,60 L0,60 Z" fill="var(--light)"/>
+</svg>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="menu-inner">
+    <span class="section-tag rv d1">— Menu</span>
+    <h2 class="section-title rv d2">施術メニュー</h2>
+    <div class="section-line rv d3"></div>
+    <div class="menu-grid">
+
+      <div class="menu-card rv d1">
+        <div class="menu-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8aaa8a" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="menu-name">カット＋自律神経ヘッドスパ</div>
+        <div class="menu-price">¥8,800<span style="font-size:.9rem;color:#aaa;font-family:'Noto Serif JP'"> (税込)</span></div>
+        <p class="menu-desc">頭皮ケアで自律神経を整えるリラックスコース。緊張をほぐし、心地よい眠りへ導きます。</p>
+      </div>
+
+      <div class="menu-card rv d2">
+        <div class="menu-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8aaa8a" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="menu-name">美腸トリートメントコース</div>
+        <div class="menu-price">¥6,600<span style="font-size:.9rem;color:#aaa;font-family:'Noto Serif JP'"> (税込)</span></div>
+        <p class="menu-desc">腸内環境を意識した全身美容ケアプログラム。内側から整えて輝く肌へ。</p>
+      </div>
+
+      <div class="menu-card featured rv d3">
+        <div class="menu-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <div class="menu-name">美肌フェイシャルメニュー</div>
+        <div class="menu-price" style="color:var(--gold)">¥7,700<span style="font-size:.9rem;color:rgba(255,255,255,.5);font-family:'Noto Serif JP'"> (税込)</span></div>
+        <p class="menu-desc" style="color:rgba(255,255,255,.7)">肌本来の潤いと透明感を引き出すケア。専門的なフェイシャルで素肌美人へ。</p>
+      </div>
+
+      <div class="menu-card rv d1">
+        <div class="menu-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8aaa8a" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div class="menu-name">カラー＋美肌スカルプケア</div>
+        <div class="menu-price">¥11,000<span style="font-size:.9rem;color:#aaa;font-family:'Noto Serif JP'"> (税込)</span></div>
+        <p class="menu-desc">頭皮環境を整えながら美しい髪色を実現。トレンドカラーも対応いたします。</p>
+      </div>
+
+      <div class="menu-card rv d2 menu-card5">
+        <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
+          <div class="menu-icon" style="flex-shrink:0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8aaa8a" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div style="flex:1">
+            <div class="menu-name">お試し体験コース <span style="font-size:.72rem;background:var(--gold);color:#fff;padding:.15rem .6rem;border-radius:50px;margin-left:.5rem;vertical-align:middle">初回限定</span></div>
+            <p class="menu-desc">初めての方に嬉しいお得な体験メニュー。サロンの雰囲気を気軽に体験してください。</p>
+          </div>
+          <div class="menu-price" style="white-space:nowrap">¥3,300<span style="font-size:.9rem;color:#aaa;font-family:'Noto Serif JP'"> (税込)</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;background:var(--light);line-height:0">
+  <path d="M0,0 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="var(--cream)"/>
+</svg>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-inner">
+    <span class="section-tag rv d1">— Gallery</span>
+    <h2 class="section-title rv d2">サロンの雰囲気</h2>
+    <div class="section-line rv d3"></div>
+    <div class="gallery-grid">
+      <div class="gallery-item rv lft">
+        <img class="gallery-img" src="https://images.unsplash.com/photo-1637777277337-f114350fb088?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjk0ODZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロン1" loading="lazy">
+        <div class="gallery-overlay"><span>Hair Styling</span></div>
+      </div>
+      <div class="gallery-item rv rgt">
+        <img class="gallery-img" src="https://images.unsplash.com/photo-1681965823525-b684fb97e9fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjk0ODZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロン2" loading="lazy">
+        <div class="gallery-overlay"><span>Head Spa</span></div>
+      </div>
+      <div class="gallery-item rv d1">
+        <img class="gallery-img" src="https://images.unsplash.com/photo-1759142016096-a9d1a5ebcc09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjk0ODZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロン3" loading="lazy">
+        <div class="gallery-overlay"><span>Facial Care</span></div>
+      </div>
+      <div class="gallery-item rv d2">
+        <img class="gallery-img" src="images/img_2.png" alt="施術" loading="lazy">
+        <div class="gallery-overlay"><span>Treatment</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;background:var(--cream);line-height:0">
+  <path d="M0,40 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="var(--deep)"/>
+</svg>
+
+<!-- NUMBERS -->
+<section class="numbers" id="numbers">
+  <svg class="numbers-bg-deco" viewBox="0 0 1440 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="150" r="180" stroke="rgba(138,170,138,0.08)" stroke-width="1" fill="none"/>
+    <circle cx="1240" cy="150" r="220" stroke="rgba(201,169,110,0.08)" stroke-width="1" fill="none"/>
+    <circle cx="720" cy="150" r="130" stroke="rgba(255,255,255,0.05)" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="numbers-inner">
+    <div class="numbers-title rv">Our Numbers</div>
+    <div class="numbers-sub rv d1">お客様に選ばれ続ける理由</div>
+    <div class="numbers-grid">
+      <div class="number-item rv d1">
+        <div class="number-val"><span data-count="500" data-suffix="名">0</span><span>以上</span></div>
+        <div class="number-line"></div>
+        <div class="number-label">累計ご来店数</div>
+      </div>
+      <div class="number-item rv d2">
+        <div class="number-val"><span data-count="98" data-suffix="%">0</span></div>
+        <div class="number-line"></div>
+        <div class="number-label">お客様満足度</div>
+      </div>
+      <div class="number-item rv d3">
+        <div class="number-val"><span data-count="5" data-suffix="種">0</span></div>
+        <div class="number-line"></div>
+        <div class="number-label">専門メニュー数</div>
+      </div>
+      <div class="number-item rv d4">
+        <div class="number-val"><span data-count="3" data-suffix="分野">0</span></div>
+        <div class="number-line"></div>
+        <div class="number-label">総合ケア領域</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;background:var(--deep);line-height:0">
+  <path d="M0,20 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="var(--light)"/>
+</svg>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="access-inner">
+    <div class="access-info rv lft">
+      <span class="section-tag" style="text-align:left">— Access</span>
+      <h3>アクセス・店舗情報</h3>
+      <ul class="access-list">
+        <li>
+          <span class="ai-label">店名</span>
+          <span>ソルシエール<br>（自律神経・美腸・美肌サロン）</span>
+        </li>
+        <li>
+          <span class="ai-label">住所</span>
+          <span>〒884-0006<br>宮崎県児湯郡高鍋町上江7697-88<br>高鍋ゴルフスポーツセンター内</span>
+        </li>
+        <li>
+          <span class="ai-label">営業時間</span>
+          <span>10:00〜19:00</span>
+        </li>
+        <li>
+          <span class="ai-label">定休日</span>
+          <span>火曜定休</span>
+        </li>
+      </ul>
+      <a href="tel:080-9063-5387" class="access-tel">
+        <svg fill="none" stroke="var(--sage)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        080-9063-5387
+      </a>
+    </div>
+    <div class="access-map rv rgt">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3365.0!2d131.6314!3d32.1245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354084a3a3a3a3a3%3A0x0!2z5a6H6Y6q55yM5YOR5rmWpLnliIbpg53pn7PpmIXjgIDjgIc!5e0!3m2!1sja!2sjp!4v1!5m2!1sja!2sjp&q=宮崎県児湯郡高鍋町上江7697-88" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ソルシエール 地図"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <!-- 同心円SVG -->
+  <div class="cta-circles">
+    <svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:.4">
+      <circle cx="300" cy="300" r="280" stroke="var(--sage)" stroke-width="1" stroke-dasharray="6 10"/>
+      <circle cx="300" cy="300" r="220" stroke="var(--gold)" stroke-width="1" stroke-dasharray="3 12" opacity=".6"/>
+      <circle cx="300" cy="300" r="160" stroke="var(--sage)" stroke-width="1" opacity=".4"/>
+      <circle cx="300" cy="300" r="100" stroke="var(--gold)" stroke-width="1" stroke-dasharray="8 6" opacity=".3"/>
+    </svg>
+  </div>
+  <div class="cta-inner">
+    <div class="cta-label rv">— Reservation</div>
+    <h2 class="cta-title rv d1">まずはお気軽に<br>ご相談ください</h2>
+    <p class="cta-text rv d2">まずはお気軽にお電話でご予約・ご相談ください。<br>スタッフが丁寧にご対応いたします。<br>初めての方も安心してお越しいただけます。</p>
+    <div class="cta-btns rv d3">
+      <a href="tel:080-9063-5387" class="btn-primary">
+        <span>📞 電話で予約する</span>
+      </a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-secondary" target="_blank" rel="noopener">
+        <span>✉ フォームで相談する</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <div class="logo-en">Sorcière</div>
+        <span class="logo-ja">自律神経・美腸・美肌サロン</span>
+        <p>内側から輝く、本来の美しさへ。<br>宮崎県高鍋町で心と腸から<br>あなたの美しさを整えます。</p>
+      </div>
+      <div class="footer-col">
+        <h4>MENU</h4>
+        <ul>
+          <li><a href="#concept">コンセプト</a></li>
+          <li><a href="#menu">施術メニュー</a></li>
+          <li><a href="#gallery">ギャラリー</a></li>
+          <li><a href="#access">アクセス</a></li>
+          <li><a href="#contact">ご予約・お問合せ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACT</h4>
+        <address>
+          〒884-0006<br>
+          宮崎県児湯郡高鍋町上江7697-88<br>
+          高鍋ゴルフスポーツセンター内<br><br>
+          TEL: <a href="tel:080-9063-5387" style="color:rgba(255,255,255,.6);text-decoration:none">080-9063-5387</a><br>
+          10:00〜19:00 / 火曜定休
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Sorcière All Rights Reserved.</p>
+      <p>Designed by <a href="https://infinitydesign.co.jp" target="_blank" rel="noopener">InfinityDesign</a></p>
+    </div>
+  </div>
+</footer>
+<script>
+/* ── PARALLAX ── */
+const _paraBgs=document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  _paraBgs.forEach(b=>{b.style.transform=`translateY(${y*.38}px)`;});
+  const hdr=document.querySelector('header');
+  if(hdr)hdr.classList.toggle('scrolled',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const _slides=document.querySelectorAll('.hero-slide');
+const _dots=document.querySelectorAll('.hero-dot');
+let _cur=0;
+if(_slides.length>1){
+  function _goSlide(n){
+    _slides[_cur].classList.remove('active');
+    if(_dots[_cur])_dots[_cur].classList.remove('active');
+    _cur=(n+_slides.length)%_slides.length;
+    _slides[_cur].classList.add('active');
+    if(_dots[_cur])_dots[_cur].classList.add('active');
+  }
+  _dots.forEach(d=>d.addEventListener('click',()=>_goSlide(+d.dataset.idx)));
+  setInterval(()=>_goSlide(_cur+1),5000);
+}
+
+/* ── SCROLL REVEAL ── */
+const _ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');_ro.unobserve(e.target);}
+}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>_ro.observe(el));
+
+/* ── COUNT-UP ── */
+function _countUp(el){
+  const target=+el.dataset.count;
+  if(!target)return;
+  const suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  (function frame(ts){
+    const p=Math.min((ts-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e2*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(frame);
+  })(performance.now());
+}
+const _co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){_countUp(e.target);_co.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>_co.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
