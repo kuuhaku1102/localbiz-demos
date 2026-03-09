@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ひえじま歯科医院 | 宮崎市霧島の歯科クリニック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--mint:#4fbdba;--mint-dark:#2a9d9a;--mint-light:#e8f8f7;--navy:#1a3c4e;--navy-light:#2a5468;--cream:#fafaf8;--gray:#6b7280;--light:#f0fafa;--white:#ffffff;--accent:#f0a500}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:#333;background:#fff;overflow-x:hidden}
+.en{font-family:'Josefin Sans',sans-serif}
+/* scrollreveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.lft{transform:translateX(-36px)}.rv.rgt{transform:translateX(36px)}.rv.sc{transform:scale(.95)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);box-shadow:0 2px 20px rgba(0,0,0,.08);padding:0 2rem}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo-main{font-family:'Noto Serif JP',serif;font-size:1.2rem;font-weight:700;color:var(--navy);letter-spacing:.08em}
+.logo-sub{font-size:.65rem;color:var(--mint-dark);letter-spacing:.12em;margin-top:2px}
+nav{display:flex;align-items:center;gap:1.8rem}
+nav a{font-size:.8rem;color:var(--navy);text-decoration:none;letter-spacing:.06em;font-weight:500;position:relative;padding-bottom:3px}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--mint);transition:width .3s}
+nav a:hover::after{width:100%}
+.header-tel{display:flex;flex-direction:column;align-items:flex-end}
+.header-tel a{font-family:'Josefin Sans',sans-serif;font-size:1.15rem;font-weight:600;color:var(--navy);text-decoration:none;letter-spacing:.06em}
+.header-tel span{font-size:.6rem;color:var(--gray);letter-spacing:.05em}
+.header-btn{background:var(--mint);color:#fff;font-size:.75rem;padding:.5rem 1.2rem;border-radius:50px;text-decoration:none;font-weight:500;letter-spacing:.05em;position:relative;overflow:hidden;transition:color .3s}
+.header-btn::before{content:'';position:absolute;inset:0;background:var(--mint-dark);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:0}
+.header-btn:hover::before{transform:scaleX(1)}
+.header-btn span{position:relative;z-index:1}
+
+/* HERO */
+.hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
+.hero-slide.active{opacity:1}
+.hero-slide-bg{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,60,78,.75) 0%,rgba(79,189,186,.25) 100%)}
+.hero-content{position:absolute;inset:0;display:flex;align-items:center;z-index:2;padding:0 4rem}
+.hero-text{max-width:600px;color:#fff}
+.hero-en{font-family:'Josefin Sans',sans-serif;font-size:.8rem;letter-spacing:.25em;color:var(--mint);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.8rem}
+.hero-en::before{content:'';display:block;width:40px;height:1px;background:var(--mint)}
+.hero-catch{font-family:'Noto Serif JP',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.5;letter-spacing:.05em;margin-bottom:1.5rem}
+.hero-catch span{color:var(--mint);display:block}
+.hero-sub{font-size:.9rem;line-height:1.9;opacity:.9;margin-bottom:2.5rem;font-weight:300}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--mint);color:#fff;text-decoration:none;padding:.85rem 2rem;border-radius:50px;font-size:.85rem;font-weight:500;letter-spacing:.06em;position:relative;overflow:hidden;transition:color .3s}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:0}
+.btn-primary:hover::before{transform:scaleX(1)}
+.btn-primary span{position:relative;z-index:1}
+.btn-outline{display:inline-flex;align-items:center;gap:.5rem;border:2px solid rgba(255,255,255,.7);color:#fff;text-decoration:none;padding:.85rem 2rem;border-radius:50px;font-size:.85rem;font-weight:500;letter-spacing:.06em;transition:background .3s,border-color .3s}
+.btn-outline:hover{background:rgba(255,255,255,.15);border-color:#fff}
+/* hero deco */
+.hero-circle{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:360px;height:360px;z-index:1;pointer-events:none}
+.hero-circle svg{width:100%;height:100%}
+/* hero dots */
+.hero-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:3}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .3s,transform .3s}
+.hero-dot.active{background:#fff;transform:scale(1.3)}
+.hero-scroll{position:absolute;bottom:2rem;right:3rem;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.7);font-family:'Josefin Sans',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase}
+.hero-scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(255,255,255,.7),transparent);animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(.5);transform-origin:top}}
+
+/* WAVE */
+.wave-div{display:block;width:100%;overflow:hidden;line-height:0}
+.wave-div svg{display:block;width:100%}
+
+/* CONCEPT */
+.concept{background:var(--cream);padding:6rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-family:'Josefin Sans',sans-serif;font-size:.75rem;letter-spacing:.25em;color:var(--mint-dark);text-transform:uppercase;display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
+.section-label::before{content:'';display:block;width:30px;height:2px;background:var(--mint)}
+.section-title{font-family:'Noto Serif JP',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:1rem}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem}
+.concept-img-wrap{position:relative}
+.concept-img-main{width:100%;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.concept-img-main img{width:100%;height:420px;object-fit:cover;display:block;transition:transform .6s}
+.concept-img-main:hover img{transform:scale(1.04)}
+.concept-img-sub{position:absolute;bottom:-2rem;right:-2rem;width:200px;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15);border:4px solid #fff}
+.concept-img-sub img{width:100%;height:150px;object-fit:cover;display:block}
+.concept-badge{position:absolute;top:1.5rem;left:-1.5rem;background:var(--mint);color:#fff;border-radius:50%;width:90px;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Josefin Sans',sans-serif;font-size:.6rem;letter-spacing:.08em;box-shadow:0 8px 24px rgba(79,189,186,.4)}
+.concept-badge strong{font-size:1.4rem;font-weight:600;display:block;line-height:1}
+.concept-text p{font-size:.95rem;line-height:2;color:#4a5568;margin-bottom:1.5rem}
+.concept-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.feature-item{background:#fff;border-radius:12px;padding:1.2rem;display:flex;align-items:flex-start;gap:.8rem;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.feature-icon{width:36px;height:36px;background:var(--mint-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--mint-dark);font-size:1.1rem}
+.feature-text h4{font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:.2rem}
+.feature-text p{font-size:.72rem;color:var(--gray);line-height:1.6}
+
+/* MENU */
+.menu{background:#fff;padding:6rem 2rem}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.menu-card{background:var(--cream);border-radius:16px;overflow:hidden;position:relative;padding:2rem;transition:transform .3s,box-shadow .3s}
+.menu-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--mint),var(--mint-dark));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.menu-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
+.menu-card:hover::before{transform:scaleX(1)}
+.menu-icon{width:50px;height:50px;background:var(--mint-light);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;color:var(--mint-dark)}
+.menu-icon svg{width:26px;height:26px}
+.menu-card h3{font-family:'Noto Serif JP',serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.5rem}
+.menu-card p{font-size:.8rem;color:var(--gray);line-height:1.7;margin-bottom:1.2rem}
+.menu-price{font-family:'Josefin Sans',sans-serif;font-size:1.3rem;font-weight:600;color:var(--mint-dark)}
+.menu-price span{font-size:.7rem;font-family:'Noto Sans JP',sans-serif;color:var(--gray);margin-left:.3rem}
+.menu-note{font-size:.7rem;color:var(--gray);margin-top:.8rem;padding-top:.8rem;border-top:1px solid #e5e7eb}
+
+/* GALLERY */
+.gallery{background:var(--light);padding:6rem 2rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+.gallery-item{position:relative;border-radius:14px;overflow:hidden;cursor:pointer}
+.gallery-item:first-child{grid-column:span 2;grid-row:span 2}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.gallery-item:first-child img{height:400px}
+.gallery-item:not(:first-child) img{height:190px}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,60,78,.8),transparent);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.2rem}
+.gallery-overlay span{color:#fff;font-size:.8rem;font-weight:500;letter-spacing:.06em}
+.gallery-item:hover img{transform:scale(1.07)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+
+/* NUMBERS */
+.numbers{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);padding:5rem 2rem;position:relative;overflow:hidden}
+.numbers::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;border-radius:50%;border:60px solid rgba(79,189,186,.08);pointer-events:none}
+.numbers::after{content:'';position:absolute;bottom:-30%;left:-5%;width:350px;height:350px;border-radius:50%;border:40px solid rgba(79,189,186,.06);pointer-events:none}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.number-item{text-align:center;color:#fff}
+.number-val{font-family:'Josefin Sans',sans-serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:600;color:var(--mint);line-height:1}
+.number-label{font-size:.8rem;opacity:.7;margin-top:.5rem;letter-spacing:.08em}
+.number-divider{width:40px;height:2px;background:var(--mint);margin:.8rem auto}
+
+/* ACCESS */
+.access{background:#fff;padding:6rem 2rem}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem}
+.access-info{display:flex;flex-direction:column;gap:1.5rem}
+.info-item{display:flex;gap:1rem;align-items:flex-start}
+.info-icon{width:42px;height:42px;background:var(--mint-light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--mint-dark)}
+.info-icon svg{width:20px;height:20px}
+.info-body h4{font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:.3rem;letter-spacing:.06em}
+.info-body p{font-size:.9rem;color:#4a5568;line-height:1.7}
+.info-body a{color:var(--mint-dark);text-decoration:none;font-weight:500}
+.info-body a:hover{text-decoration:underline}
+.hours-table{width:100%;border-collapse:collapse;margin-top:.5rem}
+.hours-table td{padding:.35rem .5rem;font-size:.82rem;color:#4a5568;border-bottom:1px dashed #e5e7eb}
+.hours-table td:first-child{font-weight:500;color:var(--navy);width:120px}
+.access-map{border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1)}
+.access-map iframe{width:100%;height:400px;display:block;border:none}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--mint-dark) 0%,var(--mint) 100%);padding:6rem 2rem;position:relative;overflow:hidden;text-align:center}
+.cta-circles{position:absolute;inset:0;pointer-events:none}
+.cta-circles svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;opacity:.1}
+.cta-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-label{font-family:'Josefin Sans',sans-serif;font-size:.75rem;letter-spacing:.25em;color:rgba(255,255,255,.8);text-transform:uppercase;margin-bottom:1rem}
+.cta-title{font-family:'Noto Serif JP',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:#fff;line-height:1.5;margin-bottom:1rem}
+.cta-text{font-size:.9rem;color:rgba(255,255,255,.9);line-height:1.9;margin-bottom:2.5rem}
+.cta-tel{font-family:'Josefin Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:600;color:#fff;letter-spacing:.08em;display:block;text-decoration:none;margin-bottom:.5rem;transition:opacity .3s}
+.cta-tel:hover{opacity:.8}
+.cta-hours{font-size:.78rem;color:rgba(255,255,255,.75);letter-spacing:.06em;margin-bottom:2rem}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--mint-dark);text-decoration:none;padding:.85rem 2.2rem;border-radius:50px;font-size:.85rem;font-weight:700;letter-spacing:.06em;position:relative;overflow:hidden;transition:color .3s}
+.btn-white::before{content:'';position:absolute;inset:0;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:0}
+.btn-white:hover{color:#fff}
+.btn-white:hover::before{transform:scaleX(1)}
+.btn-white span{position:relative;z-index:1}
+
+/* FOOTER */
+footer{background:var(--navy);color:#fff;padding:3rem 2rem 1.5rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .logo-main{color:#fff;font-size:1.1rem}
+.footer-brand .logo-sub{color:var(--mint)}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.8;margin-top:.8rem}
+.footer-nav h4,.footer-contact-col h4{font-family:'Josefin Sans',sans-serif;font-size:.7rem;letter-spacing:.18em;color:var(--mint);text-transform:uppercase;margin-bottom:1rem}
+.footer-nav ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-nav ul li a{font-size:.78rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .3s}
+.footer-nav ul li a:hover{color:var(--mint)}
+.footer-contact-col p{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.8}
+.footer-contact-col a{color:var(--mint);text-decoration:none}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;flex-wrap:wrap;gap:.5rem}
+.footer-bottom p{font-size:.7rem;color:rgba(255,255,255,.35)}
+.footer-bottom a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s}
+.footer-bottom a:hover{color:var(--mint)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+header{padding:0 1rem}
+nav{display:none}
+.header-inner{height:60px}
+.hero-circle{display:none}
+.hero-content{padding:0 1.5rem}
+.hero-catch{font-size:1.7rem}
+.concept-grid,.access-grid{grid-template-columns:1fr;gap:2.5rem}
+.concept-img-sub{width:130px;right:-1rem;bottom:-1rem}
+.concept-badge{width:70px;height:70px;left:-1rem}
+.concept-badge strong{font-size:1.1rem}
+.concept-features{grid-template-columns:1fr}
+.menu-grid{grid-template-columns:1fr;gap:1rem}
+.gallery-grid{grid-template-columns:1fr 1fr}
+.gallery-item:first-child{grid-column:span 2}
+.numbers-grid{grid-template-columns:repeat(2,1fr);gap:2rem}
+.footer-top{grid-template-columns:1fr;gap:2rem}
+.cta-btns{flex-direction:column;align-items:center}
+.hero-scroll{display:none}
+.access-map iframe{height:280px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-main">ひえじま歯科医院</span>
+      <span class="logo-sub">HIEJIMA DENTAL CLINIC</span>
+    </div>
+    <nav>
+      <a href="#concept">医院について</a>
+      <a href="#menu">診療内容</a>
+      <a href="#gallery">ギャラリー</a>
+      <a href="#access">アクセス</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:1.2rem">
+      <div class="header-tel">
+        <a href="tel:0985-27-1525">0985-27-1525</a>
+        <span>受付 9:00〜18:00（日祝除く）</span>
+      </div>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="header-btn"><span>ご予約はこちら</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1578634406109-e779b0110dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE3Njh8&ixlib=rb-4.1.0&q=80&w=1080" alt="ひえじま歯科医院">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1739719804435-91845b555259?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE3Njh8&ixlib=rb-4.1.0&q=80&w=1080" alt="診療室">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1757946614783-d449c6b35cb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE3Njh8&ixlib=rb-4.1.0&q=80&w=1080" alt="クリニック">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-circle">
+    <svg viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="180" cy="180" r="160" stroke="rgba(79,189,186,0.4)" stroke-width="1" stroke-dasharray="8 6"/>
+      <circle cx="180" cy="180" r="130" stroke="rgba(79,189,186,0.3)" stroke-width="1.5" stroke-dasharray="4 8"/>
+      <circle cx="180" cy="180" r="95" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="6 4"/>
+      <circle cx="180" cy="180" r="60" fill="rgba(79,189,186,0.12)"/>
+      <text x="180" y="186" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="11" fill="rgba(255,255,255,0.6)" letter-spacing="3">SMILE</text>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="hero-en"><span>Hiejima Dental Clinic</span></p>
+      <h1 class="hero-catch">あなたの笑顔を、<span>もっと輝かせたい。</span></h1>
+      <p class="hero-sub">地域に寄り添う、やさしい歯科医院。<br>宮崎市霧島でお口の健康をサポートします。</p>
+      <div class="hero-btns">
+        <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-primary"><span>✦ Web予約はこちら</span></a>
+        <a href="tel:0985-27-1525" class="btn-outline">📞 0985-27-1525</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="hero-dot active" data-idx="0"></div>
+    <div class="hero-dot" data-idx="1"></div>
+    <div class="hero-dot" data-idx="2"></div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-div" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px">
+    <path d="M0,0 C360,60 1080,0 1440,40 L1440,0 Z" fill="#fff"/>
+  </svg>
+</div>
+
+<!-- CONCEPT -->
+<section class="concept" id="concept">
+  <div class="section-inner">
+    <div class="rv lft">
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">地域に寄り添う、<br>やさしい歯科医院</h2>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-img-wrap rv lft">
+        <div class="concept-img-main">
+          <img src="https://images.unsplash.com/photo-1578634406109-e779b0110dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE3Njh8&ixlib=rb-4.1.0&q=80&w=1080" alt="診療室">
+        </div>
+        <div class="concept-img-sub">
+          <img src="https://images.unsplash.com/photo-1739719804435-91845b555259?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE3Njh8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタッフ">
+        </div>
+        <div class="concept-badge">
+          <strong>30+</strong>
+          <span>Years</span>
+        </div>
+      </div>
+      <div class="concept-text rv rgt">
+        <p class="section-label">Our Philosophy</p>
+        <h3 class="section-title" style="font-size:1.6rem">「歯医者さんは怖い」<br>そんなイメージを払拭したい</h3>
+        <p>ひえじま歯科医院は、宮崎市霧島で地域の皆さまのお口の健康を守り続けています。丁寧な説明とやさしい治療を心がけています。</p>
+        <p>お子さまからご年配の方まで、家族みんなで通えるクリニックを目指しています。いつでもお気軽にご相談ください。</p>
+        <div class="concept-features">
+          <div class="feature-item rv d1">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="feature-text"><h4>痛みに配慮</h4><p>患者様の緊張を和らげる丁寧な診療</p></div>
+          </div>
+          <div class="feature-item rv d2">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="feature-text"><h4>家族で通える</h4><p>お子様からご年配の方まで対応</p></div>
+          </div>
+          <div class="feature-item rv d3">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="feature-text"><h4>予防歯科</h4><p>定期検診で健康な歯を長く維持</p></div>
+          </div>
+          <div class="feature-item rv d4">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="feature-text"><h4>地域密着</h4><p>霧島で長年愛される歯科医院</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-div" style="background:#fff">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px">
+    <path d="M0,40 C400,0 1000,60 1440,20 L1440,0 L0,0 Z" fill="var(--cream)"/>
+  </svg>
+</div>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-inner">
+    <div class="rv" style="text-align:center">
+      <p class="section-label" style="justify-content:center">Dental Menu</p>
+      <h2 class="section-title" style="text-align:center">診療メニュー</h2>
+      <p style="font-size:.9rem;color:var(--gray);margin-top:.5rem">お口の健康を守るための幅広い診療をご提供しています</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card rv d1">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 4.5 3 9 7 13 4-4 7-8.5 7-13 0-4-3-7-7-7z"/></svg>
+        </div>
+        <h3>一般歯科（虫歯治療）</h3>
+        <p>痛みに配慮した丁寧な虫歯治療を行います。早期発見・早期治療が大切です。</p>
+        <div class="menu-price">¥3,000<span>〜（保険適用）</span></div>
+        <p class="menu-note">※保険診療3割負担の目安です</p>
+      </div>
+      <div class="menu-card rv d2">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>歯周病治療</h3>
+        <p>歯ぐきの健康を守る本格的な歯周病ケア。丁寧なクリーニングと治療計画を立てます。</p>
+        <div class="menu-price">¥3,500<span>〜（保険適用）</span></div>
+        <p class="menu-note">※保険診療3割負担の目安です</p>
+      </div>
+      <div class="menu-card rv d3">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>小児歯科</h3>
+        <p>お子さまが安心して通えるやさしい診療。歯の成長を一緒に見守ります。</p>
+        <div class="menu-price">¥2,500<span>〜（保険適用）</span></div>
+        <p class="menu-note">※保険診療3割負担の目安です</p>
+      </div>
+      <div class="menu-card rv d1">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>定期検診・クリーニング</h3>
+        <p>健康な歯を長く保つ予防歯科メニュー。定期的なケアで虫歯・歯周病を予防します。</p>
+        <div class="menu-price">¥3,000<span>〜（保険適用）</span></div>
+        <p class="menu-note">※保険診療3割負担の目安です</p>
+      </div>
+      <div class="menu-card rv d2" style="grid-column:span 2">
+        <div class="menu-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>入れ歯・義歯</h3>
+        <p>しっかり噛める快適な入れ歯をご提案。患者様のお口の状態に合わせたオーダーメイドの義歯を作製します。見た目も自然で快適な装着感を追求します。</p>
+        <div class="menu-price">¥15,000<span>〜（保険適用）</span></div>
+        <p class="menu-note">※保険診療3割負担の目安です。材料・種類によって異なります。</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem" class="rv">
+      <p style="font-size:.8rem;color:var(--gray)">※表示価格は保険診療3割負担の目安です。詳細はお気軽にお問い合わせください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-div" style="background:var(--light)">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px">
+    <path d="M0,20 C500,60 900,0 1440,40 L1440,0 L0,0 Z" fill="#fff"/>
+  </svg>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <div class="rv" style="text-align:center">
+      <p class="section-label" style="justify-content:center">Gallery</p>
+      <h2 class="section-title" style="text-align:center">クリニックギャラリー</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item rv lft">
+        <img src="https://images.unsplash.com/photo-1578634406109-e779b0110dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE3Njh8&ixlib=rb-4.1.0&q=80&w=1080" alt="診療室">
+        <div class="gallery-overlay"><span>清潔感あふれる診療室</span></div>
+      </div>
+      <div class="gallery-item rv d1">
+        <img src="https://images.unsplash.com/photo-1739719804435-91845b555259?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE3Njh8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタッフ">
+        <div class="gallery-overlay"><span>丁寧なスタッフ</span></div>
+      </div>
+      <div class="gallery-item rv d2">
+        <img src="https://images.unsplash.com/photo-1757946614783-d449c6b35cb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE3Njh8&ixlib=rb-4.1.0&q=80&w=1080" alt="待合室">
+        <div class="gallery-overlay"><span>くつろげる待合室</span></div>
+      </div>
+      <div class="gallery-item rv d3">
+        <img src="images/img_1.png" alt="院内設備" onerror="this.src='https://images.unsplash.com/photo-1578634406109-e779b0110dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400'">
+        <div class="gallery-overlay"><span>最新の院内設備</span></div>
+      </div>
+      <div class="gallery-item rv d4">
+        <img src="images/img_2.png" alt="外観" onerror="this.src='https://images.unsplash.com/photo-1739719804435-91845b555259?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400'">
+        <div class="gallery-overlay"><span>クリニック外観</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="numbers-grid">
+    <div class="number-item rv d1">
+      <div class="number-val"><span data-count="30" data-suffix="年">0</span></div>
+      <div class="number-divider"></div>
+      <div class="number-label">地域での診療実績</div>
+    </div>
+    <div class="number-item rv d2">
+      <div class="number-val"><span data-count="5000" data-suffix="名">0</span></div>
+      <div class="number-divider"></div>
+      <div class="number-label">累計患者数</div>
+    </div>
+    <div class="number-item rv d3">
+      <div class="number-val"><span data-count="98" data-suffix="%">0</span></div>
+      <div class="number-divider"></div>
+      <div class="number-label">患者満足度</div>
+    </div>
+    <div class="number-item rv d4">
+      <div class="number-val"><span data-count="5" data-suffix="診療科">0</span></div>
+      <div class="number-divider"></div>
+      <div class="number-label">充実した診療メニュー</div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-div" style="background:#fff">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px">
+    <path d="M0,0 L1440,0 L1440,40 C900,0 500,60 0,20 Z" fill="var(--navy)"/>
+  </svg>
+</div>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="section-inner">
+    <div class="rv" style="text-align:center">
+      <p class="section-label" style="justify-content:center">Access</p>
+      <h2 class="section-title" style="text-align:center">アクセス・診療時間</h2>
+    </div>
+    <div class="access-grid">
+      <div class="access-info">
+        <div class="info-item rv lft">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="info-body">
+            <h4>住所</h4>
+            <p>〒880-0032<br>宮崎県宮崎市霧島１丁目１４</p>
+          </div>
+        </div>
+        <div class="info-item rv lft d1">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          </div>
+          <div class="info-body">
+            <h4>電話番号</h4>
+            <p><a href="tel:0985-27-1525">0985-27-1525</a></p>
+          </div>
+        </div>
+        <div class="info-item rv lft d2">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="info-body">
+            <h4>診療時間・休診日</h4>
+            <table class="hours-table">
+              <tr><td>診療時間</td><td>9:00〜18:00</td></tr>
+              <tr><td>定休日</td><td>日曜日・祝日</td></tr>
+              <tr><td>月〜土</td><td>診療あり</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="rv d3" style="margin-top:1rem">
+          <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-primary" style="display:inline-flex"><span>✦ Webで予約する</span></a>
+        </div>
+      </div>
+      <div class="access-map rv rgt">
+        <iframe src="https://maps.google.com/maps?q=宮崎県宮崎市霧島１丁目１４&output=embed&z=15" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ひえじま歯科医院 地図"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-circles">
+    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="300" r="280" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="220" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="160" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="100" stroke="white" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="cta-content">
+    <p class="cta-label rv">Contact &amp; Reservation</p>
+    <h2 class="cta-title rv d1">まずはお気軽に<br>ご連絡ください</h2>
+    <p class="cta-text rv d2">まずはお気軽にお電話ください。<br>ご予約・ご相談をお待ちしております。</p>
+    <a href="tel:0985-27-1525" class="cta-tel rv d3">0985-27-1525</a>
+    <p class="cta-hours rv d3">受付時間 9:00〜18:00（日曜・祝日定休）</p>
+    <div class="cta-btns rv d4">
+      <a href="tel:0985-27-1525" class="btn-white"><span>📞 電話で予約する</span></a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-white"><span>✉ Webで予約する</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo footer-logo">
+          <span class="logo-main">ひえじま歯科医院</span>
+          <span class="logo-sub" style="margin-top:4px;display:block">HIEJIMA DENTAL CLINIC</span>
+        </div>
+        <p style="margin-top:1rem">宮崎市霧島で地域の皆さまのお口の健康を守り続けています。やさしい治療と丁寧な説明で、安心してご来院いただけるクリニックです。</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#concept">医院について</a></li>
+          <li><a href="#menu">診療メニュー</a></li>
+          <li><a href="#gallery">ギャラリー</a></li>
+          <li><a href="#access">アクセス</a></li>
+          <li><a href="#cta">ご予約・お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact-col">
+        <h4>Contact</h4>
+        <p>〒880-0032<br>宮崎県宮崎市霧島１丁目１４</p>
+        <p style="margin-top:.8rem">TEL: <a href="tel:0985-27-1525">0985-27-1525</a></p>
+        <p style="margin-top:.4rem">診療時間：9:00〜18:00</p>
+        <p>定休：日曜日・祝日</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 ひえじま歯科医院. All Rights Reserved.</p>
+      <p>Designed by <a href="https://infinitydesign.co.jp">InfinityDesign</a></p>
+    </div>
+  </div>
+</footer>
+<script>
+/* ── PARALLAX ── */
+const _paraBgs=document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  _paraBgs.forEach(b=>{b.style.transform=`translateY(${y*.38}px)`;});
+  const hdr=document.querySelector('header');
+  if(hdr)hdr.classList.toggle('scrolled',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const _slides=document.querySelectorAll('.hero-slide');
+const _dots=document.querySelectorAll('.hero-dot');
+let _cur=0;
+if(_slides.length>1){
+  function _goSlide(n){
+    _slides[_cur].classList.remove('active');
+    if(_dots[_cur])_dots[_cur].classList.remove('active');
+    _cur=(n+_slides.length)%_slides.length;
+    _slides[_cur].classList.add('active');
+    if(_dots[_cur])_dots[_cur].classList.add('active');
+  }
+  _dots.forEach(d=>d.addEventListener('click',()=>_goSlide(+d.dataset.idx)));
+  setInterval(()=>_goSlide(_cur+1),5000);
+}
+
+/* ── SCROLL REVEAL ── */
+const _ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');_ro.unobserve(e.target);}
+}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>_ro.observe(el));
+
+/* ── COUNT-UP ── */
+function _countUp(el){
+  const target=+el.dataset.count;
+  if(!target)return;
+  const suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  (function frame(ts){
+    const p=Math.min((ts-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e2*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(frame);
+  })(performance.now());
+}
+const _co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){_countUp(e.target);_co.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>_co.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
