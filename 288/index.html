@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なぎさ | 飲食店・レストラン</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --primary: #c0392b; --dark: #1c1c1c; --warm: #fdf6ec; --text: #2c2c2c; }
+  body { font-family: 'Hiragino Mincho Pro', 'Yu Mincho', serif; color: var(--text); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 40px; background: rgba(28,28,28,.85);
+    backdrop-filter: blur(10px); z-index: 100;
+  }
+  .logo { color: #fff; font-size: 1.3rem; letter-spacing: .2em; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,.8); text-decoration: none; font-size: .9rem; letter-spacing: .08em; }
+
+  .hero {
+    height: 100svh; min-height: 560px;
+    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+                url('https://images.unsplash.com/photo-1542447217-66c20d82d450?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQzODd8&ixlib=rb-4.1.0&q=80&w=1080') center/cover;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; text-align: center; color: #fff; padding: 32px;
+  }
+  .hero-sub  { font-size: .9rem; letter-spacing: .3em; margin-bottom: 16px; opacity: .8; }
+  .hero h1   { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: .15em; margin-bottom: 24px; }
+  .hero p    { font-size: 1.1rem; opacity: .85; margin-bottom: 40px; }
+  .btn       { display: inline-block; padding: 16px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; letter-spacing: .12em; font-size: .95rem; transition: background .2s, color .2s; }
+  .btn:hover { background: #fff; color: var(--dark); }
+
+  section { padding: 90px 24px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); text-align: center; margin-bottom: 56px; letter-spacing: .12em; }
+  h2 span { display: block; font-size: .75rem; font-family: sans-serif; letter-spacing: .3em; color: var(--primary); margin-bottom: 10px; }
+
+  /* STORY */
+  .story { background: var(--warm); }
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .story-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+  .story-text p { line-height: 2.2; font-size: 1.05rem; }
+
+  /* MENU */
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+  .menu-card { border: 1px solid #e8e0d5; }
+  .menu-img  { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+  .menu-body { padding: 20px; }
+  .menu-body h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .menu-body .price { color: var(--primary); font-size: 1.2rem; margin-bottom: 8px; }
+  .menu-body p { font-size: .9rem; color: #666; line-height: 1.7; }
+
+  /* ACCESS */
+  .access { background: var(--warm); }
+  .access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .access-info p { margin-bottom: 12px; line-height: 1.8; font-size: 1rem; }
+  .access-info strong { display: inline-block; width: 7em; color: var(--primary); }
+
+  /* CTA */
+  .cta { background: var(--dark); color: #fff; text-align: center; padding: 80px 24px; }
+  .cta h2 { color: #fff; }
+  .cta p { opacity: .75; margin-bottom: 32px; font-family: sans-serif; }
+  .tel { font-size: 2.4rem; letter-spacing: .05em; color: var(--primary); margin-bottom: 24px; }
+
+  footer { background: #111; color: rgba(255,255,255,.4); text-align: center; padding: 28px; font-size: .8rem; font-family: sans-serif; }
+
+  @media (max-width: 680px) {
+    .story-grid, .access-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">なぎさ</div>
+  <ul class="nav-links">
+    <li><a href="#story">こだわり</a></li>
+    <li><a href="#menu">メニュー</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-sub">飲食店・レストラン / 光市</p>
+  <h1>なぎさ</h1>
+  <p>瀬戸の風薫る、心なごむひとときを</p>
+  <a href="#menu" class="btn">メニューを見る</a>
+</section>
+
+<section class="story" id="story">
+  <div class="container">
+    <h2><span>STORY</span>光市の食卓に、真心の一皿を</h2>
+    <div class="story-grid">
+      <img class="story-img" src="https://images.unsplash.com/photo-1595974379912-059537676bbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQzODd8&ixlib=rb-4.1.0&q=80&w=1080" alt="こだわり">
+      <div class="story-text"><p>山口県光市の穏やかな島田の地に佇む「なぎさ」。地元の食材を丁寧に使い、訪れるお客様一人ひとりに温かなおもてなしをお届けします。海辺の町ならではの新鮮な味わいと、ほっとできる家庭的な雰囲気で、日常のひとときを特別な時間に変えます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <h2><span>MENU</span>おすすめメニュー</h2>
+    <div class="menu-grid">
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1542447217-66c20d82d450?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQzODd8&ixlib=rb-4.1.0&q=80&w=1080" alt="本日のランチセット">
+        <div class="menu-body">
+          <h3>本日のランチセット</h3>
+          <div class="price">¥900〜</div>
+          <p>日替わりメインと小鉢・汁物が付いたお得なセット</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1595974379912-059537676bbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQzODd8&ixlib=rb-4.1.0&q=80&w=1080" alt="地魚の定食">
+        <div class="menu-body">
+          <h3>地魚の定食</h3>
+          <div class="price">¥1,400〜</div>
+          <p>瀬戸内産の新鮮な魚を使った自慢の定食</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1664806453051-d70c61445144?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQzODd8&ixlib=rb-4.1.0&q=80&w=1080" alt="なぎさ御膳">
+        <div class="menu-body">
+          <h3>なぎさ御膳</h3>
+          <div class="price">¥2,200〜</div>
+          <p>旬の食材を贅沢に使った特選コース風定食</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80" alt="お子様プレート">
+        <div class="menu-body">
+          <h3>お子様プレート</h3>
+          <div class="price">¥650〜</div>
+          <p>お子様も喜ぶやさしい味付けのランチプレート</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80" alt="宴会コース（2時間飲み放題付）">
+        <div class="menu-body">
+          <h3>宴会コース（2時間飲み放題付）</h3>
+          <div class="price">¥3,500〜</div>
+          <p>地元の味を楽しむ充実の宴会プランです</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="access" id="access">
+  <div class="container">
+    <h2><span>ACCESS</span>アクセス</h2>
+    <div class="access-grid">
+      <div class="access-info">
+        <p><strong>住所</strong>日本、〒743-0063 山口県光市島田２丁目１７−１１</p>
+        <p><strong>電話</strong>0833-72-2505</p>
+        <p><strong>営業時間</strong>11:00〜21:00</p>
+        <p><strong>定休日</strong>火曜定休</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>ご予約・お問い合わせ</h2>
+    <p>ご予約・お問い合わせはお気軽にお電話ください。スタッフ一同、心よりお待ちしております。</p>
+    <div class="tel">0833-72-2505</div>
+    <a href="tel:0833-72-2505" class="btn">今すぐ電話する</a>
+  </div>
+</section>
+
+<footer>
+  <p>© なぎさ All Rights Reserved.</p>
+  <p style="margin-top:6px;font-size:.7rem;opacity:.5;">
+    このサイトは <a href="https://infinitydesign.co.jp" style="color:inherit">InfinityDesign</a> が作成したデモサイトです
+  </p>
+</footer>
+
+</body>
+</html>
