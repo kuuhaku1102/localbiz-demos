@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>杉尾歯科医院 | 宮崎市江平中町の歯科・デンタルクリニック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#2b7a78;--primary-dark:#1e5c5a;--primary-light:#3aafa9;--accent:#f4a261;--bg:#f7fafa;--white:#ffffff;--text:#2d3436;--text-light:#636e72;--gray:#ecf5f5;--shadow:0 4px 24px rgba(43,122,120,.13)}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.lft{transform:translateX(-36px)}
+.rv.rgt{transform:translateX(36px)}
+.rv.sc{transform:scale(.95)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}
+.rv.d2{transition-delay:.2s}
+.rv.d3{transition-delay:.3s}
+.rv.d4{transition-delay:.4s}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(43,122,120,.1);transition:all .3s}
+.header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:.8rem 2rem}
+.logo{display:flex;flex-direction:column;gap:.1rem}
+.logo-main{font-family:'Noto Serif JP',serif;font-size:1.3rem;font-weight:700;color:var(--primary);letter-spacing:.05em}
+.logo-sub{font-size:.65rem;color:var(--text-light);letter-spacing:.1em}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{font-size:.85rem;font-weight:500;color:var(--text);letter-spacing:.05em;transition:color .3s;position:relative}
+nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--primary);transition:width .3s}
+nav a:hover{color:var(--primary)}
+nav a:hover::after{width:100%}
+.header-tel{display:flex;flex-direction:column;align-items:flex-end}
+.header-tel-label{font-size:.65rem;color:var(--text-light);letter-spacing:.05em}
+.header-tel a{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;color:var(--primary);letter-spacing:.05em}
+.btn-reserve{display:inline-flex;align-items:center;gap:.4rem;background:var(--primary);color:#fff;padding:.5rem 1.2rem;border-radius:50px;font-size:.8rem;font-weight:700;letter-spacing:.05em;overflow:hidden;position:relative;transition:color .3s}
+.btn-reserve::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s ease;z-index:0}
+.btn-reserve:hover::before{transform:scaleX(1)}
+.btn-reserve span{position:relative;z-index:1}
+
+/* HERO */
+.hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
+.hero-slide.active{opacity:1}
+.hero-slide-bg{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(43,122,120,.72) 0%,rgba(30,92,90,.45) 60%,rgba(0,0,0,.2) 100%)}
+.hero-content{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-start;padding:0 8%}
+.hero-text{max-width:600px;color:#fff}
+.hero-badge{display:inline-block;background:rgba(244,162,97,.9);color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.15em;padding:.3rem 1rem;border-radius:50px;margin-bottom:1.2rem}
+.hero-title{font-family:'Noto Serif JP',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.4;margin-bottom:1rem;text-shadow:0 2px 12px rgba(0,0,0,.2)}
+.hero-title span{color:#b2f0ed}
+.hero-catch{font-size:clamp(.9rem,2vw,1.1rem);font-weight:300;opacity:.92;margin-bottom:2rem;line-height:1.8}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-hero-primary{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--primary);padding:.75rem 2rem;border-radius:50px;font-weight:700;font-size:.9rem;letter-spacing:.05em;box-shadow:0 4px 20px rgba(0,0,0,.15);overflow:hidden;position:relative;transition:color .3s}
+.btn-hero-primary::before{content:'';position:absolute;inset:0;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .35s ease;z-index:0}
+.btn-hero-primary:hover{color:#fff}
+.btn-hero-primary:hover::before{transform:scaleX(1)}
+.btn-hero-primary span{position:relative;z-index:1}
+.btn-hero-outline{display:inline-flex;align-items:center;gap:.5rem;border:2px solid rgba(255,255,255,.8);color:#fff;padding:.75rem 2rem;border-radius:50px;font-weight:700;font-size:.9rem;letter-spacing:.05em;overflow:hidden;position:relative;transition:color .3s}
+.btn-hero-outline::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:scaleX(0);transform-origin:left;transition:transform .35s ease;z-index:0}
+.btn-hero-outline:hover::before{transform:scaleX(1)}
+.btn-hero-outline span{position:relative;z-index:1}
+
+/* Hero SVG decorations */
+.hero-deco{position:absolute;right:8%;top:50%;transform:translateY(-50%);opacity:.25;pointer-events:none}
+.hero-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:10}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s;border:none}
+.hero-dot.active{background:#fff;width:24px;border-radius:4px}
+.hero-scroll{position:absolute;bottom:2.5rem;right:8%;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.1em}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.7));animation:scrollLine 2s infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* WAVE DIVIDER */
+.wave-divider{line-height:0;overflow:hidden}
+.wave-divider svg{display:block;width:100%}
+
+/* CONCEPT */
+.concept{padding:6rem 2rem;background:#fff}
+.section-label{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;color:var(--primary-light);text-transform:uppercase;margin-bottom:.6rem}
+.section-title{font-family:'Noto Serif JP',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--text);line-height:1.4;margin-bottom:1rem}
+.section-line{width:48px;height:3px;background:linear-gradient(to right,var(--primary),var(--primary-light));border-radius:2px;margin-bottom:2rem}
+.concept-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.concept-img{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.concept-img img{width:100%;height:440px;object-fit:cover;transition:transform .6s ease}
+.concept-img:hover img{transform:scale(1.04)}
+.concept-img-badge{position:absolute;bottom:-1px;right:-1px;background:var(--primary);color:#fff;padding:1rem 1.4rem;border-radius:12px 0 0 0;font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:700;line-height:1;text-align:center}
+.concept-img-badge small{display:block;font-family:'Noto Sans JP',sans-serif;font-size:.65rem;font-weight:400;margin-top:.2rem;opacity:.85}
+.concept-text p{color:var(--text-light);line-height:2;margin-bottom:1.5rem;font-size:.95rem}
+.concept-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.concept-feature{display:flex;align-items:flex-start;gap:.8rem;background:var(--gray);border-radius:10px;padding:1rem}
+.concept-feature-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.concept-feature-icon svg{width:18px;height:18px;fill:#fff}
+.concept-feature-text strong{display:block;font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.concept-feature-text span{font-size:.75rem;color:var(--text-light)}
+
+/* MENU */
+.menu-section{padding:6rem 2rem;background:var(--bg)}
+.menu-inner{max-width:1200px;margin:0 auto}
+.menu-header{text-align:center;margin-bottom:3.5rem}
+.menu-header .section-line{margin:0 auto 2rem}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.menu-card{background:#fff;border-radius:16px;padding:2rem 1.5rem;box-shadow:0 2px 16px rgba(43,122,120,.07);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.menu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(to right,var(--primary),var(--primary-light));transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.menu-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(43,122,120,.15)}
+.menu-card:hover::before{transform:scaleX(1)}
+.menu-card-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--gray),#e0f0ef);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+.menu-card-icon svg{width:24px;height:24px;fill:var(--primary)}
+.menu-card h3{font-family:'Noto Serif JP',serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+.menu-card p{font-size:.78rem;color:var(--text-light);line-height:1.7;margin-bottom:1rem}
+.menu-card-price{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:700;color:var(--primary)}
+.menu-card-price span{font-size:.7rem;font-weight:400;color:var(--text-light);margin-left:.2rem}
+.menu-note{text-align:center;margin-top:1.5rem;font-size:.78rem;color:var(--text-light)}
+
+/* GALLERY */
+.gallery-section{padding:6rem 2rem;background:#fff}
+.gallery-inner{max-width:1200px;margin:0 auto}
+.gallery-header{text-align:center;margin-bottom:3rem}
+.gallery-header .section-line{margin:0 auto 2rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:1rem}
+.gallery-item{position:relative;border-radius:12px;overflow:hidden;cursor:pointer}
+.gallery-item:first-child{grid-column:span 2;grid-row:span 1}
+.gallery-item img{width:100%;height:100%;min-height:220px;object-fit:cover;transition:transform .5s ease}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(43,122,120,.75),transparent);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.2rem}
+.gallery-overlay-text{color:#fff;font-size:.85rem;font-weight:500;transform:translateY(10px);transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.07)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-item:hover .gallery-overlay-text{transform:translateY(0)}
+
+/* NUMBERS */
+.numbers-section{padding:6rem 2rem;background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 50%,var(--primary-light) 100%);position:relative;overflow:hidden}
+.numbers-bg-deco{position:absolute;inset:0;pointer-events:none;opacity:.07}
+.numbers-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.numbers-header{text-align:center;margin-bottom:3rem}
+.numbers-header .section-label{color:rgba(255,255,255,.7)}
+.numbers-header .section-title{color:#fff}
+.numbers-header .section-line{background:linear-gradient(to right,rgba(255,255,255,.6),rgba(255,255,255,.2));margin:0 auto 0}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.number-item{text-align:center;color:#fff}
+.number-item-val{font-family:'Montserrat',sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;line-height:1;margin-bottom:.4rem}
+.number-item-val span{font-size:.65em;opacity:.8}
+.number-item-label{font-size:.8rem;opacity:.85;letter-spacing:.05em}
+.number-item-line{width:32px;height:2px;background:rgba(255,255,255,.4);margin:.6rem auto}
+
+/* ACCESS */
+.access-section{padding:6rem 2rem;background:var(--bg)}
+.access-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start}
+.access-info h2{font-family:'Noto Serif JP',serif;font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;color:var(--text);margin-bottom:.6rem}
+.access-info .section-line{margin-bottom:2rem}
+.access-detail{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:2rem}
+.access-row{display:flex;gap:1rem;align-items:flex-start}
+.access-row-icon{width:36px;height:36px;background:var(--gray);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.access-row-icon svg{width:18px;height:18px;fill:var(--primary)}
+.access-row-content strong{display:block;font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.access-row-content span{font-size:.85rem;color:var(--text-light);line-height:1.7}
+.hours-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top.5rem}
+.hours-table th,.hours-table td{padding:.5rem .8rem;text-align:left;border-bottom:1px solid #e0eded}
+.hours-table th{background:var(--gray);color:var(--text);font-weight:700;font-size:.75rem}
+.hours-table td:last-child{color:var(--primary);font-weight:600}
+.hours-closed{color:#e17055!important}
+.access-map{border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.access-map iframe{width:100%;height:420px;border:none;display:block}
+
+/* CTA */
+.cta-section{padding:7rem 2rem;background:#fff;position:relative;overflow:hidden;text-align:center}
+.cta-bg{position:absolute;inset:0;pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-inner .section-label{justify-content:center;display:block;text-align:center}
+.cta-inner h2{font-family:'Noto Serif JP',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--text);line-height:1.5;margin-bottom:1rem}
+.cta-inner p{color:var(--text-light);font-size:.95rem;line-height:1.9;margin-bottom:2.5rem}
+.cta-tel-box{display:inline-flex;align-items:center;gap:.8rem;background:var(--gray);border-radius:16px;padding:1.2rem 2.5rem;margin-bottom:1.5rem}
+.cta-tel-box svg{width:28px;height:28px;fill:var(--primary)}
+.cta-tel-box a{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;color:var(--primary);letter-spacing:.05em}
+.cta-tel-note{font-size:.75rem;color:var(--text-light);margin-bottom:2rem}
+.btn-cta{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:.9rem 2.5rem;border-radius:50px;font-weight:700;font-size:.95rem;letter-spacing:.05em;box-shadow:0 6px 24px rgba(43,122,120,.3);overflow:hidden;position:relative;transition:box-shadow .3s,color .3s}
+.btn-cta::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s ease;z-index:0}
+.btn-cta:hover::before{transform:scaleX(1)}
+.btn-cta:hover{box-shadow:0 8px 30px rgba(244,162,97,.4)}
+.btn-cta span{position:relative;z-index:1}
+
+/* FOOTER */
+footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:4rem 2rem 2rem}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .logo-main{color:#fff;font-size:1.2rem}
+.footer-brand .logo-sub{color:rgba(255,255,255,.5)}
+.footer-brand p{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.9;margin-top:1rem}
+.footer-col h4{font-size:.85rem;font-weight:700;color:#fff;letter-spacing:.1em;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col ul li a{font-size:.8rem;color:rgba(255,255,255,.6);transition:color .3s}
+.footer-col ul li a:hover{color:#fff}
+.footer-col address{font-style:normal;font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.9}
+.footer-col address a{color:rgba(255,255,255,.7);transition:color .3s}
+.footer-col address a:hover{color:#fff}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.35)}
+.footer-credit{font-size:.72rem;color:rgba(255,255,255,.35)}
+.footer-credit a{color:rgba(255,255,255,.5);transition:color .3s}
+.footer-credit a:hover{color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+.concept-inner{gap:3rem}
+.numbers-grid{grid-template-columns:repeat(2,1fr)}
+.footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+.header-inner{padding:.7rem 1.2rem}
+nav{display:none}
+.hero-deco{display:none}
+.concept-inner{grid-template-columns:1fr}
+.concept-img img{height:280px}
+.gallery-grid{grid-template-columns:1fr 1fr}
+.gallery-item:first-child{grid-column:span 2}
+.numbers-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.access-inner{grid-template-columns:1fr}
+.access-map iframe{height:300px}
+.footer-top{grid-template-columns:1fr;gap:2rem}
+.footer-bottom{flex-direction:column;text-align:center}
+.menu-grid{grid-template-columns:repeat(2,1fr)}
+.concept-features{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+.menu-grid{grid-template-columns:1fr}
+.gallery-grid{grid-template-columns:1fr}
+.gallery-item:first-child{grid-column:span 1}
+.numbers-grid{grid-template-columns:repeat(2,1fr)}
+.cta-tel-box{padding:.9rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-main">杉尾歯科医院</span>
+      <span class="logo-sub">SUGIO DENTAL CLINIC — 宮崎市江平中町</span>
+    </div>
+    <nav>
+      <a href="#concept">医院案内</a>
+      <a href="#menu">診療内容</a>
+      <a href="#gallery">ギャラリー</a>
+      <a href="#access">アクセス</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:1.2rem">
+      <div class="header-tel">
+        <span class="header-tel-label">お電話でのご予約</span>
+        <a href="tel:0120-084-618">0120-084-618</a>
+      </div>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-reserve"><span>✦ Web予約</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1569336213674-b8af45011f41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzEwODF8&ixlib=rb-4.1.0&q=80&w=1080" alt="歯科診療の様子">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1596829057868-f2abea9a3a3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzEwODF8&ixlib=rb-4.1.0&q=80&w=1080" alt="クリニック内部">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1719125391313-124e2444204f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzEwODF8&ixlib=rb-4.1.0&q=80&w=1080" alt="笑顔の患者様">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <!-- SVG 破線円 -->
+  <div class="hero-deco">
+    <svg width="380" height="380" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="190" cy="190" r="160" stroke="white" stroke-width="1.5" stroke-dasharray="8 10"/>
+      <circle cx="190" cy="190" r="120" stroke="white" stroke-width="1" stroke-dasharray="4 8" opacity=".7"/>
+      <circle cx="190" cy="190" r="80" stroke="white" stroke-width="1" opacity=".4"/>
+      <circle cx="190" cy="190" r="10" fill="white" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge rv d1">🦷 宮崎市江平中町の歯科医院</div>
+      <h1 class="hero-title rv d2">笑顔を守る、<br><span>やさしい歯科医院。</span></h1>
+      <p class="hero-catch rv d3">地域に寄り添う、丁寧な診療で<br>お口の健康をしっかりサポートいたします。</p>
+      <div class="hero-btns rv d4">
+        <a href="tel:0120-084-618" class="btn-hero-primary"><span>📞 今すぐ予約する</span></a>
+        <a href="#concept" class="btn-hero-outline"><span>医院のご案内 →</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active" data-idx="0" aria-label="スライド1"></button>
+    <button class="hero-dot" data-idx="1" aria-label="スライド2"></button>
+    <button class="hero-dot" data-idx="2" aria-label="スライド3"></button>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:#fff;margin-top:-1px">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,60 C360,0 1080,0 1440,60 L1440,0 L0,0 Z" fill="#f7fafa"/>
+  </svg>
+</div>
+
+<!-- CONCEPT -->
+<section class="concept" id="concept">
+  <div class="concept-inner">
+    <div class="concept-img rv lft">
+      <img src="https://images.unsplash.com/photo-1596829057868-f2abea9a3a3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzEwODF8&ixlib=rb-4.1.0&q=80&w=1080" alt="院内の様子">
+      <div class="concept-img-badge">30<small>年以上の実績</small></div>
+    </div>
+    <div class="concept-text rv rgt">
+      <p class="section-label">ABOUT US</p>
+      <h2 class="section-title">地域に寄り添う、<br>やさしい歯科医院</h2>
+      <div class="section-line"></div>
+      <p>杉尾歯科医院は、宮崎市江平中町で地域の皆さまの健康な歯と笑顔を守り続けています。初めての方もお子さまも、緊張せずに通えるアットホームな雰囲気を大切にしています。</p>
+      <p>痛みに配慮した丁寧な診療で、お口の悩みをしっかりサポートいたします。「また来たい」と思っていただける医院づくりを、スタッフ一同心がけています。</p>
+      <div class="concept-features rv sc d1">
+        <div class="concept-feature">
+          <div class="concept-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div class="concept-feature-text"><strong>宮崎市の地域密着</strong><span>江平中町に根ざした地域医療</span></div>
+        </div>
+        <div class="concept-feature">
+          <div class="concept-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <div class="concept-feature-text"><strong>痛みに配慮した診療</strong><span>患者さまの不安を最小限に</span></div>
+        </div>
+        <div class="concept-feature">
+          <div class="concept-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <div class="concept-feature-text"><strong>お子さまも安心</strong><span>小児歯科にも対応しています</span></div>
+        </div>
+        <div class="concept-feature">
+          <div class="concept-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="concept-feature-text"><strong>丁寧・親切な対応</strong><span>安心のアットホームな雰囲気</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE 2 -->
+<div class="wave-divider" style="background:#fff">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,0 C480,70 960,70 1440,0 L1440,70 L0,70 Z" fill="#f7fafa"/>
+  </svg>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-inner">
+    <div class="menu-header">
+      <p class="section-label rv">SERVICES</p>
+      <h2 class="section-title rv d1">診療内容・料金</h2>
+      <div class="section-line rv d2"></div>
+      <p class="rv d3" style="color:var(--text-light);font-size:.9rem;max-width:500px;margin:0 auto">初診・再診どちらもお気軽にご相談ください。各種保険診療にも対応しています。</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card rv d1">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.43 2 5.23 3.54 3.01 6L12 22l8.99-16C18.77 3.54 15.57 2 12 2zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+        </div>
+        <h3>一般歯科（虫歯治療）</h3>
+        <p>痛みを抑えた丁寧な虫歯の診断・治療</p>
+        <div class="menu-card-price">¥1,500<span>〜（税込）</span></div>
+      </div>
+      <div class="menu-card rv d2">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+        </div>
+        <h3>歯科検診・クリーニング</h3>
+        <p>歯石除去と口内環境を整える定期ケア</p>
+        <div class="menu-card-price">¥3,000<span>〜（税込）</span></div>
+      </div>
+      <div class="menu-card rv d3">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+        </div>
+        <h3>小児歯科</h3>
+        <p>お子さまが安心して通える優しい診療</p>
+        <div class="menu-card-price">¥1,000<span>〜（税込）</span></div>
+      </div>
+      <div class="menu-card rv d1">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.35C18 2.53 15.47 0 12.35 0c-1.7 0-3.21.72-4.27 1.87L12 6H9.73L6.27 2.15C5.72 2.06 5.15 2 4.58 2 2.05 2 0 4.05 0 6.58 0 8.76 1.54 10.6 3.58 11.08L2 22h20l-2-11h.35C21.28 11 22 10.28 22 9.35V7c0-.55-.45-1-1-1z"/></svg>
+        </div>
+        <h3>入れ歯・義歯</h3>
+        <p>快適な噛み心地を追求したオーダー義歯</p>
+        <div class="menu-card-price">¥15,000<span>〜（税込）</span></div>
+      </div>
+      <div class="menu-card rv d2">
+        <div class="menu-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4c1.4 0 2.8.5 3.86 1.43l-8.43 8.43A5.97 5.97 0 016 12c0-3.31 2.69-6 6-6zm0 12c-1.4 0-2.8-.5-3.86-1.43l8.43-8.43A5.97 5.97 0 0118 12c0 3.31-2.69 6-6 6z"/></svg>
+        </div>
+        <h3>ホワイトニング</h3>
+        <p>自然な白さを取り戻す本格ホワイトニング</p>
+        <div class="menu-card-price">¥20,000<span>〜（税込）</span></div>
+      </div>
+      <div class="menu-card rv d3" style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff">
+        <div class="menu-card-icon" style="background:rgba(255,255,255,.2)">
+          <svg viewBox="0 0 24 24" style="fill:#fff"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <h3 style="color:#fff">まずはご相談を</h3>
+        <p style="color:rgba(255,255,255,.8)">お悩みをお気軽にご相談ください。最適な治療をご提案します。</p>
+        <a href="https://forms.gle/uSfk2teksDMiE6bQ7" style="display:inline-block;margin-top:.5rem;background:#fff;color:var(--primary);padding:.4rem 1rem;border-radius:50px;font-size:.78rem;font-weight:700">Web予約 →</a>
+      </div>
+    </div>
+    <p class="menu-note rv">※記載料金は目安です。保険適用外のものも含まれます。詳しくはお問い合わせください。</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <p class="section-label rv">GALLERY</p>
+      <h2 class="section-title rv d1">医院・診療のご紹介</h2>
+      <div class="section-line rv d2"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item rv lft">
+        <img src="https://images.unsplash.com/photo-1569336213674-b8af45011f41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzEwODF8&ixlib=rb-4.1.0&q=80&w=1080" alt="診療風景">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">🦷 丁寧な診療風景</span></div>
+      </div>
+      <div class="gallery-item rv rgt">
+        <img src="https://images.unsplash.com/photo-1719125391313-124e2444204f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzEwODF8&ixlib=rb-4.1.0&q=80&w=1080" alt="院内の雰囲気">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">✨ 明るい院内</span></div>
+      </div>
+      <div class="gallery-item rv sc d1">
+        <img src="images/img_1.png" alt="スタッフ">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">👨‍⚕️ 笑顔のスタッフ</span></div>
+      </div>
+      <div class="gallery-item rv sc d2">
+        <img src="images/img_2.png" alt="設備">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">🏥 清潔な設備</span></div>
+      </div>
+      <div class="gallery-item rv sc d3">
+        <img src="https://images.unsplash.com/photo-1596829057868-f2abea9a3a3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzEwODF8&ixlib=rb-4.1.0&q=80&w=1080" alt="待合室">
+        <div class="gallery-overlay"><span class="gallery-overlay-text">🌿 くつろげる待合室</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section" id="numbers">
+  <!-- SVG 同心円背景 -->
+  <div class="numbers-bg-deco">
+    <svg width="100%" height="100%" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="720" cy="200" r="300" stroke="white" stroke-width="1" fill="none"/>
+      <circle cx="720" cy="200" r="220" stroke="white" stroke-width="1" fill="none"/>
+      <circle cx="720" cy="200" r="140" stroke="white" stroke-width="1" fill="none"/>
+      <circle cx="100" cy="50" r="120" stroke="white" stroke-width="1" fill="none"/>
+      <circle cx="1380" cy="350" r="150" stroke="white" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+  <div class="numbers-inner">
+    <div class="numbers-header">
+      <p class="section-label rv">OUR RECORD</p>
+      <h2 class="section-title rv d1">杉尾歯科の実績</h2>
+      <div class="section-line rv d2"></div>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-item rv d1">
+        <div class="number-item-val"><span data-count="30" data-suffix="年">0</span>以上</div>
+        <div class="number-item-line"></div>
+        <div class="number-item-label">地域医療の継続年数</div>
+      </div>
+      <div class="number-item rv d2">
+        <div class="number-item-val"><span data-count="5000" data-suffix="名">0</span></div>
+        <div class="number-item-line"></div>
+        <div class="number-item-label">累計患者数</div>
+      </div>
+      <div class="number-item rv d3">
+        <div class="number-item-val"><span data-count="98" data-suffix="%">0</span></div>
+        <div class="number-item-line"></div>
+        <div class="number-item-label">患者満足度</div>
+      </div>
+      <div class="number-item rv d4">
+        <div class="number-item-val"><span data-count="5" data-suffix="診療科">0</span></div>
+        <div class="number-item-line"></div>
+        <div class="number-item-label">対応診療メニュー</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access-section" id="access">
+  <div class="access-inner">
+    <div class="access-info rv lft">
+      <p class="section-label">ACCESS</p>
+      <h2>アクセス・診療時間</h2>
+      <div class="section-line"></div>
+      <div class="access-detail">
+        <div class="access-row">
+          <div class="access-row-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div class="access-row-content">
+            <strong>住所</strong>
+            <span>〒880-0814 宮崎県宮崎市江平中町3−13</span>
+          </div>
+        </div>
+        <div class="access-row">
+          <div class="access-row-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div class="access-row-content">
+            <strong>お電話</strong>
+            <span><a href="tel:0120-084-618" style="color:var(--primary);font-weight:700">0120-084-618</a></span>
+          </div>
+        </div>
+        <div class="access-row">
+          <div class="access-row-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <div class="access-row-content">
+            <strong>診療時間</strong>
+            <span>午前：9:00〜12:30 ／ 午後：14:00〜18:00</span>
+          </div>
+        </div>
+      </div>
+      <table class="hours-table">
+        <thead>
+          <tr><th>曜日</th><th>午前</th><th>午後</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>月・火・水・木・金</td><td>9:00〜12:30</td><td>14:00〜18:00</td></tr>
+          <tr><td>土曜日</td><td>9:00〜12:30</td><td>─</td></tr>
+          <tr><td class="hours-closed">日曜・祝日</td><td class="hours-closed">休診</td><td class="hours-closed">休診</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="access-map rv rgt">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.4580246826305!2d131.4189!3d31.9136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s%E5%AE%AE%E5%B4%8E%E7%9C%8C%E5%AE%AE%E5%B4%8E%E5%B8%82%E6%B1%9F%E5%B9%B3%E4%B8%AD%E7%94%BA3-13!5e0!3m2!1sja!2sjp!4v1680000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="杉尾歯科医院の地図"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <!-- SVG 同心円 -->
+  <div class="cta-bg">
+    <svg width="100%" height="100%" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="opacity:.04">
+      <circle cx="720" cy="250" r="350" stroke="#2b7a78" stroke-width="2" fill="none"/>
+      <circle cx="720" cy="250" r="260" stroke="#2b7a78" stroke-width="2" fill="none"/>
+      <circle cx="720" cy="250" r="170" stroke="#2b7a78" stroke-width="2" fill="none"/>
+      <circle cx="720" cy="250" r="80" stroke="#2b7a78" stroke-width="2" fill="none"/>
+      <circle cx="150" cy="100" r="180" stroke="#f4a261" stroke-width="1.5" fill="none"/>
+      <circle cx="1300" cy="420" r="200" stroke="#3aafa9" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="cta-inner">
+    <span class="section-label rv">CONTACT</span>
+    <h2 class="rv d1">まずはお気軽に。<br>お電話一本でご予約いただけます。</h2>
+    <p class="rv d2">初めての方もお子さまも大歓迎です。<br>ご不安なことがあればどんな小さなことでもお気軽にお電話ください。</p>
+    <div class="cta-tel-box rv d3">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      <a href="tel:0120-084-618">0120-084-618</a>
+    </div>
+    <p class="cta-tel-note rv">受付時間：月〜金 9:00〜18:00 ／ 土 9:00〜12:30（日祝休診）</p>
+    <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-cta rv d1"><span>✉ Webから予約・お問い合わせ</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo footer-brand">
+          <span class="logo-main">杉尾歯科医院</span>
+          <span class="logo-sub">SUGIO DENTAL CLINIC</span>
+        </div>
+        <p>宮崎市江平中町で地域の皆さまの健康な歯と笑顔を守り続けています。初めての方もお子さまも、緊張せずに通えるアットホームな歯科医院です。</p>
+      </div>
+      <div class="footer-col">
+        <h4>診療メニュー</h4>
+        <ul>
+          <li><a href="#menu">一般歯科（虫歯治療）</a></li>
+          <li><a href="#menu">
+</div>
+</div>
+</div>
+<script>
+/* ── PARALLAX ── */
+const _paraBgs=document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  _paraBgs.forEach(b=>{b.style.transform=`translateY(${y*.38}px)`;});
+  const hdr=document.querySelector('header');
+  if(hdr)hdr.classList.toggle('scrolled',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const _slides=document.querySelectorAll('.hero-slide');
+const _dots=document.querySelectorAll('.hero-dot');
+let _cur=0;
+if(_slides.length>1){
+  function _goSlide(n){
+    _slides[_cur].classList.remove('active');
+    if(_dots[_cur])_dots[_cur].classList.remove('active');
+    _cur=(n+_slides.length)%_slides.length;
+    _slides[_cur].classList.add('active');
+    if(_dots[_cur])_dots[_cur].classList.add('active');
+  }
+  _dots.forEach(d=>d.addEventListener('click',()=>_goSlide(+d.dataset.idx)));
+  setInterval(()=>_goSlide(_cur+1),5000);
+}
+
+/* ── SCROLL REVEAL ── */
+const _ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');_ro.unobserve(e.target);}
+}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>_ro.observe(el));
+
+/* ── COUNT-UP ── */
+function _countUp(el){
+  const target=+el.dataset.count;
+  if(!target)return;
+  const suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  (function frame(ts){
+    const p=Math.min((ts-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e2*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(frame);
+  })(performance.now());
+}
+const _co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){_countUp(e.target);_co.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>_co.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
