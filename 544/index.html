@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>新原歯科医院 | 宮崎市清水の歯科クリニック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--mint:#3db8a8;--mint-d:#2a9e8e;--mint-l:#e8f8f6;--navy:#1a2e3b;--navy-l:#2c4558;--gold:#b8a96a;--gray:#f7f9f8;--text:#2d3a35;--text-l:#6b7b74;--white:#fff}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+/* ---- SCROLLREVEAL ---- */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.lft{transform:translateX(-36px)}.rv.rgt{transform:translateX(36px)}.rv.sc{transform:scale(.95)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+/* ---- HEADER ---- */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(61,184,168,.15);transition:box-shadow .3s}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 2rem;height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;flex-direction:column;gap:2px}
+.logo-en{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--mint);letter-spacing:.15em;font-style:italic}
+.logo-ja{font-family:'Noto Serif JP',serif;font-size:1.2rem;font-weight:700;color:var(--navy);letter-spacing:.08em}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{font-size:.85rem;color:var(--text-l);text-decoration:none;letter-spacing:.05em;position:relative;padding-bottom:3px;transition:color .3s}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--mint);transition:width .3s}
+nav a:hover{color:var(--mint)}nav a:hover::after{width:100%}
+.header-tel{display:flex;flex-direction:column;align-items:flex-end}
+.header-tel span{font-size:.7rem;color:var(--text-l);letter-spacing:.05em}
+.header-tel a{font-size:1.25rem;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:.05em;transition:color .3s}
+.header-tel a:hover{color:var(--mint)}
+/* ---- HERO ---- */
+#hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s}
+.hero-slide.active{opacity:1}
+.hero-slide-bg{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 8s ease-out}
+.hero-slide.active .hero-slide-bg{transform:scale(1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,46,59,.75) 0%,rgba(26,46,59,.4) 60%,rgba(61,184,168,.2) 100%)}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 10vw;padding-top:72px}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--mint);letter-spacing:.3em;margin-bottom:1.2rem;font-style:italic}
+.hero-title{font-family:'Noto Serif JP',serif;font-size:clamp(2rem,5vw,3.8rem);font-weight:700;color:#fff;line-height:1.5;letter-spacing:.1em;margin-bottom:1.5rem}
+.hero-title span{color:var(--mint)}
+.hero-desc{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.9;max-width:420px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2.2rem;border-radius:50px;font-size:.9rem;font-weight:700;text-decoration:none;letter-spacing:.08em;transition:color .4s,box-shadow .3s;z-index:0}
+.btn::before{content:'';position:absolute;inset:0;background:var(--mint-d);transform:scaleX(0);transform-origin:left;transition:transform .4s;z-index:-1;border-radius:50px}
+.btn:hover::before{transform:scaleX(1)}
+.btn-primary{background:var(--mint);color:#fff;box-shadow:0 4px 20px rgba(61,184,168,.4)}
+.btn-primary:hover{box-shadow:0 6px 28px rgba(61,184,168,.5)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6)}
+.btn-outline::before{background:rgba(255,255,255,.15)}
+/* SVG 破線円 */
+.hero-deco{position:absolute;right:8vw;top:50%;transform:translateY(-50%);z-index:1;opacity:.35}
+/* ドット */
+.hero-dots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:.6rem}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .3s,transform .3s}
+.hero-dot.active{background:var(--mint);transform:scale(1.3)}
+/* 波形 */
+.wave-divider{display:block;width:100%;overflow:hidden;line-height:0}
+/* ---- SECTION BASE ---- */
+section{padding:7rem 2rem}
+.sec-head{text-align:center;margin-bottom:4rem}
+.sec-label{display:inline-block;font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--mint);letter-spacing:.3em;font-style:italic;margin-bottom:.8rem}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--navy);letter-spacing:.08em;line-height:1.4}
+.sec-title span{color:var(--mint)}
+.sec-line{width:48px;height:2px;background:linear-gradient(to right,var(--mint),var(--gold));margin:1.2rem auto 0;border-radius:2px}
+/* ---- CONCEPT ---- */
+#concept{background:var(--gray);padding:7rem 2rem}
+.concept-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.concept-img-wrap{position:relative}
+.concept-img{width:100%;height:480px;object-fit:cover;border-radius:16px;display:block;box-shadow:0 20px 60px rgba(26,46,59,.15)}
+.concept-img-deco{position:absolute;bottom:-20px;right:-20px;width:140px;height:140px;border:3px solid var(--mint);border-radius:12px;z-index:-1;opacity:.5}
+.concept-badge{position:absolute;top:24px;left:-20px;background:var(--navy);color:#fff;padding:.8rem 1.4rem;border-radius:10px;font-size:.8rem;line-height:1.7;box-shadow:0 8px 24px rgba(26,46,59,.3)}
+.concept-badge strong{display:block;font-size:1.3rem;color:var(--mint);font-family:'Cormorant Garamond',serif}
+.concept-text h3{font-family:'Noto Serif JP',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1.7;margin-bottom:1.5rem}
+.concept-text p{font-size:.95rem;line-height:2;color:var(--text-l);margin-bottom:2rem}
+.concept-features{display:flex;flex-direction:column;gap:1rem}
+.concept-feat{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;background:#fff;border-radius:10px;border-left:3px solid var(--mint);box-shadow:0 2px 12px rgba(61,184,168,.08)}
+.feat-icon{width:36px;height:36px;background:var(--mint-l);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.feat-icon svg{width:18px;height:18px;stroke:var(--mint);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat-text strong{display:block;font-size:.9rem;color:var(--navy);margin-bottom:.2rem}
+.feat-text span{font-size:.82rem;color:var(--text-l)}
+/* ---- MENU ---- */
+#menu{background:#fff}
+.menu-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem}
+.menu-card{position:relative;background:#fff;border-radius:16px;padding:2.2rem 1.8rem;box-shadow:0 4px 24px rgba(26,46,59,.07);border:1px solid rgba(61,184,168,.1);overflow:hidden;transition:box-shadow .3s,transform .3s}
+.menu-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(to right,var(--mint),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .4s;border-radius:0}
+.menu-card:hover::before{transform:scaleX(1)}
+.menu-card:hover{box-shadow:0 12px 40px rgba(61,184,168,.18);transform:translateY(-4px)}
+.menu-card-icon{width:52px;height:52px;background:var(--mint-l);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+.menu-card-icon svg{width:26px;height:26px;stroke:var(--mint);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.menu-card h3{font-family:'Noto Serif JP',serif;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.6rem}
+.menu-card p{font-size:.83rem;color:var(--text-l);line-height:1.8;margin-bottom:1.2rem}
+.menu-price{display:flex;align-items:baseline;gap:.3rem}
+.menu-price span:first-child{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--mint)}
+.menu-price span:last-child{font-size:.78rem;color:var(--text-l)}
+.menu-note{font-size:.73rem;color:var(--text-l);margin-top:.4rem}
+/* ---- GALLERY ---- */
+#gallery{background:var(--gray);padding:7rem 2rem}
+.gallery-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.gallery-item{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:4/3}
+.gallery-item:first-child{grid-column:span 2;aspect-ratio:16/9}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,46,59,.7),transparent);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.2rem}
+.gallery-overlay span{color:#fff;font-size:.85rem;font-weight:500;transform:translateY(10px);transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-item:hover .gallery-overlay span{transform:translateY(0)}
+/* ---- NUMBERS ---- */
+#numbers{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-l) 100%);padding:6rem 2rem;position:relative;overflow:hidden}
+.numbers-deco{position:absolute;right:-80px;top:50%;transform:translateY(-50%);opacity:.06}
+.numbers-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.num-item{}
+.num-val{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:600;color:var(--mint);line-height:1;display:flex;align-items:baseline;justify-content:center;gap:.2rem}
+.num-val small{font-size:1.2rem;color:var(--gold)}
+.num-label{font-size:.82rem;color:rgba(255,255,255,.65);margin-top:.6rem;letter-spacing:.08em}
+.num-divider{width:30px;height:1px;background:var(--mint);margin:.8rem auto;opacity:.5}
+/* ---- ACCESS ---- */
+#access{background:#fff;padding:7rem 2rem}
+.access-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.access-info{}
+.access-info h3{font-family:'Noto Serif JP',serif;font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:2rem}
+.access-rows{display:flex;flex-direction:column;gap:1.2rem}
+.access-row{display:flex;gap:1rem;align-items:flex-start;padding-bottom:1.2rem;border-bottom:1px solid rgba(61,184,168,.1)}
+.access-row:last-child{border:none}
+.a-icon{width:38px;height:38px;background:var(--mint-l);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.a-icon svg{width:18px;height:18px;stroke:var(--mint);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.a-text label{display:block;font-size:.75rem;color:var(--text-l);letter-spacing:.08em;margin-bottom:.3rem}
+.a-text span{font-size:.95rem;color:var(--navy);font-weight:500;line-height:1.7}
+.a-text a{color:var(--mint);text-decoration:none;font-weight:700;font-size:1.1rem}
+.map-wrap{border-radius:16px;overflow:hidden;box-shadow:0 12px 40px rgba(26,46,59,.1)}
+.map-wrap iframe{width:100%;height:380px;border:0;display:block}
+/* ---- CTA ---- */
+#cta{position:relative;background:linear-gradient(135deg,var(--mint) 0%,var(--mint-d) 100%);padding:7rem 2rem;overflow:hidden;text-align:center}
+.cta-circles{position:absolute;inset:0;pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-inner .sec-label{color:rgba(255,255,255,.7)}
+.cta-inner h2{font-family:'Noto Serif JP',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#fff;margin-bottom:1.2rem;letter-spacing:.08em}
+.cta-inner p{font-size:.95rem;color:rgba(255,255,255,.85);line-height:2;margin-bottom:2.5rem}
+.cta-btns{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--mint)}
+.btn-white::before{background:rgba(255,255,255,.85)}
+.btn-white:hover{color:var(--mint-d)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6)}
+.btn-ghost::before{background:rgba(255,255,255,.15)}
+/* ---- FOOTER ---- */
+footer{background:var(--navy);color:rgba(255,255,255,.6);padding:3rem 2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.footer-logo .logo-en{color:var(--mint)}.footer-logo .logo-ja{color:#fff}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:.8rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s}
+.footer-links a:hover{color:var(--mint)}
+.footer-copy{font-size:.75rem;text-align:center;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);max-width:1100px;margin-left:auto;margin-right:auto}
+/* ---- RESPONSIVE ---- */
+@media(max-width:768px){
+.header-inner{padding:0 1.2rem}
+nav{display:none}
+.hero-content{padding:0 1.5rem;padding-top:72px}
+.hero-deco{display:none}
+.concept-inner{grid-template-columns:1fr;gap:3rem}
+.concept-img{height:280px}
+.concept-badge{left:12px}
+.concept-img-deco{display:none}
+.menu-grid{grid-template-columns:1fr}
+.gallery-grid{grid-template-columns:1fr 1fr}
+.gallery-item:first-child{grid-column:span 2}
+.numbers-grid{grid-template-columns:repeat(2,1fr)}
+.access-inner{grid-template-columns:1fr}
+.footer-inner{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:480px){
+.gallery-grid{grid-template-columns:1fr}
+.gallery-item:first-child{grid-column:span 1}
+section{padding:5rem 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-en">Shinbaru Dental Clinic</span>
+      <span class="logo-ja">新原歯科医院</span>
+    </div>
+    <nav>
+      <a href="#concept">医院案内</a>
+      <a href="#menu">診療案内</a>
+      <a href="#gallery">ギャラリー</a>
+      <a href="#access">アクセス</a>
+    </nav>
+    <div class="header-tel">
+      <span>お気軽にご予約ください</span>
+      <a href="tel:0985-22-6692">0985-22-6692</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1651326848981-349fd8aadb37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzA4NTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="歯科医院">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1662623788920-61b038ddcb29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzA4NTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="歯科治療">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1704135095164-9100656cfa81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzA4NTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="笑顔">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <!-- 破線円SVGデコ -->
+  <div class="hero-deco">
+    <svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="210" cy="210" r="200" stroke="white" stroke-width="1.5" stroke-dasharray="8 12"/>
+      <circle cx="210" cy="210" r="155" stroke="#3db8a8" stroke-width="1" stroke-dasharray="4 10"/>
+      <circle cx="210" cy="210" r="110" stroke="white" stroke-width="0.8" stroke-dasharray="3 8"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-sub rv">Shinbaru Dental Clinic</p>
+    <h1 class="hero-title rv d1">あなたの笑顔を、<br><span>もっと輝かせたい。</span></h1>
+    <p class="hero-desc rv d2">地域に根ざした、やさしい歯科医院。<br>宮崎市清水で、あなたのお口の健康を守ります。</p>
+    <div class="hero-btns rv d3">
+      <a href="tel:0985-22-6692" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        お電話でご予約
+      </a>
+      <a href="#menu" class="btn btn-outline">診療メニューを見る</a>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <div class="hero-dot active" data-idx="0"></div>
+    <div class="hero-dot" data-idx="1"></div>
+    <div class="hero-dot" data-idx="2"></div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave-divider" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#1a2e3b;display:block;width:100%">
+  <path d="M0,60 L0,30 Q180,60 360,30 Q540,0 720,30 Q900,60 1080,30 Q1260,0 1440,30 L1440,60 Z" fill="#f7f9f8"/>
+</svg>
+
+<!-- CONCEPT -->
+<section id="concept">
+  <div class="concept-inner">
+    <div class="concept-img-wrap rv lft">
+      <img class="concept-img" src="https://images.unsplash.com/photo-1662623788920-61b038ddcb29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzA4NTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="医院の様子">
+      <div class="concept-img-deco"></div>
+      <div class="concept-badge">
+        <strong>30<sup style="font-size:.6rem">年+</sup></strong>
+        地域の皆さまとともに
+      </div>
+    </div>
+    <div class="concept-text rv rgt">
+      <div class="sec-label">Our Concept</div>
+      <h3>地域に根ざした、<br>やさしい歯科医院</h3>
+      <p>新原歯科医院は、宮崎市清水で長年にわたり地域の皆さまのお口の健康をお守りしてきました。患者さま一人ひとりのお悩みに丁寧に向き合い、痛みを抑えた治療と分かりやすいご説明を心がけています。「また来たい」と思っていただける、温かいクリニックを目指しています。</p>
+      <div class="concept-features">
+        <div class="concept-feat rv d1">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div class="feat-text">
+            <strong>痛みを抑えた治療</strong>
+            <span>最新の機器と技術で、できる限り痛みのない治療を実施</span>
+          </div>
+        </div>
+        <div class="concept-feat rv d2">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="feat-text">
+            <strong>丁寧なご説明</strong>
+            <span>治療内容を分かりやすくご説明し、納得のうえで治療開始</span>
+          </div>
+        </div>
+        <div class="concept-feat rv d3">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="feat-text">
+            <strong>地域密着・家族で通える</strong>
+            <span>小児から高齢者まで、ご家族みんなで安心して通院できます</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE2 -->
+<svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#f7f9f8;display:block;width:100%">
+  <path d="M0,0 L0,30 Q360,60 720,30 Q1080,0 1440,30 L1440,0 Z" fill="#fff"/>
+</svg>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="sec-head">
+    <span class="sec-label rv">Our Services</span>
+    <h2 class="sec-title rv d1">診療<span>メニュー</span></h2>
+    <div class="sec-line rv d2"></div>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card rv d1">
+      <div class="menu-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      </div>
+      <h3>一般歯科（虫歯治療）</h3>
+      <p>痛みを抑えた丁寧な虫歯治療を行います。初期段階から重症まで幅広く対応いたします。</p>
+      <div class="menu-price"><span>¥3,000</span><span>〜（保険適用）</span></div>
+      <p class="menu-note">※保険診療の場合の目安</p>
+    </div>
+    <div class="menu-card rv d2">
+      <div class="menu-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>歯周病治療</h3>
+      <p>歯ぐきの状態を改善し、健康な口内環境へ。定期的なケアで再発を防ぎます。</p>
+      <div class="menu-price"><span>¥3,500</span><span>〜（保険適用）</span></div>
+      <p class="menu-note">※保険診療の場合の目安</p>
+    </div>
+    <div class="menu-card rv d3">
+      <div class="menu-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h12"/></svg>
+      </div>
+      <h3>定期クリーニング</h3>
+      <p>プロによる口腔内のクリーニングで予防ケア。虫歯・歯周病の予防に効果的です。</p>
+      <div class="menu-price"><span>¥3,000</span><span>〜</span></div>
+      <p class="menu-note">※保険適用の場合あり</p>
+    </div>
+    <div class="menu-card rv d1">
+      <div class="menu-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h6"/></svg>
+      </div>
+      <h3>入れ歯・義歯</h3>
+      <p>お口に合った快適な入れ歯をご提案します。部分入れ歯から総入れ歯まで対応。</p>
+      <div class="menu-price"><span>¥15,000</span><span>〜</span></div>
+      <p class="menu-note">※保険・自費診療あり</p>
+    </div>
+    <div class="menu-card rv d2">
+      <div class="menu-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <h3>小児歯科</h3>
+      <p>お子さまが安心して通える優しい歯科治療。楽しい雰囲気で歯医者好きに育てます。</p>
+      <div class="menu-price"><span>¥2,500</span><span>〜（保険適用）</span></div>
+      <p class="menu-note">※保険診療の場合の目安</p>
+    </div>
+    <div class="menu-card rv d3" style="background:linear-gradient(135deg,var(--navy),var(--navy-l));border:none;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:1rem">
+      <p style="color:rgba(255,255,255,.7);font-size:.85rem;line-height:1.8">ご不明な点はお気軽に<br>お問い合わせください</p>
+      <a href="tel:0985-22-6692" class="btn btn-primary" style="font-size:.85rem;padding:.75rem 1.8rem">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        電話で相談する
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="sec-head">
+    <span class="sec-label rv">Gallery</span>
+    <h2 class="sec-title rv d1">医院<span>ギャラリー</span></h2>
+    <div class="sec-line rv d2"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item rv lft">
+      <img src="https://images.unsplash.com/photo-1651326848981-349fd8aadb37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzA4NTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="診察室">
+      <div class="gallery-overlay"><span>清潔で落ち着いた診察室</span></div>
+    </div>
+    <div class="gallery-item rv rgt">
+      <img src="https://images.unsplash.com/photo-1704135095164-9100656cfa81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzA4NTV8&ixlib=rb-4.1.0&q=80&w=1080" alt="待合室">
+      <div class="gallery-overlay"><span>明るい待合スペース</span></div>
+    </div>
+    <div class="gallery-item rv d1">
+      <img src="images/img_1.png" alt="治療機器">
+      <div class="gallery-overlay"><span>最新の治療機器</span></div>
+    </div>
+    <div class="gallery-item rv d2">
+      <img src="images/img_2.png" alt="スタッフ">
+      <div class="gallery-overlay"><span>笑顔のスタッフ</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <!-- SVGデコ同心円 -->
+  <div class="numbers-deco">
+    <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="190" stroke="white" stroke-width="1"/>
+      <circle cx="200" cy="200" r="140" stroke="white" stroke-width="1"/>
+      <circle cx="200" cy="200" r="90" stroke="white" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="sec-head" style="margin-bottom:3rem">
+    <span class="sec-label rv" style="color:rgba(255,255,255,.6)">Our Numbers</span>
+    <h2 class="sec-title rv d1" style="color:#fff">新原歯科医院の<span>実績</span></h2>
+    <div class="sec-line rv d2"></div>
+  </div>
+  <div class="numbers-grid">
+    <div class="num-item rv d1">
+      <div class="num-val"><span data-count="30" data-suffix="">0</span><small>年+</small></div>
+      <div class="num-divider"></div>
+      <p class="num-label">地域での診療歴</p>
+    </div>
+    <div class="num-item rv d2">
+      <div class="num-val"><span data-count="5000" data-suffix="">0</span><small>名+</small></div>
+      <div class="num-divider"></div>
+      <p class="num-label">累計来院患者数</p>
+    </div>
+    <div class="num-item rv d3">
+      <div class="num-val"><span data-count="98" data-suffix="">0</span><small>%</small></div>
+      <div class="num-divider"></div>
+      <p class="num-label">患者満足度</p>
+    </div>
+    <div class="num-item rv d4">
+      <div class="num-val"><span data-count="500" data-suffix="名">0</span></div>
+      <div class="num-divider"></div>
+      <p class="num-label">定期検診患者数</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#1a2e3b;display:block;width:100%">
+  <path d="M0,60 L0,20 Q360,60 720,20 Q1080,-20 1440,20 L1440,60 Z" fill="#fff"/>
+</svg>
+<section id="access">
+  <div class="sec-head">
+    <span class="sec-label rv">Access</span>
+    <h2 class="sec-title rv d1">アクセス<span>・</span>診療時間</h2>
+    <div class="sec-line rv d2"></div>
+  </div>
+  <div class="access-inner">
+    <div class="access-info rv lft">
+      <h3>新原歯科医院</h3>
+      <div class="access-rows">
+        <div class="access-row">
+          <div class="a-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="a-text">
+            <label>住所</label>
+            <span>〒880-0021<br>宮崎県宮崎市清水２丁目１１−２０</span>
+          </div>
+        </div>
+        <div class="access-row">
+          <div class="a-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <div class="a-text">
+            <label>電話番号</label>
+            <a href="tel:0985-22-6692">0985-22-6692</a>
+          </div>
+        </div>
+        <div class="access-row">
+          <div class="a-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="a-text">
+            <label>診療時間</label>
+            <span>9:00 〜 18:00</span>
+          </div>
+        </div>
+        <div class="access-row">
+          <div class="a-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div class="a-text">
+            <label>休診日</label>
+            <span>日曜・祝日</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap rv rgt">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3369.8203!2d131.421!3d31.908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354034b5b5b5b5b5%3A0x0!2z5a6H5Y-w5bKh56eR5Yy655-l5bm044Kv44Oq44OL44OD44Kv!5e0!3m2!1sja!2sjp!4v1620000000000!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <!-- 同心円SVG -->
+  <svg class="cta-circles" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="1200" cy="250" r="300" stroke="rgba(255,255,255,.12)" stroke-width="1" fill="none"/>
+    <circle cx="1200" cy="250" r="220" stroke="rgba(255,255,255,.1)" stroke-width="1" fill="none"/>
+    <circle cx="1200" cy="250" r="140" stroke="rgba(255,255,255,.08)" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="250" r="250" stroke="rgba(255,255,255,.08)" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="250" r="170" stroke="rgba(255,255,255,.06)" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="cta-inner">
+    <span class="sec-label rv">Contact</span>
+    <h2 class="rv d1">まずはお気軽に<br>お電話でご予約ください</h2>
+    <p class="rv d2">スタッフが丁寧にご案内します。<br>お悩みのことがあれば何でもご相談ください。</p>
+    <div class="cta-btns rv d3">
+      <a href="tel:0985-22-6692" class="btn btn-white">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        0985-22-6692
+      </a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn btn-ghost" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        ネット予約はこちら
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo logo">
+      <span class="logo-en">Shinbaru Dental Clinic</span>
+      <span class="logo-ja">新原歯科医院</span>
+    </div>
+    <div style="font-size:.82rem;line-height:1.9;color:rgba(255,255,255,.55)">
+      〒880-0021 宮崎県宮崎市清水２丁目１１−２０<br>
+      TEL: <a href="tel:0985-22-6692" style="color:var(--mint);text-decoration:none">0985-22-6692</a>　診療：9:00〜18:00　休診：日曜・祝日
+    </div>
+    <div class="footer-links">
+      <a href="#concept">医院案内</a>
+      <a href="#menu">診療案内</a>
+      <a href="#gallery">ギャラリー</a>
+      <a href="#access">アクセス</a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" target="_blank" rel="noopener">ネット予約</a>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; 2024 新原歯科医院. All Rights Reserved. Designed by <a href="https://infinitydesign.co.jp" style="color:var(--mint);text-decoration:none">InfinityDesign</a></p>
+</footer>
+<script>
+/* ── PARALLAX ── */
+const _paraBgs=document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  _paraBgs.forEach(b=>{b.style.transform=`translateY(${y*.38}px)`;});
+  const hdr=document.querySelector('header');
+  if(hdr)hdr.classList.toggle('scrolled',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const _slides=document.querySelectorAll('.hero-slide');
+const _dots=document.querySelectorAll('.hero-dot');
+let _cur=0;
+if(_slides.length>1){
+  function _goSlide(n){
+    _slides[_cur].classList.remove('active');
+    if(_dots[_cur])_dots[_cur].classList.remove('active');
+    _cur=(n+_slides.length)%_slides.length;
+    _slides[_cur].classList.add('active');
+    if(_dots[_cur])_dots[_cur].classList.add('active');
+  }
+  _dots.forEach(d=>d.addEventListener('click',()=>_goSlide(+d.dataset.idx)));
+  setInterval(()=>_goSlide(_cur+1),5000);
+}
+
+/* ── SCROLL REVEAL ── */
+const _ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');_ro.unobserve(e.target);}
+}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>_ro.observe(el));
+
+/* ── COUNT-UP ── */
+function _countUp(el){
+  const target=+el.dataset.count;
+  if(!target)return;
+  const suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  (function frame(ts){
+    const p=Math.min((ts-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e2*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(frame);
+  })(performance.now());
+}
+const _co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){_countUp(e.target);_co.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>_co.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
