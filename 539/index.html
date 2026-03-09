@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ふさやす歯科医院 | 宮崎市大坪西のかかりつけ歯科</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--mint:#4BBFB0;--mint-d:#3aa99b;--mint-l:#e6f7f5;--navy:#1a3a4a;--cream:#f8f5f0;--gold:#c9a96e;--text:#333;--gray:#666;--light:#f0f4f3}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+h1,h2,h3{font-family:'Shippori Mincho',serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.lft{transform:translateX(-36px)}
+.rv.rgt{transform:translateX(36px)}
+.rv.sc{transform:scale(.95)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}
+.rv.d2{transition-delay:.2s}
+.rv.d3{transition-delay:.3s}
+.rv.d4{transition-delay:.4s}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);box-shadow:0 2px 20px rgba(0,0,0,.08);padding:0 5%}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;flex-direction:column}
+.logo-main{font-family:'Shippori Mincho',serif;font-size:1.3rem;font-weight:700;color:var(--navy);letter-spacing:.05em}
+.logo-sub{font-size:.65rem;color:var(--mint);letter-spacing:.1em;margin-top:1px}
+nav{display:flex;gap:2rem;align-items:center}
+nav a{font-size:.82rem;color:var(--navy);font-weight:500;letter-spacing:.05em;position:relative;padding-bottom:2px}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--mint);transition:width .3s}
+nav a:hover::after{width:100%}
+.header-tel{background:var(--mint);color:#fff;padding:.5rem 1.2rem;border-radius:30px;font-size:.8rem;font-weight:700;letter-spacing:.05em;transition:background .3s}
+.header-tel:hover{background:var(--mint-d)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s}
+.hero-slide.active{opacity:1}
+.hero-slide-bg{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,58,74,.7) 0%,rgba(75,191,176,.25) 100%)}
+.hero-content{position:absolute;inset:0;display:flex;align-items:center;padding:0 8%}
+.hero-text{max-width:600px;color:#fff}
+.hero-tag{display:inline-block;background:rgba(75,191,176,.9);color:#fff;font-size:.72rem;letter-spacing:.15em;padding:.35rem 1rem;border-radius:20px;margin-bottom:1.2rem}
+.hero-text h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.4;margin-bottom:1.2rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero-text p{font-size:clamp(.85rem,1.5vw,1rem);line-height:1.9;opacity:.92;margin-bottom:2rem;font-weight:300}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-main{position:relative;overflow:hidden;display:inline-block;padding:.85rem 2rem;border-radius:3px;font-size:.88rem;font-weight:700;letter-spacing:.08em;z-index:0;background:var(--mint);color:#fff;border:2px solid var(--mint);transition:color .35s}
+.btn-main::before{content:'';position:absolute;inset:0;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:-1}
+.btn-main:hover::before{transform:scaleX(1)}
+.btn-main:hover{color:#fff;border-color:var(--navy)}
+.btn-sub{position:relative;overflow:hidden;display:inline-block;padding:.85rem 2rem;border-radius:3px;font-size:.88rem;font-weight:700;letter-spacing:.08em;z-index:0;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.8);transition:color .35s}
+.btn-sub::before{content:'';position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:-1}
+.btn-sub:hover::before{transform:scaleX(1)}
+.btn-sub:hover{color:var(--navy)}
+
+/* HERO DASHED CIRCLE */
+.hero-deco{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:360px;height:360px;pointer-events:none;opacity:.35}
+.hero-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:10}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .3s,transform .3s;border:none}
+.hero-dot.active{background:#fff;transform:scale(1.3)}
+.hero-scroll{position:absolute;bottom:2.5rem;right:8%;color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.2em;writing-mode:vertical-rl;display:flex;align-items:center;gap:.5rem}
+.hero-scroll::after{content:'';width:1px;height:50px;background:linear-gradient(to bottom,rgba(255,255,255,.7),transparent)}
+
+/* WAVE */
+.wave-divider{display:block;width:100%;overflow:hidden;line-height:0}
+.wave-divider svg{display:block;width:100%}
+
+/* SECTION BASE */
+.section-label{display:inline-block;font-size:.7rem;letter-spacing:.25em;color:var(--mint);font-weight:700;margin-bottom:.7rem;text-transform:uppercase}
+.section-title{font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--navy);font-weight:700;line-height:1.35;margin-bottom:1rem}
+.section-title span{color:var(--mint)}
+.section-sub{font-size:.88rem;color:var(--gray);line-height:2;max-width:560px}
+.text-center{text-align:center}
+.section-head-center{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:3.5rem}
+
+/* CONCEPT */
+#concept{padding:100px 5%;background:var(--cream)}
+.concept-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+.concept-img-wrap{position:relative}
+.concept-img-wrap img{border-radius:4px;width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.concept-badge{position:absolute;bottom:-20px;right:-20px;background:var(--mint);color:#fff;width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;letter-spacing:.05em;line-height:1.5;box-shadow:0 8px 24px rgba(75,191,176,.4);text-align:center}
+.concept-badge strong{font-size:1.5rem;font-weight:700;display:block;font-family:'Shippori Mincho',serif}
+.concept-text{display:flex;flex-direction:column;gap:1.5rem}
+.concept-text p{font-size:.9rem;line-height:2.1;color:var(--gray)}
+.concept-list{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-top:.5rem}
+.concept-list li{display:flex;align-items:flex-start;gap:.75rem;font-size:.88rem;color:var(--navy);font-weight:500}
+.concept-list li::before{content:'✓';width:22px;height:22px;background:var(--mint);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-top:1px}
+
+/* MENU */
+#menu{padding:100px 5%;background:#fff}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.8rem;max-width:1100px;margin:0 auto}
+.menu-card{position:relative;overflow:hidden;background:#fff;border:1px solid #e8ede9;border-radius:4px;padding:2.2rem 1.8rem;transition:box-shadow .35s,transform .35s}
+.menu-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--mint);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.menu-card:hover::before{transform:scaleX(1)}
+.menu-card:hover{box-shadow:0 15px 45px rgba(0,0,0,.1);transform:translateY(-4px)}
+.menu-icon{width:52px;height:52px;background:var(--mint-l);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+.menu-icon svg{width:26px;height:26px;stroke:var(--mint);fill:none;stroke-width:2;stroke-linecap:round}
+.menu-card h3{font-size:1rem;color:var(--navy);margin-bottom:.6rem;font-weight:700;line-height:1.4}
+.menu-card p{font-size:.78rem;color:var(--gray);line-height:1.8;margin-bottom:1rem}
+.menu-price{font-family:'Shippori Mincho',serif;font-size:1.4rem;color:var(--mint);font-weight:700}
+.menu-price span{font-size:.72rem;color:var(--gray);font-family:'Noto Sans JP',sans-serif;margin-left:.3rem}
+
+/* GALLERY */
+#gallery{padding:100px 5%;background:var(--light)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin:0 auto}
+.gallery-item{position:relative;overflow:hidden;border-radius:4px;aspect-ratio:4/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,58,74,.7),transparent);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.2rem}
+.gallery-overlay span{color:#fff;font-size:.8rem;font-weight:500;letter-spacing:.05em}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+
+/* NUMBERS */
+#numbers{padding:90px 5%;background:var(--navy);position:relative;overflow:hidden}
+.numbers-bg{position:absolute;inset:0;opacity:.05}
+.numbers-inner{position:relative;z-index:1;max-width:1000px;margin:0 auto}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
+.number-item{text-align:center;color:#fff}
+.number-val{font-family:'Shippori Mincho',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;color:var(--mint);line-height:1.1;margin-bottom:.4rem}
+.number-label{font-size:.78rem;color:rgba(255,255,255,.7);letter-spacing:.1em}
+.numbers-divider{width:1px;background:rgba(255,255,255,.15);margin:auto}
+
+/* HOURS */
+#hours{padding:90px 5%;background:var(--cream)}
+.hours-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1000px;margin:0 auto;align-items:start}
+.hours-table{width:100%;border-collapse:collapse}
+.hours-table th,.hours-table td{padding:.9rem 1.2rem;font-size:.88rem;border-bottom:1px solid #e0e8e6;text-align:left}
+.hours-table th{color:var(--navy);font-weight:700;background:var(--mint-l);width:40%}
+.hours-table td{color:var(--gray)}
+.hours-note{margin-top:1rem;font-size:.78rem;color:var(--mint);display:flex;gap:.4rem;align-items:flex-start}
+
+/* ACCESS */
+#access{padding:90px 5%;background:#fff}
+.access-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto;align-items:start}
+.access-info{display:flex;flex-direction:column;gap:1.4rem}
+.access-row{display:flex;gap:1rem;align-items:flex-start;font-size:.88rem;line-height:1.8}
+.access-row-icon{width:36px;height:36px;background:var(--mint-l);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.access-row-icon svg{width:18px;height:18px;stroke:var(--mint);fill:none;stroke-width:2;stroke-linecap:round}
+.access-row-label{font-size:.7rem;color:var(--mint);font-weight:700;letter-spacing:.08em;margin-bottom:.15rem;display:block}
+.access-row-val{color:var(--navy);font-weight:500}
+.map-wrap{border-radius:4px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.1);aspect-ratio:16/9}
+.map-wrap iframe{width:100%;height:100%;border:none;display:block}
+
+/* CTA */
+#cta{padding:110px 5%;background:var(--navy);position:relative;overflow:hidden;text-align:center}
+.cta-circles{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.1}
+.cta-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-content .section-label{color:var(--mint)}
+.cta-content .section-title{color:#fff;margin-bottom:1rem}
+.cta-content p{color:rgba(255,255,255,.75);font-size:.9rem;line-height:2;margin-bottom:2.5rem}
+.cta-btns{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+.btn-tel{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.7rem;padding:1rem 2.2rem;border-radius:3px;font-size:1rem;font-weight:700;letter-spacing:.05em;z-index:0;background:var(--mint);color:#fff;border:2px solid var(--mint);transition:color .35s}
+.btn-tel::before{content:'';position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:-1}
+.btn-tel:hover::before{transform:scaleX(1)}
+.btn-tel:hover{color:var(--mint)}
+.btn-form{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.7rem;padding:1rem 2.2rem;border-radius:3px;font-size:1rem;font-weight:700;letter-spacing:.05em;z-index:0;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);transition:color .35s}
+.btn-form::before{content:'';position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:-1}
+.btn-form:hover::before{transform:scaleX(1)}
+.btn-form:hover{color:var(--navy)}
+.cta-tel-num{font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.5rem;display:block;letter-spacing:.1em}
+
+/* FOOTER */
+footer{background:#0f2430;padding:3rem 5% 1.5rem;color:rgba(255,255,255,.6)}
+.footer-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-logo{font-family:'Shippori Mincho',serif;font-size:1.3rem;color:#fff;margin-bottom:.6rem}
+.footer-copy{font-size:.75rem;line-height:1.9}
+.footer-col h4{font-size:.82rem;color:#fff;font-weight:700;letter-spacing:.1em;margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col ul li a{font-size:.78rem;color:rgba(255,255,255,.55);transition:color .3s}
+.footer-col ul li a:hover{color:var(--mint)}
+.footer-bottom{max-width:1100px;margin:1.5rem auto 0;display:flex;justify-content:space-between;align-items:center;font-size:.72rem}
+.footer-bottom a{color:var(--mint)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.concept-inner{grid-template-columns:1fr;gap:3rem}
+.concept-badge{right:10px;bottom:-15px}
+.numbers-grid{grid-template-columns:repeat(2,1fr)}
+.access-inner{grid-template-columns:1fr}
+.footer-inner{grid-template-columns:1fr;gap:2rem}
+}
+@media(max-width:768px){
+header{padding:0 4%}
+.header-inner{height:60px}
+nav{display:none}
+.hero-deco{display:none}
+.gallery-grid{grid-template-columns:repeat(2,1fr)}
+.hours-inner{grid-template-columns:1fr}
+.footer-inner{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;gap:.5rem;text-align:center}
+}
+@media(max-width:480px){
+.gallery-grid{grid-template-columns:1fr}
+.numbers-grid{grid-template-columns:repeat(2,1fr)}
+.menu-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-main">ふさやす歯科医院</span>
+      <span class="logo-sub">FUSAYASU DENTAL CLINIC</span>
+    </div>
+    <nav>
+      <a href="#concept">当院について</a>
+      <a href="#menu">診療内容</a>
+      <a href="#access">アクセス</a>
+      <a href="tel:0120-882-383" class="header-tel">📞 0120-882-383</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1656241949591-04b4d42f6ab6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE1NTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="歯科診療">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1661495896026-7713265e5ee4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE1NTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="クリニック">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1731985861343-ac68f9d0f13f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE1NTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="笑顔">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <!-- DASHED CIRCLE DECO -->
+  <div class="hero-deco">
+    <svg viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="180" cy="180" r="170" stroke="white" stroke-width="1.5" stroke-dasharray="8 10"/>
+      <circle cx="180" cy="180" r="140" stroke="white" stroke-width="1" stroke-dasharray="4 8"/>
+      <circle cx="180" cy="180" r="100" stroke="white" stroke-width="2" stroke-dasharray="12 6"/>
+      <circle cx="180" cy="180" r="55" fill="rgba(255,255,255,0.08)" stroke="white" stroke-width="1.5"/>
+      <text x="180" y="175" text-anchor="middle" fill="white" font-size="13" font-family="serif" letter-spacing="2">DENTAL</text>
+      <text x="180" y="196" text-anchor="middle" fill="white" font-size="11" font-family="serif" letter-spacing="1">CLINIC</text>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-tag">宮崎市大坪西のかかりつけ歯科</span>
+      <h1>地域に根ざした、<br>やさしい歯科医療を。</h1>
+      <p>あなたの笑顔を守るために。<br>お子さまからご高齢の方まで、丁寧にサポートします。</p>
+      <div class="hero-btns">
+        <a href="tel:0120-882-383" class="btn-main">📞 ご予約・お問い合わせ</a>
+        <a href="#concept" class="btn-sub">当院について</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active" data-idx="0"></button>
+    <button class="hero-dot" data-idx="1"></button>
+    <button class="hero-dot" data-idx="2"></button>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f8f5f0"/>
+  </svg>
+</div>
+
+<!-- CONCEPT -->
+<section id="concept">
+  <div class="concept-inner">
+    <div class="concept-img-wrap rv lft">
+      <img src="https://images.unsplash.com/photo-1661495896026-7713265e5ee4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE1NTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="クリニック">
+      <div class="concept-badge">
+        <strong>地域</strong>密着<br>の歯科医院
+      </div>
+    </div>
+    <div class="concept-text rv rgt">
+      <div>
+        <span class="section-label">ABOUT US</span>
+        <h2 class="section-title">あなたの<span>笑顔</span>を<br>守るかかりつけ歯科</h2>
+      </div>
+      <p>ふさやす歯科医院は、宮崎市大坪西の地域の皆さまに寄り添い続けるクリニックです。お子さまからご高齢の方まで、一人ひとりのお口の健康を丁寧にサポートします。</p>
+      <p>「歯医者さんが怖い」という方もどうぞ安心してご来院ください。痛みに配慮した治療を心がけ、わかりやすい説明でしっかりとご納得いただいてから診療を進めます。</p>
+      <ul class="concept-list">
+        <li>痛みに配慮した丁寧な治療</li>
+        <li>お子さまも安心の優しい診療環境</li>
+        <li>わかりやすいインフォームドコンセント</li>
+        <li>地域に根ざした長年の信頼と実績</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,0 720,60 1080,30 C1260,15 1380,45 1440,30 L1440,60 L0,60 Z" fill="#fff"/>
+  </svg>
+</div>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-head-center">
+    <span class="section-label rv">SERVICES</span>
+    <h2 class="section-title rv d1">診療内容・料金</h2>
+    <p class="section-sub rv d2">お口のことならなんでもご相談ください。保険診療を中心に、幅広い歯科医療をご提供しています。</p>
+  </div>
+  <div class="menu-grid">
+    <!-- 一般歯科 -->
+    <div class="menu-card rv d1">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C9.5 2 7 4 7 7c0 2.5 1 4.5 2 6l1 5h4l1-5c1-1.5 2-3.5 2-6 0-3-2.5-5-5-5z"/></svg>
+      </div>
+      <h3>一般歯科（虫歯治療）</h3>
+      <p>痛みに配慮した丁寧な虫歯治療を行います。なるべく削らない治療を心がけています。</p>
+      <div class="menu-price">¥3,000<span>〜（保険適用）</span></div>
+    </div>
+    <!-- 歯周病 -->
+    <div class="menu-card rv d2">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 20h16M6 16c0-4 2-7 6-7s6 3 6 7"/><circle cx="12" cy="6" r="2"/></svg>
+      </div>
+      <h3>歯周病治療</h3>
+      <p>歯ぐきの状態をしっかり検査し改善します。定期的なメンテナンスも大切です。</p>
+      <div class="menu-price">¥3,500<span>〜（保険適用）</span></div>
+    </div>
+    <!-- 小児歯科 -->
+    <div class="menu-card rv d3">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+      </div>
+      <h3>小児歯科</h3>
+      <p>お子さまが安心できる優しい診療環境です。歯を守る習慣づくりからサポートします。</p>
+      <div class="menu-price">¥2,500<span>〜（保険適用）</span></div>
+    </div>
+    <!-- PMTC -->
+    <div class="menu-card rv d4">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="5"/></svg>
+      </div>
+      <h3>歯のクリーニング（PMTC）</h3>
+      <p>専門器具で歯の汚れをすっきり除去します。虫歯・歯周病予防にも効果的です。</p>
+      <div class="menu-price">¥5,000<span>〜（自費）</span></div>
+    </div>
+    <!-- 入れ歯 -->
+    <div class="menu-card rv">
+      <div class="menu-icon">
+        <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="8" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+      </div>
+      <h3>入れ歯・義歯</h3>
+      <p>お口に合った快適な入れ歯をご提案します。しっかり噛める義歯で生活の質を向上。</p>
+      <div class="menu-price">¥15,000<span>〜（保険適用）</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,15 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#f0f4f3"/>
+  </svg>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-head-center">
+    <span class="section-label rv">GALLERY</span>
+    <h2 class="section-title rv d1">クリニックのご紹介</h2>
+    <p class="section-sub rv d2">清潔感のある院内で、患者さまをお待ちしています。</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item rv sc d1">
+      <img src="https://images.unsplash.com/photo-1656241949591-04b4d42f6ab6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE1NTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="診療室">
+      <div class="gallery-overlay"><span>診療室</span></div>
+    </div>
+    <div class="gallery-item rv sc d2">
+      <img src="https://images.unsplash.com/photo-1661495896026-7713265e5ee4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE1NTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="待合室">
+      <div class="gallery-overlay"><span>待合室</span></div>
+    </div>
+    <div class="gallery-item rv sc d3">
+      <img src="https://images.unsplash.com/photo-1731985861343-ac68f9d0f13f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE1NTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタッフ">
+      <div class="gallery-overlay"><span>スタッフ</span></div>
+    </div>
+    <div class="gallery-item rv sc d1">
+      <img src="images/img_1.png" alt="院内">
+      <div class="gallery-overlay"><span>院内風景</span></div>
+    </div>
+    <div class="gallery-item rv sc d2">
+      <img src="images/img_2.png" alt="設備">
+      <div class="gallery-overlay"><span>最新設備</span></div>
+    </div>
+    <div class="gallery-item rv sc d3">
+      <img src="https://images.unsplash.com/photo-1656241949591-04b4d42f6ab6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMzE1NTd8&ixlib=rb-4.1.0&q=80&w=1080" alt="診療">
+      <div class="gallery-overlay"><span>丁寧な診療</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--light)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,15 1440,30 L1440,60 L0,60 Z" fill="#1a3a4a"/>
+  </svg>
+</div>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="numbers-bg">
+    <svg viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+      <circle cx="100" cy="150" r="200" stroke="white" stroke-width="1" stroke-dasharray="6 8"/>
+      <circle cx="700" cy="100" r="150" stroke="white" stroke-width="1" stroke-dasharray="4 6"/>
+      <circle cx="400" cy="300" r="180" stroke="white" stroke-width="1" stroke-dasharray="8 10"/>
+    </svg>
+  </div>
+  <div class="numbers-inner">
+    <div class="section-head-center">
+      <span class="section-label rv" style="color:var(--mint)">NUMBERS</span>
+      <h2 class="section-title rv d1" style="color:#fff">ふさやす歯科の実績</h2>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-item rv d1">
+        <div class="number-val"><span data-count="20" data-suffix="年">0</span></div>
+        <div class="number-label">地域診療年数</div>
+      </div>
+      <div class="number-item rv d2">
+        <div class="number-val"><span data-count="500" data-suffix="名">0</span></div>
+        <div class="number-label">月間患者数</div>
+      </div>
+      <div class="number-item rv d3">
+        <div class="number-val"><span data-count="98" data-suffix="%">0</span></div>
+        <div class="number-label">患者満足度</div>
+      </div>
+      <div class="number-item rv d4">
+        <div class="number-val"><span data-count="5" data-suffix="種">0</span></div>
+        <div class="number-label">診療メニュー</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider" style="background:var(--navy)">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#f8f5f0"/>
+  </svg>
+</div>
+
+<!-- HOURS & ACCESS -->
+<section id="hours" style="padding:100px 5%;background:var(--cream)">
+  <div class="hours-inner">
+    <div>
+      <span class="section-label rv">HOURS</span>
+      <h2 class="section-title rv d1">診療時間</h2>
+      <table class="hours-table rv d2">
+        <tr><th>月・火</th><td>9:00〜18:00</td></tr>
+        <tr><th>木・金</th><td>9:00〜18:00</td></tr>
+        <tr><th>土曜日</th><td>9:00〜18:00</td></tr>
+        <tr><th>水曜日</th><td>休診</td></tr>
+        <tr><th>日曜日</th><td>休診</td></tr>
+      </table>
+      <p class="hours-note rv d3">
+        <span>※</span>
+        <span>祝日は不定期診療となります。<br>詳しくはお電話にてご確認ください。</span>
+      </p>
+    </div>
+    <div>
+      <span class="section-label rv">ACCESS</span>
+      <h2 class="section-title rv d1" id="access">アクセス</h2>
+      <div class="access-info">
+        <div class="access-row rv d1">
+          <div class="access-row-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div>
+            <span class="access-row-label">住所</span>
+            <span class="access-row-val">〒880-0932 宮崎県宮崎市<br>大坪西２丁目１−３６</span>
+          </div>
+        </div>
+        <div class="access-row rv d2">
+          <div class="access-row-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <span class="access-row-label">電話番号</span>
+            <a href="tel:0120-882-383" class="access-row-val" style="color:var(--mint);font-weight:700;font-size:1.1rem">0120-882-383</a>
+          </div>
+        </div>
+        <div class="access-row rv d3">
+          <div class="access-row-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <span class="access-row-label">診療時間</span>
+            <span class="access-row-val">9:00〜18:00<br>水曜・日曜定休</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="access" style="padding:0 5% 80px;background:var(--cream)">
+  <div class="map-wrap rv sc" style="max-width:1100px;margin:0 auto">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3351.0!2d131.43!3d31.91!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDU0JzM2LjAiTiAxMzHCsDI1JzQ4LjAiRQ!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp&q=宮崎県宮崎市大坪西２丁目１−３６" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ふさやす歯科医院 地図"></iframe>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <!-- CONCENTRIC CIRCLES SVG -->
+  <div class="cta-circles">
+    <svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="300" r="280" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="230" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="180" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="130" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="80" stroke="white" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="cta-content">
+    <span class="section-label rv">CONTACT</span>
+    <h2 class="section-title rv d1">まずはお気軽に<br><span>ご相談ください</span></h2>
+    <p class="rv d2">まずはお気軽にお電話を。<br>ご予約・ご相談はいつでもどうぞ！<br>あなたのお口の健康を、私たちがしっかりサポートします。</p>
+    <a href="tel:0120-882-383" class="cta-tel-num rv d3">📞 0120-882-383</a>
+    <div class="cta-btns rv d4">
+      <a href="tel:0120-882-383" class="btn-tel">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        お電話で予約
+      </a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-form" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        フォームで相談
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">ふさやす歯科医院</div>
+      <p class="footer-copy">〒880-0932 宮崎県宮崎市大坪西２丁目１−３６<br>TEL: 0120-882-383<br>診療時間: 9:00〜18:00<br>定休日: 水曜・日曜</p>
+    </div>
+    <div class="footer-col">
+      <h4>MENU</h4>
+      <ul>
+        <li><a href="#concept">当院について</a></li>
+        <li><a href="#menu">診療内容</a></li>
+        <li><a href="#gallery">ギャラリー</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>SERVICES</h4>
+      <ul>
+        <li><a href="#menu">一般歯科（虫歯治療）</a></li>
+        <li><a href="#menu">歯周病治療</a></li>
+        <li><a href="#menu">小児歯科</a></li>
+        <li><a href="#menu">歯のクリーニング</a></li>
+        <li><a href="#menu">入れ歯・義歯</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 ふさやす歯科医院 All Rights Reserved.</span>
+    <span>Designed by <a href="https://infinitydesign.co.jp" target="_blank" rel="noopener">InfinityDesign</a></span>
+  </div>
+</footer>
+<script>
+/* ── PARALLAX ── */
+const _paraBgs=document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  _paraBgs.forEach(b=>{b.style.transform=`translateY(${y*.38}px)`;});
+  const hdr=document.querySelector('header');
+  if(hdr)hdr.classList.toggle('scrolled',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const _slides=document.querySelectorAll('.hero-slide');
+const _dots=document.querySelectorAll('.hero-dot');
+let _cur=0;
+if(_slides.length>1){
+  function _goSlide(n){
+    _slides[_cur].classList.remove('active');
+    if(_dots[_cur])_dots[_cur].classList.remove('active');
+    _cur=(n+_slides.length)%_slides.length;
+    _slides[_cur].classList.add('active');
+    if(_dots[_cur])_dots[_cur].classList.add('active');
+  }
+  _dots.forEach(d=>d.addEventListener('click',()=>_goSlide(+d.dataset.idx)));
+  setInterval(()=>_goSlide(_cur+1),5000);
+}
+
+/* ── SCROLL REVEAL ── */
+const _ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');_ro.unobserve(e.target);}
+}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>_ro.observe(el));
+
+/* ── COUNT-UP ── */
+function _countUp(el){
+  const target=+el.dataset.count;
+  if(!target)return;
+  const suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  (function frame(ts){
+    const p=Math.min((ts-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e2*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(frame);
+  })(performance.now());
+}
+const _co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){_countUp(e.target);_co.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>_co.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
