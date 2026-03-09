@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スタンド宴 | 飲食店・レストラン</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --primary: #c0392b; --dark: #1c1c1c; --warm: #fdf6ec; --text: #2c2c2c; }
+  body { font-family: 'Hiragino Mincho Pro', 'Yu Mincho', serif; color: var(--text); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 40px; background: rgba(28,28,28,.85);
+    backdrop-filter: blur(10px); z-index: 100;
+  }
+  .logo { color: #fff; font-size: 1.3rem; letter-spacing: .2em; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,.8); text-decoration: none; font-size: .9rem; letter-spacing: .08em; }
+
+  .hero {
+    height: 100svh; min-height: 560px;
+    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+                url('https://images.unsplash.com/photo-1627890320964-e760c1ddaeb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQ0MTZ8&ixlib=rb-4.1.0&q=80&w=1080') center/cover;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; text-align: center; color: #fff; padding: 32px;
+  }
+  .hero-sub  { font-size: .9rem; letter-spacing: .3em; margin-bottom: 16px; opacity: .8; }
+  .hero h1   { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: .15em; margin-bottom: 24px; }
+  .hero p    { font-size: 1.1rem; opacity: .85; margin-bottom: 40px; }
+  .btn       { display: inline-block; padding: 16px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; letter-spacing: .12em; font-size: .95rem; transition: background .2s, color .2s; }
+  .btn:hover { background: #fff; color: var(--dark); }
+
+  section { padding: 90px 24px; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); text-align: center; margin-bottom: 56px; letter-spacing: .12em; }
+  h2 span { display: block; font-size: .75rem; font-family: sans-serif; letter-spacing: .3em; color: var(--primary); margin-bottom: 10px; }
+
+  /* STORY */
+  .story { background: var(--warm); }
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .story-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+  .story-text p { line-height: 2.2; font-size: 1.05rem; }
+
+  /* MENU */
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+  .menu-card { border: 1px solid #e8e0d5; }
+  .menu-img  { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+  .menu-body { padding: 20px; }
+  .menu-body h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .menu-body .price { color: var(--primary); font-size: 1.2rem; margin-bottom: 8px; }
+  .menu-body p { font-size: .9rem; color: #666; line-height: 1.7; }
+
+  /* ACCESS */
+  .access { background: var(--warm); }
+  .access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .access-info p { margin-bottom: 12px; line-height: 1.8; font-size: 1rem; }
+  .access-info strong { display: inline-block; width: 7em; color: var(--primary); }
+
+  /* CTA */
+  .cta { background: var(--dark); color: #fff; text-align: center; padding: 80px 24px; }
+  .cta h2 { color: #fff; }
+  .cta p { opacity: .75; margin-bottom: 32px; font-family: sans-serif; }
+  .tel { font-size: 2.4rem; letter-spacing: .05em; color: var(--primary); margin-bottom: 24px; }
+
+  footer { background: #111; color: rgba(255,255,255,.4); text-align: center; padding: 28px; font-size: .8rem; font-family: sans-serif; }
+
+  @media (max-width: 680px) {
+    .story-grid, .access-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">スタンド宴</div>
+  <ul class="nav-links">
+    <li><a href="#story">こだわり</a></li>
+    <li><a href="#menu">メニュー</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-sub">飲食店・レストラン / 光市</p>
+  <h1>スタンド宴</h1>
+  <p>光市で出会う、とびきりの一杯と笑顔</p>
+  <a href="#menu" class="btn">メニューを見る</a>
+</section>
+
+<section class="story" id="story">
+  <div class="container">
+    <h2><span>STORY</span>みんなの集まる場所、スタンド宴</h2>
+    <div class="story-grid">
+      <img class="story-img" src="https://images.unsplash.com/photo-1759300633646-1e076529f60e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQ0MTZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="こだわり">
+      <div class="story-text"><p>山口県光市の島田エリアに根ざした「スタンド宴」は、仕事帰りの一息から大切な仲間との宴会まで、どんなシーンにも寄り添うアットホームなお店です。地元の食材を活かした料理と厳選されたお酒で、毎日の疲れをほぐし、笑顔あふれるひとときをお届けします。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <h2><span>MENU</span>おすすめメニュー</h2>
+    <div class="menu-grid">
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1627890320964-e760c1ddaeb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQ0MTZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="おまかせ宴会コース">
+        <div class="menu-body">
+          <h3>おまかせ宴会コース</h3>
+          <div class="price">¥3,500〜</div>
+          <p>飲み放題付き！旬の料理を楽しむ充実の宴会プラン</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1759300633646-1e076529f60e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQ0MTZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="厳選地酒・クラフトビール">
+        <div class="menu-body">
+          <h3>厳選地酒・クラフトビール</h3>
+          <div class="price">¥600〜</div>
+          <p>山口の地酒など豊富なドリンクを一杯からどうぞ</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1771308354284-eec97827b8c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjQ0MTZ8&ixlib=rb-4.1.0&q=80&w=1080" alt="本日の旬肴盛り合わせ">
+        <div class="menu-body">
+          <h3>本日の旬肴盛り合わせ</h3>
+          <div class="price">¥980〜</div>
+          <p>地元食材を使ったその日限りのおすすめ一品</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80" alt="スタンドランチセット">
+        <div class="menu-body">
+          <h3>スタンドランチセット</h3>
+          <div class="price">¥850〜</div>
+          <p>気軽に立ち寄れるボリューム満点のランチメニュー</p>
+        </div>
+      </div>
+      
+      <div class="menu-card">
+        <img class="menu-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80" alt="貸切パーティープラン">
+        <div class="menu-body">
+          <h3>貸切パーティープラン</h3>
+          <div class="price">¥20,000〜</div>
+          <p>少人数から対応可能な貸切プランで特別な夜を演出</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="access" id="access">
+  <div class="container">
+    <h2><span>ACCESS</span>アクセス</h2>
+    <div class="access-grid">
+      <div class="access-info">
+        <p><strong>住所</strong>日本、〒743-0063 山口県光市島田１丁目１２−１</p>
+        <p><strong>電話</strong>0833-72-8328</p>
+        <p><strong>営業時間</strong>17:00〜23:00</p>
+        <p><strong>定休日</strong>日曜定休</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>ご予約・お問い合わせ</h2>
+    <p>ご予約・お問い合わせはお気軽にお電話ください。スタッフ一同お待ちしております！</p>
+    <div class="tel">0833-72-8328</div>
+    <a href="tel:0833-72-8328" class="btn">今すぐ電話する</a>
+  </div>
+</section>
+
+<footer>
+  <p>© スタンド宴 All Rights Reserved.</p>
+  <p style="margin-top:6px;font-size:.7rem;opacity:.5;">
+    このサイトは <a href="https://infinitydesign.co.jp" style="color:inherit">InfinityDesign</a> が作成したデモサイトです
+  </p>
+</footer>
+
+</body>
+</html>
