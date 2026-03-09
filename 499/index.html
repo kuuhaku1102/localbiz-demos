@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Otete | 宮崎県高鍋町のヘアサロン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+JP:wght@300;400;500&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#c9a96e;--gold2:#e8d5b0;--dark:#1a1410;--mid:#3d2e20;--cream:#faf7f2;--warm:#f0e8d8;--text:#2c2318;--muted:#8a7260}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* ====== SCROLLREVEAL ====== */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.lft{transform:translateX(-36px)}.rv.rgt{transform:translateX(36px)}.rv.sc{transform:scale(.95)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+/* ====== HEADER ====== */
+header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(26,20,16,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,.2)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold);letter-spacing:.15em;text-decoration:none}
+.logo span{display:block;font-size:.55rem;letter-spacing:.4em;color:var(--gold2);margin-top:-2px}
+nav{display:flex;gap:2rem}
+nav a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.78rem;letter-spacing:.15em;transition:color .3s;position:relative}
+nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+nav a:hover{color:var(--gold)}nav a:hover::after{width:100%}
+
+/* ====== HERO ====== */
+.hero{position:relative;height:100vh;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
+.hero-slide.active{opacity:1}
+.hero-slide-bg{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 8s ease}
+.hero-slide.active .hero-slide-bg{transform:scale(1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,20,16,.75) 0%,rgba(26,20,16,.35) 60%,rgba(201,169,110,.1) 100%)}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 8%;padding-top:80px}
+.hero-tag{font-size:.7rem;letter-spacing:.5em;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem}
+.hero-tag::before{content:'';display:inline-block;width:40px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Zen Old Mincho',serif;font-size:clamp(2.2rem,5vw,4rem);color:#fff;line-height:1.5;letter-spacing:.08em;margin-bottom:1rem}
+.hero-title em{display:block;font-style:normal;color:var(--gold2)}
+.hero-sub{font-size:.85rem;color:rgba(255,255,255,.7);letter-spacing:.08em;line-height:2;max-width:400px;margin-bottom:2.5rem}
+.hero-btn{display:inline-flex;align-items:center;gap:.8rem;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:.9rem 2.2rem;font-size:.8rem;letter-spacing:.2em;text-decoration:none;position:relative;overflow:hidden;transition:color .4s}
+.hero-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.hero-btn:hover::before{transform:scaleX(1)}
+.hero-btn:hover{color:var(--dark)}
+.hero-btn span{position:relative;z-index:1}
+.hero-dots{position:absolute;bottom:2.5rem;left:8%;display:flex;gap:.6rem;z-index:3}
+.hero-dot{width:24px;height:2px;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s;border:none}
+.hero-dot.active{background:var(--gold);width:48px}
+/* Dashed circle SVG decoration */
+.hero-deco{position:absolute;right:8%;top:50%;transform:translateY(-50%);z-index:2;opacity:.4}
+
+/* ====== WAVE DIVIDER ====== */
+.wave-divider{display:block;width:100%;overflow:hidden;line-height:0}
+.wave-divider svg{display:block}
+
+/* ====== CONCEPT ====== */
+.concept{background:var(--cream);padding:7rem 0 5rem}
+.section-inner{max-width:1100px;margin:0 auto;padding:0 3rem}
+.section-label{font-size:.65rem;letter-spacing:.6em;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
+.section-label::before{content:'';width:30px;height:1px;background:var(--gold)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--mid);line-height:1.3;margin-bottom:2.5rem}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.concept-img-wrap{position:relative}
+.concept-img-wrap img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.concept-img-wrap::before{content:'';position:absolute;top:-20px;left:-20px;right:20px;bottom:20px;border:1px solid var(--gold);opacity:.4;z-index:-1}
+.concept-img-wrap::after{content:'HAIR SALON';position:absolute;bottom:-1.5rem;right:-1.5rem;font-family:'Cormorant Garamond',serif;font-size:.7rem;letter-spacing:.5em;color:var(--gold);writing-mode:vertical-rl}
+.concept-text p{font-size:.95rem;line-height:2.2;color:var(--muted);margin-bottom:1.5rem}
+.concept-points{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.concept-point{display:flex;align-items:flex-start;gap:1rem}
+.concept-point-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold);opacity:.5;line-height:1;min-width:2rem}
+.concept-point-text strong{display:block;font-size:.85rem;letter-spacing:.1em;margin-bottom:.2rem}
+.concept-point-text span{font-size:.78rem;color:var(--muted)}
+
+/* ====== MENU ====== */
+.menu-sec{background:var(--dark);padding:7rem 0;position:relative;overflow:hidden}
+.menu-sec::before{content:'MENU';position:absolute;right:-2rem;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'Cormorant Garamond',serif;font-size:8rem;color:rgba(255,255,255,.02);letter-spacing:.2em;white-space:nowrap}
+.menu-sec .section-label{color:var(--gold2)}
+.menu-sec .section-title{color:var(--gold2)}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.menu-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,169,110,.15);padding:2rem;position:relative;overflow:hidden;transition:background .4s,border-color .4s}
+.menu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.menu-card:hover{background:rgba(201,169,110,.06);border-color:rgba(201,169,110,.4)}
+.menu-card:hover::before{transform:scaleX(1)}
+.menu-icon{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);opacity:.6;margin-bottom:1rem;font-style:italic}
+.menu-name{font-size:.9rem;letter-spacing:.15em;color:#fff;margin-bottom:.5rem}
+.menu-price{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);margin-bottom:1rem;letter-spacing:.05em}
+.menu-desc{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.9}
+.menu-card-last{grid-column:span 3;display:flex;align-items:center;gap:2rem}
+.menu-card-last .menu-icon{font-size:2.5rem}
+
+/* ====== GALLERY ====== */
+.gallery-sec{background:var(--warm);padding:7rem 0}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:1rem;margin-top:3rem}
+.gallery-item{position:relative;overflow:hidden;cursor:pointer}
+.gallery-item:first-child{grid-column:span 2;aspect-ratio:16/9}
+.gallery-item:not(:first-child){aspect-ratio:1}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,16,.8),transparent);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.5rem}
+.gallery-overlay span{color:#fff;font-size:.75rem;letter-spacing:.2em}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+
+/* ====== NUMBERS ====== */
+.numbers-sec{background:var(--cream);padding:6rem 0}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem;text-align:center}
+.number-item{padding:2.5rem 1rem;position:relative}
+.number-item::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
+.number-item:last-child::after{display:none}
+.number-val{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--mid);line-height:1}
+.number-val span[data-count]{color:var(--gold)}
+.number-suffix{font-size:.85rem;color:var(--muted)}
+.number-label{font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-top:.5rem}
+
+/* ====== ACCESS ====== */
+.access-sec{background:var(--dark);padding:7rem 0}
+.access-sec .section-label{color:var(--gold2)}
+.access-sec .section-title{color:var(--gold2)}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem}
+.access-info dl{display:grid;grid-template-columns:auto 1fr;gap:1rem 2rem;font-size:.85rem}
+.access-info dt{color:var(--gold);letter-spacing:.1em;white-space:nowrap;padding-top:.1rem}
+.access-info dd{color:rgba(255,255,255,.7);line-height:1.8;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:1rem}
+.access-map{border:1px solid rgba(201,169,110,.2);overflow:hidden;aspect-ratio:4/3}
+.access-map iframe{width:100%;height:100%;border:0;filter:grayscale(30%) contrast(1.1)}
+
+/* ====== CTA ====== */
+.cta-sec{position:relative;background:var(--mid);padding:8rem 0;overflow:hidden;text-align:center}
+.cta-circles{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-circles circle{fill:none;stroke:rgba(201,169,110,.1)}
+.cta-content{position:relative;z-index:2}
+.cta-title{font-family:'Zen Old Mincho',serif;font-size:clamp(1.6rem,3vw,2.8rem);color:#fff;letter-spacing:.1em;margin-bottom:1rem;line-height:1.6}
+.cta-sub{font-size:.85rem;color:rgba(255,255,255,.6);letter-spacing:.08em;line-height:2;margin-bottom:3rem}
+.cta-buttons{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.8rem;background:var(--gold);color:var(--dark);padding:1.1rem 2.8rem;font-size:.85rem;letter-spacing:.2em;text-decoration:none;position:relative;overflow:hidden;transition:color .4s;font-weight:500}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--dark);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.btn-primary:hover::before{transform:scaleX(1)}
+.btn-primary:hover{color:var(--gold)}
+.btn-primary span{position:relative;z-index:1}
+.btn-outline{display:inline-flex;align-items:center;gap:.8rem;background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;padding:1.1rem 2.8rem;font-size:.85rem;letter-spacing:.2em;text-decoration:none;position:relative;overflow:hidden;transition:color .4s}
+.btn-outline::before{content:'';position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.btn-outline:hover::before{transform:scaleX(1)}
+.btn-outline:hover{color:var(--dark)}
+.btn-outline span{position:relative;z-index:1}
+
+/* ====== FOOTER ====== */
+footer{background:var(--dark);padding:3rem 0 2rem;border-top:1px solid rgba(201,169,110,.1)}
+.footer-inner{max-width:1100px;margin:0 auto;padding:0 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);letter-spacing:.15em}
+.footer-logo small{display:block;font-size:.55rem;letter-spacing:.4em;color:var(--muted);margin-top:-2px}
+.footer-info{font-size:.72rem;color:var(--muted);line-height:2;text-align:center}
+.footer-credit{font-size:.68rem;color:rgba(255,255,255,.2);text-align:right}
+.footer-credit a{color:rgba(201,169,110,.4);text-decoration:none;transition:color .3s}
+.footer-credit a:hover{color:var(--gold)}
+.footer-copy{text-align:center;padding-top:2rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,.05);font-size:.68rem;color:rgba(255,255,255,.2);max-width:1100px;margin-left:auto;margin-right:auto;padding-left:3rem;padding-right:3rem}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:768px){
+header{padding:.8rem 1.2rem}
+nav{gap:1rem}
+nav a{font-size:.7rem}
+.section-inner{padding:0 1.5rem}
+.concept-grid{grid-template-columns:1fr;gap:3rem}
+.concept-img-wrap::after{display:none}
+.menu-grid{grid-template-columns:1fr 1fr}
+.menu-card-last{grid-column:span 2;flex-direction:column}
+.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+.gallery-item:first-child{grid-column:span 2}
+.numbers-grid{grid-template-columns:repeat(2,1fr)}
+.number-item::after{display:none}
+.access-grid{grid-template-columns:1fr}
+.cta-buttons{flex-direction:column;align-items:center}
+.footer-inner{flex-direction:column;text-align:center}
+.footer-info{text-align:center}
+.footer-credit{text-align:center}
+}
+@media(max-width:480px){
+.menu-grid{grid-template-columns:1fr}
+.menu-card-last{grid-column:span 1}
+.gallery-grid{grid-template-columns:1fr}
+.gallery-item:first-child{grid-column:span 1}
+nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">Otete<span>HAIR SALON / TAKANO-CHO</span></a>
+  <nav>
+    <a href="#concept">コンセプト</a>
+    <a href="#menu">メニュー</a>
+    <a href="#gallery">ギャラリー</a>
+    <a href="#access">アクセス</a>
+    <a href="#cta">ご予約</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1626383120723-2a941488860d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjg2OTl8&ixlib=rb-4.1.0&q=80&w=1080" alt="Otete サロン">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1754294437661-129b86f868ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjg2OTl8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイリング">
+    </div>
+    <div class="hero-slide">
+      <img class="hero-slide-bg" src="https://images.unsplash.com/photo-1767488903403-3963f0d370db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjg2OTl8&ixlib=rb-4.1.0&q=80&w=1080" alt="ヘアケア">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <!-- Dashed circle decoration -->
+  <div class="hero-deco">
+    <svg width="380" height="380" viewBox="0 0 380 380">
+      <circle cx="190" cy="190" r="180" fill="none" stroke="rgba(201,169,110,0.4)" stroke-width="1" stroke-dasharray="8 10"/>
+      <circle cx="190" cy="190" r="140" fill="none" stroke="rgba(201,169,110,0.2)" stroke-width="1" stroke-dasharray="4 14"/>
+      <circle cx="190" cy="190" r="100" fill="none" stroke="rgba(201,169,110,0.15)" stroke-width="1" stroke-dasharray="2 12"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <p class="hero-tag">HAIR SALON OTETE</p>
+    <h1 class="hero-title">あなたらしさを、<em>もっと輝かせる場所へ。</em></h1>
+    <p class="hero-sub">髪から始まる、自分らしい毎日<br>宮崎県高鍋町に根ざした地域密着型ヘアサロン</p>
+    <a href="#menu" class="hero-btn"><span>メニューを見る</span><svg width="16" height="8" viewBox="0 0 16 8" fill="none"><path d="M0 4H14M10 1L14 4L10 7" stroke="currentColor" stroke-width="1.2"/></svg></a>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active" data-idx="0"></button>
+    <button class="hero-dot" data-idx="1"></button>
+    <button class="hero-dot" data-idx="2"></button>
+  </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider" style="background:var(--cream);margin-top:-1px">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" width="100%">
+    <path d="M0,0 C360,60 1080,60 1440,0 L1440,0 L0,0 Z" fill="#1a1410"/>
+  </svg>
+</div>
+
+<!-- CONCEPT -->
+<section class="concept" id="concept">
+  <div class="section-inner">
+    <div class="concept-grid">
+      <div class="concept-img-wrap rv lft">
+        <img src="images/img_1.png" alt="Otete サロン内観">
+      </div>
+      <div class="concept-text rv rgt d1">
+        <p class="section-label">CONCEPT</p>
+        <h2 class="section-title">髪から始まる、<br>自分らしい毎日</h2>
+        <p>Oteteは、宮崎県高鍋町に根ざした地域密着型のヘアサロンです。お客様一人ひとりの髪質・ライフスタイル・ご要望に寄り添い、丁寧なカウンセリングで理想のスタイルをご提案します。</p>
+        <p>あなたがサロンを出る瞬間、思わず笑顔になれるような仕上がりをお約束します。</p>
+        <div class="concept-points">
+          <div class="concept-point rv d1">
+            <div class="concept-point-num">01</div>
+            <div class="concept-point-text"><strong>丁寧なカウンセリング</strong><span>お一人おひとりのご要望に真剣に向き合います</span></div>
+          </div>
+          <div class="concept-point rv d2">
+            <div class="concept-point-num">02</div>
+            <div class="concept-point-text"><strong>地域に根ざした温かなサービス</strong><span>高鍋町の皆様に愛されるサロンを目指して</span></div>
+          </div>
+          <div class="concept-point rv d3">
+            <div class="concept-point-num">03</div>
+            <div class="concept-point-text"><strong>笑顔になれる仕上がり</strong><span>帰り際に鏡を見て思わず笑顔になれるように</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider" style="background:var(--dark)">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" width="100%">
+    <path d="M0,60 C480,0 960,0 1440,60 L1440,60 L0,60 Z" fill="var(--cream)"/>
+  </svg>
+</div>
+
+<!-- MENU -->
+<section class="menu-sec" id="menu">
+  <div class="section-inner">
+    <p class="section-label rv">MENU</p>
+    <h2 class="section-title rv d1">メニュー・料金</h2>
+    <div class="menu-grid">
+      <div class="menu-card rv d1">
+        <div class="menu-icon">✂</div>
+        <p class="menu-name">カット</p>
+        <p class="menu-price">¥4,400</p>
+        <p class="menu-desc">丁寧なカウンセリングでお顔立ちに合ったスタイルをご提案</p>
+      </div>
+      <div class="menu-card rv d2">
+        <div class="menu-icon">◉</div>
+        <p class="menu-name">カラーリング</p>
+        <p class="menu-price">¥7,700</p>
+        <p class="menu-desc">豊富なカラーバリエーションでなりたい雰囲気を実現</p>
+      </div>
+      <div class="menu-card rv d3">
+        <div class="menu-icon">〜</div>
+        <p class="menu-name">パーマ</p>
+        <p class="menu-price">¥8,800</p>
+        <p class="menu-desc">自然なウェーブからしっかりカールまでお好みに対応</p>
+      </div>
+      <div class="menu-card rv d2">
+        <div class="menu-icon">✦</div>
+        <p class="menu-name">トリートメント</p>
+        <p class="menu-price">¥3,300</p>
+        <p class="menu-desc">髪のダメージをケアしてツヤやかな美髪へ導きます</p>
+      </div>
+      <div class="menu-card menu-card-last rv d3">
+        <div class="menu-icon">♡</div>
+        <div>
+          <p class="menu-name">ヘッドスパ</p>
+          <p class="menu-price">¥4,400</p>
+          <p class="menu-desc">頭皮を癒すリラクゼーションメニューで心身ともに癒される</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider" style="background:var(--warm)">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" width="100%">
+    <path d="M0,0 C480,60 960,60 1440,0 L1440,0 L0,0 Z" fill="var(--dark)"/>
+  </svg>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-sec" id="gallery">
+  <div class="section-inner">
+    <p class="section-label rv">GALLERY</p>
+    <h2 class="section-title rv d1">スタイルギャラリー</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item rv sc d1">
+        <img src="https://images.unsplash.com/photo-1626383120723-2a941488860d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjg2OTl8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル1">
+        <div class="gallery-overlay"><span>STYLE WORKS</span></div>
+      </div>
+      <div class="gallery-item rv sc d2">
+        <img src="https://images.unsplash.com/photo-1754294437661-129b86f868ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjg2OTl8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル2">
+        <div class="gallery-overlay"><span>COLOR</span></div>
+      </div>
+      <div class="gallery-item rv sc d3">
+        <img src="https://images.unsplash.com/photo-1767488903403-3963f0d370db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzMwMjg2OTl8&ixlib=rb-4.1.0&q=80&w=1080" alt="スタイル3">
+        <div class="gallery-overlay"><span>TREATMENT</span></div>
+      </div>
+      <div class="gallery-item rv sc d4">
+        <img src="images/img_2.png" alt="サロン風景">
+        <div class="gallery-overlay"><span>SALON</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-sec" id="numbers">
+  <div class="section-inner">
+    <p class="section-label rv" style="justify-content:center">TRACK RECORD</p>
+    <h2 class="section-title rv d1" style="text-align:center">実績・数字で見るOtete</h2>
+    <div class="numbers-grid">
+      <div class="number-item rv d1">
+        <div class="number-val"><span data-count="500" data-suffix="名">0</span><small style="font-size:1.5rem;color:var(--gold)">+</small></div>
+        <p class="number-suffix">累計</p>
+        <p class="number-label">ご来店実績</p>
+      </div>
+      <div class="number-item rv d2">
+        <div class="number-val"><span data-count="98" data-suffix="%">0</span></div>
+        <p class="number-suffix"></p>
+        <p class="number-label">リピート率</p>
+      </div>
+      <div class="number-item rv d3">
+        <div class="number-val"><span data-count="5" data-suffix="種">0</span></div>
+        <p class="number-suffix"></p>
+        <p class="number-label">豊富なメニュー</p>
+      </div>
+      <div class="number-item rv d4">
+        <div class="number-val"><span data-count="10" data-suffix="年">0</span><small style="font-size:1.5rem;color:var(--gold)">+</small></div>
+        <p class="number-suffix"></p>
+        <p class="number-label">地域密着の歴史</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider" style="background:var(--dark)">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" height="60" width="100%">
+    <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="var(--cream)"/>
+  </svg>
+</div>
+
+<!-- ACCESS -->
+<section class="access-sec" id="access">
+  <div class="section-inner">
+    <p class="section-label rv">ACCESS</p>
+    <h2 class="section-title rv d1">アクセス・店舗情報</h2>
+    <div class="access-grid">
+      <div class="access-info rv lft d1">
+        <dl>
+          <dt>店舗名</dt><dd>Otete（オテテ）</dd>
+          <dt>住所</dt><dd>〒884-0002<br>宮崎県児湯郡高鍋町<br>北高鍋833-1</dd>
+          <dt>電話</dt><dd>お電話でのお問い合わせ<br>お気軽にご連絡ください</dd>
+          <dt>営業時間</dt><dd>10:00 〜 19:00</dd>
+          <dt>定休日</dt><dd>火曜日</dd>
+        </dl>
+      </div>
+      <div class="access-map rv rgt d2">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3366.6!2d131.6!3d32.13!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x354f5e7a4b8c3d0f%3A0x1234567890abcdef!2z5a6J5bKh55yM5YWr5rmW6YOh5py65p2h55S677yY77yZ77yT4oiS77yR!5e0!3m2!1sja!2sjp!4v1620000000000!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Otete 地図"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec" id="cta">
+  <!-- Concentric circles SVG -->
+  <div class="cta-circles">
+    <svg width="700" height="700" viewBox="0 0 700 700">
+      <circle cx="350" cy="350" r="330" class="cta-c"/><circle cx="350" cy="350" r="270" class="cta-c"/><circle cx="350" cy="350" r="210" class="cta-c"/><circle cx="350" cy="350" r="150" class="cta-c"/>
+    </svg>
+  </div>
+  <style>.cta-c{fill:none;stroke:rgba(201,169,110,.08);stroke-width:1}</style>
+  <div class="cta-content section-inner">
+    <p class="section-label rv" style="justify-content:center;color:var(--gold2)">RESERVATION</p>
+    <h2 class="cta-title rv d1">まずはお気軽に<br>ご予約ください</h2>
+    <p class="cta-sub rv d2">スタッフ一同、心よりお待ちしております。<br>お電話またはオンラインフォームからご予約いただけます。</p>
+    <div class="cta-buttons rv d3">
+      <a href="tel:None" class="btn-primary"><span>📞 お電話でご予約</span></a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" class="btn-outline" target="_blank" rel="noopener"><span>✉ WEBフォームで予約</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Otete<small>HAIR SALON / TAKANO-CHO, MIYAZAKI</small></div>
+    <div class="footer-info">
+      〒884-0002 宮崎県児湯郡高鍋町北高鍋833-1<br>
+      営業時間 10:00〜19:00 ／ 火曜定休
+    </div>
+    <div class="footer-credit">
+      Web Design by <a href="https://infinitydesign.co.jp" target="_blank" rel="noopener">InfinityDesign</a>
+    </div>
+  </div>
+  <p class="footer-copy">© 2024 Otete Hair Salon. All Rights Reserved.</p>
+</footer>
+
+<script>
+/* ── PARALLAX ── */
+const _paraBgs=document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  _paraBgs.forEach(b=>{b.style.transform=`translateY(${y*.38}px)`;});
+  const hdr=document.querySelector('header');
+  if(hdr)hdr.classList.toggle('scrolled',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const _slides=document.querySelectorAll('.hero-slide');
+const _dots=document.querySelectorAll('.hero-dot');
+let _cur=0;
+if(_slides.length>1){
+  function _goSlide(n){
+    _slides[_cur].classList.remove('active');
+    if(_dots[_cur])_dots[_cur].classList.remove('active');
+    _cur=(n+_slides.length)%_slides.length;
+    _slides[_cur].classList.add('active');
+    if(_dots[_cur])_dots[_cur].classList.add('active');
+  }
+  _dots.forEach(d=>d.addEventListener('click',()=>_goSlide(+d.dataset.idx)));
+  setInterval(()=>_goSlide(_cur+1),5000);
+}
+
+/* ── SCROLL REVEAL ── */
+const _ro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');_ro.unobserve(e.target);}
+}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>_ro.observe(el));
+
+/* ── COUNT-UP ── */
+function _countUp(el){
+  const target=+el.dataset.count;
+  if(!target)return;
+  const suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  (function frame(ts){
+    const p=Math.min((ts-start)/dur,1),e2=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e2*target).toLocaleString()+suf;
+    if(p<1)requestAnimationFrame(frame);
+  })(performance.now());
+}
+const _co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){_countUp(e.target);_co.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>_co.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
