@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小児歯科愛宕</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --accent:   #4ab0c8;
+  --accent-d: #2a8aa8;
+  --black:  #1a1a1a;
+  --gray1:  #f5f5f5;
+  --gray2:  #e8e8e8;
+  --gray3:  #888;
+  --white:  #fff;
+  --sans:   'Noto Sans JP',sans-serif;
+  --serif:  'Noto Serif JP',serif;
+}
+body{font-family:var(--sans);color:var(--black);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ─ HEADER ──────────────────────────────────────── */
+#hdr{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--gray2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:60px;
+  transition:box-shadow .3s;
+}
+#hdr.sh{box-shadow:0 2px 20px rgba(0,0,0,.07);}
+.h-logo{font-size:.95rem;font-weight:700;letter-spacing:.1em;}
+.h-nav{display:flex;align-items:center;gap:28px;}
+.h-nav a{font-size:.75rem;color:var(--gray3);letter-spacing:.08em;transition:color .2s;}
+.h-nav a:hover{color:var(--black);}
+/* BUTTON DESIGN: fill from left */
+.h-cta{
+  background:transparent;color:var(--accent);
+  border:1px solid var(--accent);
+  font-size:.75rem;font-weight:500;letter-spacing:.1em;
+  padding:9px 22px;white-space:nowrap;
+  position:relative;overflow:hidden;transition:color .3s;
+}
+.h-cta::before{
+  content:'';position:absolute;inset:0;
+  background:var(--accent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s ease;z-index:0;
+}
+.h-cta:hover::before{transform:scaleX(1);}
+.h-cta:hover{color:#fff;}
+.h-cta span{position:relative;z-index:1;}
+
+/* ─ HERO SLIDER ─────────────────────────────────── */
+.hero{
+  margin-top:60px;position:relative;
+  height:calc(100svh - 60px);min-height:500px;overflow:hidden;
+}
+.hero-slides{position:absolute;inset:0;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;}
+.hero-slide.active{opacity:1;}
+.hero-slide-bg{
+  width:100%;height:120%;object-fit:cover;
+  position:absolute;top:0;left:0;will-change:transform;
+}
+.hero-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.65) 0%,rgba(0,0,0,.15) 55%,transparent 100%);
+}
+.hero-txt{position:absolute;bottom:60px;left:60px;}
+.hero-en{
+  display:block;font-size:.72rem;font-weight:400;
+  color:rgba(255,255,255,.7);letter-spacing:.35em;text-transform:uppercase;
+  margin-bottom:14px;animation:fadeUp .7s .3s both;
+}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,5vw,4.2rem);font-weight:300;
+  color:#fff;line-height:1.15;letter-spacing:.06em;
+  animation:fadeUp .8s .5s both;
+}
+.hero-catch{
+  margin-top:18px;font-size:.9rem;font-weight:300;
+  color:rgba(255,255,255,.75);letter-spacing:.05em;line-height:1.9;
+  animation:fadeUp .8s .7s both;
+}
+.hero-scroll{
+  position:absolute;bottom:32px;right:48px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:fadeUp .8s 1.2s both;
+}
+.hero-scroll span{
+  font-size:.65rem;color:rgba(255,255,255,.5);
+  letter-spacing:.25em;text-transform:uppercase;writing-mode:vertical-rl;
+}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);}
+/* Slider dots */
+.hero-dots{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;gap:10px;z-index:10;
+}
+.hero-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.3);
+  border:1px solid rgba(255,255,255,.6);
+  cursor:pointer;transition:background .3s;
+}
+.hero-dot.active{background:var(--accent);border-color:var(--accent);}
+/* SVG deco top-right corner */
+.hero-deco{
+  position:absolute;top:32px;right:40px;
+  width:140px;height:140px;pointer-events:none;opacity:.3;
+}
+
+/* ─ NEWS ─────────────────────────────────────────── */
+.news{
+  border-bottom:1px solid var(--gray2);
+  display:flex;align-items:stretch;overflow:hidden;
+}
+.news-tag{
+  background:var(--black);color:#fff;
+  font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+  padding:0 20px;display:flex;align-items:center;flex-shrink:0;white-space:nowrap;
+}
+.news-list{display:flex;overflow:hidden;}
+.news-it{
+  padding:17px 28px;border-right:1px solid var(--gray2);
+  display:flex;align-items:center;gap:14px;font-size:.78rem;white-space:nowrap;
+}
+.news-dt{color:var(--gray3);font-size:.68rem;flex-shrink:0;}
+
+/* ─ SECTION ─────────────────────────────────────── */
+.sec{padding:80px 40px;}
+.inner{max-width:1120px;margin:0 auto;}
+.sec-lbl{
+  display:block;font-size:.7rem;font-weight:700;
+  letter-spacing:.35em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:12px;
+}
+.sec-ttl{
+  font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);
+  font-weight:300;letter-spacing:.06em;line-height:1.4;
+}
+.sec-head{margin-bottom:52px;}
+
+/* ─ ABOUT ────────────────────────────────────────── */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--gray2);overflow:hidden;
+}
+.about-img-w{overflow:hidden;}
+.about-img{
+  width:100%;height:100%;min-height:460px;object-fit:cover;
+  transition:transform .7s ease;
+}
+.about-img-w:hover .about-img{transform:scale(1.03);}
+.about-body{
+  padding:60px 52px;display:flex;flex-direction:column;justify-content:center;
+  position:relative;
+}
+/* SVG quote deco in about */
+.about-quote{
+  position:absolute;top:24px;right:32px;
+  width:56px;height:44px;opacity:.08;pointer-events:none;
+}
+.about-txt{font-size:.88rem;line-height:2.3;font-weight:300;color:#444;margin-bottom:28px;}
+/* BUTTON: fill from bottom */
+.about-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.76rem;font-weight:500;letter-spacing:.12em;
+  border-bottom:1px solid var(--black);padding-bottom:4px;
+  width:fit-content;transition:gap .2s,color .2s;
+  position:relative;
+}
+.about-link::after{content:'→';transition:transform .2s;}
+.about-link:hover{gap:14px;color:var(--accent);}
+.about-link:hover::after{transform:translateX(4px);}
+
+/* ─ STRIP ────────────────────────────────────────── */
+.strip{height:300px;display:flex;gap:3px;background:var(--gray1);}
+.strip-it{flex:1;min-width:0;overflow:hidden;position:relative;}
+.strip-it img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.strip-it:hover img{transform:scale(1.07);}
+
+/* ─ MENU ─────────────────────────────────────────── */
+.menu-bg{background:var(--gray1);}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--gray2);}
+.menu-card{
+  background:var(--white);padding:36px 28px;
+  position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s;cursor:default;
+}
+/* HOVER: lift + top accent bar */
+.menu-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.09);transform:translateY(-3px);}
+.menu-card::before{
+  content:'';position:absolute;top:0;left:0;right:100%;height:2px;
+  background:var(--accent);transition:right .4s ease;
+}
+.menu-card:hover::before{right:0;}
+.menu-no{
+  position:absolute;top:18px;right:22px;
+  font-size:2.8rem;font-weight:700;
+  color:rgba(0,0,0,.04);line-height:1;font-family:var(--serif);
+}
+.menu-name{font-size:.98rem;font-weight:500;letter-spacing:.06em;margin-bottom:8px;}
+.menu-price{
+  font-family:var(--serif);font-size:1.45rem;font-weight:300;
+  color:var(--accent);margin-bottom:10px;
+}
+.menu-price span{font-size:.78rem;font-family:var(--sans);}
+.menu-desc{font-size:.8rem;color:var(--gray3);line-height:1.85;font-weight:300;}
+.menu-note{margin-top:28px;font-size:.73rem;color:var(--gray3);text-align:center;line-height:1.9;}
+
+/* ─ GALLERY ──────────────────────────────────────── */
+.gal-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:repeat(2,220px);
+  gap:3px;margin-top:48px;
+}
+.g-it{overflow:hidden;position:relative;cursor:pointer;}
+.g-it:first-child{grid-column:span 2;grid-row:span 2;}
+.g-it img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.g-it:hover img{transform:scale(1.06);}
+.g-ov{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.35);
+  display:flex;align-items:flex-end;padding:14px;
+  opacity:0;transition:opacity .3s;
+}
+.g-it:hover .g-ov{opacity:1;}
+.g-ov span{color:#fff;font-size:.7rem;letter-spacing:.2em;}
+
+/* ─ NUMBERS ──────────────────────────────────────── */
+.nums{background:var(--black);padding:64px 40px;position:relative;overflow:hidden;}
+.nums-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2a2a2a;}
+.n-card{background:var(--black);padding:48px 40px;text-align:center;}
+.n-val{
+  font-family:var(--serif);font-size:3.2rem;font-weight:300;
+  color:var(--white);line-height:1;margin-bottom:8px;
+}
+.n-val small{font-size:1.3rem;font-family:var(--sans);}
+.n-lbl{font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.22em;text-transform:uppercase;}
+/* SVG decorative cross in nums section */
+.nums-deco-cross{
+  position:absolute;left:40px;top:50%;transform:translateY(-50%);
+  width:60px;height:60px;opacity:.12;pointer-events:none;
+}
+/* SVG concentric circles right */
+.nums-deco-circles{
+  position:absolute;right:-60px;top:50%;transform:translateY(-50%);
+  width:220px;height:220px;opacity:.08;pointer-events:none;
+}
+
+/* ─ ACCESS ───────────────────────────────────────── */
+.access-grid{display:grid;grid-template-columns:1fr 1.2fr;border:1px solid var(--gray2);overflow:hidden;}
+.access-info{padding:52px 44px;}
+.a-row{display:flex;gap:0;padding:15px 0;border-bottom:1px solid var(--gray2);}
+.a-row:last-child{border-bottom:none;padding-top:24px;}
+.a-key{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray3);width:84px;flex-shrink:0;padding-top:2px;}
+.a-val{font-size:.87rem;line-height:1.8;font-weight:300;}
+.access-img{background:var(--gray1);min-height:320px;overflow:hidden;}
+.access-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6);transition:filter .4s;}
+.access-img:hover img{filter:grayscale(.1);}
+
+/* ─ BUTTONS ──────────────────────────────────────── */
+/* Primary: fill from left */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:transparent;color:var(--accent);
+  border:1px solid var(--accent);
+  padding:16px 44px;font-size:.85rem;font-weight:500;letter-spacing:.12em;
+  position:relative;overflow:hidden;transition:color .3s;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:var(--accent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s ease;z-index:0;
+}
+.btn-primary:hover::before{transform:scaleX(1);}
+.btn-primary:hover{color:#fff;}
+.btn-primary>*{position:relative;z-index:1;}
+/* Secondary: fill from bottom */
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(255,255,255,.5);color:rgba(255,255,255,.85);
+  padding:15px 36px;font-size:.8rem;letter-spacing:.12em;
+  position:relative;overflow:hidden;transition:color .3s;
+}
+.btn-secondary::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.12);
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform .3s ease;z-index:0;
+}
+.btn-secondary:hover::before{transform:scaleY(1);}
+.btn-secondary:hover{color:#fff;}
+.btn-secondary>*{position:relative;z-index:1;}
+
+/* ─ CTA ──────────────────────────────────────────── */
+.cta-sec{
+  position:relative;padding:96px 40px;text-align:center;
+  background:url('https://images.unsplash.com/photo-1716843169641-3a26f161ee51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080') center/cover no-repeat;
+  overflow:hidden;
+}
+.cta-sec::before{content:'';position:absolute;inset:0;background:rgba(12,12,12,.72);}
+/* SVG deco in CTA: concentric circles */
+.cta-deco{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:440px;height:440px;opacity:.07;pointer-events:none;
+}
+/* SVG wave on top of CTA */
+.cta-wave{
+  position:absolute;top:0;left:0;right:0;
+  line-height:0;z-index:1;
+}
+.cta-in{position:relative;z-index:2;}
+.cta-ttl{
+  font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);
+  font-weight:300;color:#fff;margin-bottom:16px;letter-spacing:.06em;line-height:1.4;
+}
+.cta-sub{
+  font-size:.87rem;font-weight:300;color:rgba(255,255,255,.65);
+  line-height:2.1;margin-bottom:44px;max-width:440px;margin-left:auto;margin-right:auto;
+}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* ─ FOOTER ───────────────────────────────────────── */
+footer{
+  background:#0d0d0d;padding:44px 40px 28px;
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;
+}
+.ft-logo{font-size:1rem;font-weight:700;color:#fff;letter-spacing:.12em;margin-bottom:10px;}
+.ft-addr{font-size:.75rem;color:rgba(255,255,255,.3);line-height:1.9;font-weight:300;}
+.ft-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.ft-links{display:flex;gap:20px;}
+.ft-links a{font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:.08em;transition:color .2s;}
+.ft-links a:hover{color:#fff;}
+.ft-copy{font-size:.68rem;color:rgba(255,255,255,.18);}
+.ft-credit{font-size:.66rem;color:rgba(255,255,255,.13);}
+.ft-credit a{color:rgba(255,255,255,.22);transition:color .2s;}
+.ft-credit a:hover{color:rgba(255,255,255,.5);}
+
+/* ─ ANIMATIONS ───────────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.rv.lft{transform:translateX(-36px);}
+.rv.rgt{transform:translateX(36px);}
+.rv.sc{transform:scale(.95);}
+.rv.in{opacity:1;transform:none;}
+.rv.d1{transition-delay:.1s;}.rv.d2{transition-delay:.2s;}
+.rv.d3{transition-delay:.3s;}.rv.d4{transition-delay:.4s;}
+
+/* ─ RESPONSIVE ───────────────────────────────────── */
+@media(max-width:768px){
+  #hdr{padding:0 18px;}
+  .h-nav{display:none;}
+  .hero-txt{left:24px;bottom:40px;}
+  .hero-deco{display:none;}
+  .news{display:none;}
+  .sec{padding:56px 18px;}
+  .about-grid,.access-grid,footer{grid-template-columns:1fr;}
+  .about-img{min-height:260px;}
+  .about-body{padding:36px 24px;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .g-it:first-child{grid-column:span 2;grid-row:span 1;}
+  .nums-grid{grid-template-columns:1fr;}
+  .strip{height:180px;}
+  .ft-r{align-items:flex-start;}
+  .cta-sec{padding:64px 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="h-logo">小児歯科愛宕</div>
+  <nav class="h-nav">
+    <a href="#about">About</a>
+    <a href="#menu">診療メニュー</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#access">Access</a>
+  </nav>
+  <a href="#reserve" class="h-cta"><span>診療予約</span></a>
+</header>
+
+<!-- HERO SLIDER -->
+<section class="hero">
+  <div class="hero-slides" id="heroSlides">
+    
+    
+    <div class="hero-slide active">
+      <img class="hero-slide-bg" id="paraBg1" src="https://images.unsplash.com/photo-1578894647686-3ea9a4d0deab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="小児歯科愛宕">
+      <div class="hero-ov"></div>
+    </div>
+    
+    <div class="hero-slide">
+      <img class="hero-slide-bg" id="paraBg2" src="https://images.unsplash.com/photo-1667118378119-938993594c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="小児歯科愛宕">
+      <div class="hero-ov"></div>
+    </div>
+    
+    <div class="hero-slide">
+      <img class="hero-slide-bg" id="paraBg3" src="https://images.unsplash.com/photo-1716843169641-3a26f161ee51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="小児歯科愛宕">
+      <div class="hero-ov"></div>
+    </div>
+    
+  </div>
+
+  <!-- SVG deco: dashed circle top-right -->
+  <svg class="hero-deco" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="70" cy="70" r="65" stroke="white" stroke-width="1" stroke-dasharray="5 9"/>
+    <circle cx="70" cy="70" r="50" stroke="white" stroke-width=".5" stroke-dasharray="3 7"/>
+  </svg>
+
+  <div class="hero-txt">
+    <span class="hero-en">dental clinic — 岩国市</span>
+    <h1 class="hero-title">小児歯科愛宕</h1>
+    <p class="hero-catch">小児歯科愛宕で、あなたらしさを見つけよう</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+
+  <!-- Slider dots -->
+  <div class="hero-dots" id="heroDots">
+    
+    <div class="hero-dot active" data-idx="0"></div>
+    
+    <div class="hero-dot" data-idx="1"></div>
+    
+    <div class="hero-dot" data-idx="2"></div>
+    
+  </div>
+</section>
+
+<!-- NEWS STRIP -->
+<div class="news rv">
+  <div class="news-tag">NEWS</div>
+  <div class="news-list">
+    
+    <div class="news-it">
+      <span class="news-dt">2025.01</span>
+      <span>新メニューを追加しました</span>
+    </div>
+    
+    <div class="news-it">
+      <span class="news-dt">2024.12</span>
+      <span>年末年始の営業案内</span>
+    </div>
+    
+    <div class="news-it">
+      <span class="news-dt">2024.11</span>
+      <span>スタッフ募集中です</span>
+    </div>
+    
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="inner">
+    <div class="about-grid rv">
+      <div class="about-img-w">
+        <img class="about-img" src="https://images.unsplash.com/photo-1667118378119-938993594c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="サロンイメージ">
+      </div>
+      <div class="about-body">
+        <!-- SVG quote decoration -->
+        <svg class="about-quote" viewBox="0 0 56 44" fill="none">
+          <path d="M0 44V26C0 11.5 9.85 2.0 29.3 0v7.3C19.5 9.2 14.7 15.2 14.7 25.3H29.3V44H0zm26.7 0V26C26.7 11.5 36.5 2.0 56 0v7.3C46.2 9.2 41.3 15.2 41.3 25.3H56V44H26.7z" fill="var(--accent)"/>
+        </svg>
+        <div class="sec-head">
+          <span class="sec-lbl">About</span>
+          <h2 class="sec-ttl">私たちのこだわり</h2>
+        </div>
+        <p class="about-txt">地域に根ざした歯科・デンタルクリニックとして、お客様一人ひとりに寄り添ったサービスをご提供しています。</p>
+        <a href="#menu" class="about-link">診療メニューを見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="strip">
+  
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1578894647686-3ea9a4d0deab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1667118378119-938993594c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1716843169641-3a26f161ee51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+  <div class="strip-it"><img src="images/img_1.png" alt=""></div>
+  
+  <div class="strip-it"><img src="images/img_2.png" alt=""></div>
+  
+  <div class="strip-it"><img src="https://images.unsplash.com/photo-1578894647686-3ea9a4d0deab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt=""></div>
+  
+</div>
+
+<!-- MENU -->
+<section class="sec menu-bg" id="menu">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-lbl">診療メニュー</span>
+      <h2 class="sec-ttl">診療メニュー</h2>
+    </div>
+    <div class="menu-grid">
+      
+      <div class="menu-card rv d2">
+        <div class="menu-no">01</div>
+        <div class="menu-name">初診・検診</div>
+        <div class="menu-price">¥3,300<span>〜（税込）</span></div>
+        <div class="menu-desc">お口の状態を詳しくチェック</div>
+      </div>
+      
+      <div class="menu-card rv d3">
+        <div class="menu-no">02</div>
+        <div class="menu-name">クリーニング</div>
+        <div class="menu-price">¥3,850<span>〜（税込）</span></div>
+        <div class="menu-desc">歯石・着色汚れのプロケア</div>
+      </div>
+      
+      <div class="menu-card rv d4">
+        <div class="menu-no">03</div>
+        <div class="menu-name">ホワイトニング</div>
+        <div class="menu-price">¥22,000<span>〜（税込）</span></div>
+        <div class="menu-desc">歯を白くする本格ホワイトニング</div>
+      </div>
+      
+      <div class="menu-card rv d1">
+        <div class="menu-no">04</div>
+        <div class="menu-name">矯正相談</div>
+        <div class="menu-price">¥0<span>〜（税込）</span></div>
+        <div class="menu-desc">歯並び矯正の無料カウンセリング</div>
+      </div>
+      
+    </div>
+    <p class="menu-note rv">※ 料金はすべて税込です。詳細はカウンセリング時にご確認ください。</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec" id="gallery">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-lbl">Gallery</span>
+      <h2 class="sec-ttl">ギャラリー</h2>
+    </div>
+    <div class="gal-grid rv sc">
+      
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1578894647686-3ea9a4d0deab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.01</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1667118378119-938993594c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.02</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1716843169641-3a26f161ee51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.03</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="images/img_1.png" alt="">
+        <div class="g-ov"><span>No.04</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="images/img_2.png" alt="">
+        <div class="g-ov"><span>No.05</span></div>
+      </div>
+      
+      <div class="g-it">
+        <img src="https://images.unsplash.com/photo-1578894647686-3ea9a4d0deab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="">
+        <div class="g-ov"><span>No.06</span></div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="nums rv" id="nums">
+  <!-- SVG decorative cross left -->
+  <svg class="nums-deco-cross" viewBox="0 0 60 60" fill="none">
+    <line x1="30" y1="0" x2="30" y2="60" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="30" x2="60" y2="30" stroke="white" stroke-width="1"/>
+    <line x1="8" y1="8" x2="52" y2="52" stroke="white" stroke-width=".5"/>
+    <line x1="52" y1="8" x2="8" y2="52" stroke="white" stroke-width=".5"/>
+  </svg>
+  <!-- SVG concentric circles right -->
+  <svg class="nums-deco-circles" viewBox="0 0 220 220" fill="none">
+    <circle cx="110" cy="110" r="100" stroke="white" stroke-width="1"/>
+    <circle cx="110" cy="110" r="75" stroke="white" stroke-width="1"/>
+    <circle cx="110" cy="110" r="50" stroke="white" stroke-width="1"/>
+    <circle cx="110" cy="110" r="25" stroke="white" stroke-width="1"/>
+  </svg>
+  <div class="inner">
+    <div class="nums-grid">
+      
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="sec" id="access">
+  <div class="inner">
+    <div class="sec-head rv">
+      <span class="sec-lbl">Access</span>
+      <h2 class="sec-ttl">アクセス</h2>
+    </div>
+    <div class="access-grid rv">
+      <div class="access-info">
+        <div class="a-row"><span class="a-key">Address</span><span class="a-val">日本、〒740-0031 山口県岩国市門前町３丁目１２−３５</span></div>
+        <div class="a-row"><span class="a-key">Tel</span><span class="a-val">0827-31-3167</span></div>
+        <div class="a-row"><span class="a-key">Hours</span><span class="a-val">10:00〜20:00</span></div>
+        <div class="a-row"><span class="a-key">Closed</span><span class="a-val">不定休</span></div>
+        <div class="a-row">
+          <a href="tel:0827-31-3167" class="btn-primary" style="padding:13px 28px;font-size:.78rem;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.69a16 16 0 006.22 6.22l1.21-1.21a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            今すぐ電話
+          </a>
+        </div>
+      </div>
+      <div class="access-img">
+        <img src="https://images.unsplash.com/photo-1716843169641-3a26f161ee51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTA2ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM1MDMwNDV8&ixlib=rb-4.1.0&q=80&w=1080" alt="アクセス">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec rv" id="reserve">
+  <!-- SVG wave top -->
+  <svg class="cta-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 30" preserveAspectRatio="none" style="height:30px;">
+    <path d="M0,15 C360,30 1080,0 1440,15 L1440,0 L0,0 Z" fill="white"/>
+  </svg>
+  <!-- SVG concentric circles deco -->
+  <svg class="cta-deco" viewBox="0 0 440 440" fill="none">
+    <circle cx="220" cy="220" r="210" stroke="white" stroke-width="1"/>
+    <circle cx="220" cy="220" r="165" stroke="white" stroke-width="1"/>
+    <circle cx="220" cy="220" r="120" stroke="white" stroke-width="1"/>
+    <circle cx="220" cy="220" r="75" stroke="white" stroke-width="1"/>
+    <circle cx="220" cy="220" r="30" stroke="white" stroke-width="1"/>
+  </svg>
+  <div class="cta-in">
+    <h2 class="cta-ttl">ご予約・お問い合わせ</h2>
+    <p class="cta-sub">まずはお気軽にお電話ください。スタッフ一同お待ちしております。</p>
+    <div class="cta-btns">
+      <a href="tel:0827-31-3167" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.69a16 16 0 006.22 6.22l1.21-1.21a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        電話で予約
+      </a>
+      <a href="https://forms.gle/uSfk2teksDMiE6bQ7" target="_blank" class="btn-secondary">無料相談フォーム</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="ft-logo">小児歯科愛宕</div>
+    <div class="ft-addr">日本、〒740-0031 山口県岩国市門前町３丁目１２−３５<br>TEL: 0827-31-3167</div>
+  </div>
+  <div class="ft-r">
+    <div class="ft-links">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#access">Access</a>
+    </div>
+    <div class="ft-copy">© 小児歯科愛宕 All Rights Reserved.</div>
+    <div class="ft-credit">Demo by <a href="https://infinitydesign.co.jp">InfinityDesign</a></div>
+  </div>
+</footer>
+
+<script>
+/* ── PARALLAX ── */
+const paraBgs = document.querySelectorAll('.hero-slide-bg');
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY;
+  paraBgs.forEach(bg=>{ bg.style.transform=`translateY(${y*0.38}px)`; });
+  document.getElementById('hdr').classList.toggle('sh',y>10);
+},{passive:true});
+
+/* ── HERO SLIDER ── */
+const heroSlides = document.querySelectorAll('.hero-slide');
+const heroDots   = document.querySelectorAll('.hero-dot');
+let cur = 0;
+function goSlide(n){
+  heroSlides[cur].classList.remove('active');
+  heroDots[cur].classList.remove('active');
+  cur = (n + heroSlides.length) % heroSlides.length;
+  heroSlides[cur].classList.add('active');
+  heroDots[cur].classList.add('active');
+}
+heroDots.forEach(d=>d.addEventListener('click',()=>goSlide(+d.dataset.idx)));
+setInterval(()=>goSlide(cur+1), 5000);
+
+/* ── SCROLL REVEAL ── */
+const ro = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}
+}),{threshold:0.1,rootMargin:'0px 0px -36px 0px'});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+
+/* ── COUNT-UP ── */
+function countUp(el){
+  const target = +el.dataset.count;
+  if(!target){return;}
+  const suffix = el.dataset.suffix || '';
+  const dur = 1600;
+  const start = performance.now();
+  const inner = el.querySelector('small');
+  const unit = inner ? inner.textContent : suffix;
+  function frame(ts){
+    const p = Math.min((ts-start)/dur,1);
+    const e2 = 1-Math.pow(1-p,3);
+    el.textContent = Math.floor(e2*target).toLocaleString() + unit;
+    if(p<1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const countObs = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){countUp(e.target);countObs.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('.n-val[data-count]').forEach(el=>countObs.observe(el));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+</body>
+</html>
